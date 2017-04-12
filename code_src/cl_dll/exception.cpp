@@ -3,7 +3,7 @@
 //
 //		2006
 
-
+#ifdef _WIN32
 #include "hud.h"
 #include "cl_util.h"
 #include "windows.h"
@@ -305,3 +305,4 @@ void UnInstallExceptionHandler()
 		Log("ok\n");
 	}
 }
+#endif // WIN32

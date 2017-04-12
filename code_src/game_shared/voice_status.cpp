@@ -44,9 +44,7 @@
 #include "VGUI_TextImage.h"
 #include "vgui_loadtga.h"
 #include "vgui_helpers.h"
-#include "vgui_mousecode.h"
-
-
+#include "VGUI_MouseCode.h"
 
 using namespace vgui;
 

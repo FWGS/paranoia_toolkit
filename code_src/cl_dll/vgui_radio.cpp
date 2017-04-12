@@ -11,7 +11,7 @@
 #include "cdll_int.h"
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_radio.h"
-#include "..\game_shared\vgui_loadtga.h"
+#include "../game_shared/vgui_loadtga.h"
 #include "getfont.h"
 
 #define RADIO_FADE_TIME		0.25

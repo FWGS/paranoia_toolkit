@@ -434,7 +434,8 @@ void CStudioModelRenderer::GL_SetupLighting ()
 //	light.lightdir = Vector(0, -1, 0);
 
 	// TODO: only do it for bones that actually have textures
-	for (int i = 0; i < m_pStudioHeader->numbones; i++)
+	int i;
+	for (i = 0; i < m_pStudioHeader->numbones; i++)
 	{
 	//	VectorIRotate( g_lightvec, (*m_pbonetransform)[i], g_blightvec[i] );
 		VectorIRotate( light.lightdir, (*m_pbonetransform)[i], g_blightvec[i] );
@@ -594,7 +595,8 @@ void CStudioModelRenderer::GL_DrawPoints ( )
 	if (skinnum != 0 && skinnum < m_pTextureHeader->numskinfamilies)
 		pskinref += (skinnum * m_pTextureHeader->numskinref);
 
-	for (int i = 0; i < m_pSubModel->numverts; i++)
+	int i;
+	for (i = 0; i < m_pSubModel->numverts; i++)
 	{
 		VectorTransform (pstudioverts[i], (*m_pbonetransform)[pvertbone[i]], g_pxformverts[i]);
 	}
@@ -604,7 +606,8 @@ void CStudioModelRenderer::GL_DrawPoints ( )
 //
 
 	vec3_t *lv = g_pvlightvalues;
-	for (int j = 0; j < m_pSubModel->nummesh; j++) 
+	int j;
+	for (j = 0; j < m_pSubModel->nummesh; j++)
 	{
 		int flags = ptexture[pskinref[pmesh[j].skinref]].flags;
 		for (i = 0; i < pmesh[j].numnorms; i++, lv++, pstudionorms++, pnormbone++)

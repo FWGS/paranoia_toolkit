@@ -1,6 +1,6 @@
 // mp3 support added by Killar
 
-#ifndef MP3_H
+#if !defined(MP3_H) && defined(_WIN32)
 #define MP3_H
 
 #include "fmod.h"

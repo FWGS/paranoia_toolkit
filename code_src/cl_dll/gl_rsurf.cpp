@@ -118,7 +118,8 @@ void GenerateVertexArray()
 	int numverts = 0;
 	model_t *world = gEngfuncs.GetEntityByIndex(0)->model;
 	msurface_t* surfaces = world->surfaces;
-	for (int i = 0; i < world->numsurfaces; i++)
+	int i;
+	for ( i = 0; i < world->numsurfaces; i++)
 	{
 		if (!(surfaces[i].flags & (SURF_DRAWSKY|SURF_DRAWTURB)))
 		{
@@ -503,7 +504,8 @@ void SetTexPointer(int unitnum, int tc)
 //===============
 void ResetCache()
 {
-	for(int i = 0; i < 16; i++)
+	int i;
+	for(i = 0; i < 16; i++)
 		currentbinds[i] = 0;
 
 	for(i = 0; i < 4; i++)
@@ -603,7 +605,8 @@ void PrepareFirstPass()
 	needs_special_bump_passes = 0;
 	needs_second_pass = 0;
 	hasdynlights = HasDynamicLights();
-	for (int i = 0; i < 64; i++)
+	int i;
+	for (i = 0; i < 64; i++)
 		lightmapchains[i] = NULL;
 
 	ResetCache();

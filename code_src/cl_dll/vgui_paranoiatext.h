@@ -2,8 +2,8 @@
 #define _PARANOIATEXT_H
 using namespace vgui;
 
-//#include "..\game_shared\vgui_checkbutton2.h"
-#include "..\game_shared\vgui_loadtga.h"
+//#include "../game_shared/vgui_checkbutton2.h"
+#include "../game_shared/vgui_loadtga.h"
 #include "VGUI_ScrollPanel.h"
 
 class CMyScrollPanel;

@@ -9,7 +9,7 @@ using namespace vgui;
 #include "vgui_shadowtext.h"
 #include "VGUI_TextImage.h"
 
-Font* FontFromMessage(const char* &ptext);
+#include "getfont.h"
 void CheckPanel();
 
 
@@ -38,7 +38,7 @@ public:
 	void SetMessage( client_textmessage_t *msg )
 	{
 		setSize(ScreenWidth, 16);
-		const char *text = msg->pMessage;
+		char *text = (char *)msg->pMessage;
 		Font *pFont = FontFromMessage(text);
 		char buf[1024];
 		sprintf(buf, text, g_ammoAdded); // text message should contain %d substring

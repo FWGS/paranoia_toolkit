@@ -12,7 +12,7 @@
 #endif
 
 
-#include "vgui_panel.h"
+#include "VGUI_Panel.h"
 
 
 namespace vgui

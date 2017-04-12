@@ -30,8 +30,22 @@ typedef unsigned short word;
 typedef float vec_t;
 typedef int (*pfnUserMsgHook)(const char *pszName, int iSize, void *pbuf);
 
-#include "util_vector.h"
+#ifndef _WIN32
+#include <ctype.h>
+#define _cdecl
+#define EXPORT __attribute__((visibility("default")))
+inline void strupr( char *str )
+{
+	for( ; str && *str; str++ )
+	{
+		*str = toupper(*str);
+	}
+}
+#else
 #define EXPORT	_declspec( dllexport )
+#endif
+
+#include "util_vector.h"
 
 #include "../engine/cdll_int.h"
 #include "../dlls/cdll_dll.h"

@@ -1,9 +1,11 @@
-#ifndef __GLMANAGER_H
+#if !defined(__GLMANAGER_H)
 #define __GLMANAGER_H
 
+#ifdef _WIN32
 #include "windows.h"
-#include "gl/gl.h"
-#include "gl/glext.h"
+#endif
+#include <GL/gl.h>
+#include <GL/glext.h>
 #include "log.h"
 
 
@@ -96,8 +98,9 @@ public:
 	void (APIENTRY *glVertex3fv)	(const GLfloat *v);
 	void (APIENTRY *glVertexPointer) (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer);
 	void (APIENTRY *glViewport)	(GLint x, GLint y, GLsizei width, GLsizei height);
+#ifdef _WIN32
 	PROC (APIENTRY *wglGetProcAddress)	(LPCSTR);
-
+#endif
 
 	// extension specific functions
 
@@ -185,7 +188,11 @@ private:
 	int Load_Rectangle_Textures();
 	void LogDebugInfo();
 
+#ifdef _WIN32
 	HMODULE		hOpengl32dll;
+#else
+	void	*hOpengl32dll;
+#endif
 //	cvar_t		*v_GLAllowed;
 	int			glstate;
 };

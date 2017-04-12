@@ -7,10 +7,10 @@
 #include "cl_entity.h"
 #include "triangleapi.h"
 #include "particlesys.h"
-#include "..\common\com_model.h"
+#include "../common/com_model.h"
 #include "studio_util.h" // for M_PI and matrix functions
-#include "..\common\pmtrace.h" // for contents and traceline
-#include "..\pm_shared\pm_defs.h"
+#include "../common/pmtrace.h" // for contents and traceline
+#include "../pm_shared/pm_defs.h"
 
 
 //

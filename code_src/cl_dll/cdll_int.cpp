@@ -21,7 +21,7 @@
 #include "hud.h"
 #include "cl_util.h"
 #include "netadr.h"
-#include "vgui_schememanager.h"
+#include "vgui_SchemeManager.h"
 #include "log.h" // buz
 #include "exception.h" // buz
 
@@ -38,12 +38,14 @@ extern "C"
 #include "interface.h"
 #include "mp3.h"
 
-#define DLLEXPORT __declspec( dllexport )
+#define DLLEXPORT EXPORT
 
 
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
+#ifdef _WIN32
 CMP3 gMP3;
+#endif
 TeamFortressViewport *gViewPort = NULL;
 
 void InitInput (void);
@@ -193,8 +195,10 @@ void DLLEXPORT HUD_Init( void )
 {
 	SetupLogging (); // buz
 
+#ifdef _WIN32
 	// buz: enable CrashRpt library
 	LoadCrashRpt();
+#endif
 
 	InitInput();
 	gHUD.Init();

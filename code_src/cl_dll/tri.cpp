@@ -28,7 +28,7 @@
 #include "triapiobjects.h"
 #include "gl_renderer.h" // buz
 
-#define DLLEXPORT __declspec( dllexport )
+#define DLLEXPORT EXPORT
 
 extern "C"
 {

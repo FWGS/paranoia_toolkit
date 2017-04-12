@@ -11,6 +11,7 @@
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_subtitles.h"
 #include "VGUI_TextImage.h"
+#include "getfont.h"
 
 
 cvar_t *time_min;
@@ -20,7 +21,7 @@ cvar_t *scroll_speed;
 cvar_t *fade_speed;
 
 
-Font* FontFromMessage(const char* &ptext)
+Font* FontFromMessage(char* &ptext)
 {
 	char fontname[64] = "Default Text";
 	if (ptext != NULL && ptext[0] != 0)
@@ -167,7 +168,7 @@ void CSubtitle::AddMessage( client_textmessage_t *msg )
 			gEngfuncs.Con_Printf("WARNING: post-message %s not found in titles.txt!\n", postMsgName);
 	}
 
-	Font *pFont = FontFromMessage(pText);
+	Font *pFont = FontFromMessage((char*&)pText);
 
 	int tw, th;
 	CSubtitleTextPanel *text = new CSubtitleTextPanel(pText, 0, 0, getWide(), 64 );
@@ -244,7 +245,8 @@ void CSubtitle::paintBackground()
 
 			// find oldest child to start fading int
 			float mintime = 99999;
-			for (int i = 0; i < m_pLayer->getChildCount(); i++)
+			int i;
+			for (i = 0; i < m_pLayer->getChildCount(); i++)
 			{
 				CSubtitleTextPanel *chld = (CSubtitleTextPanel*)m_pLayer->getChild(i);
 				if (chld->isVisible() && chld->m_fBirthTime < mintime)

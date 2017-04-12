@@ -19,7 +19,7 @@
 #include "pmtrace.h"
 #include "parsemsg.h"
 #include "gl_renderer.h"
-
+#include "log.h"
 
 #define MAX_DECALTEXTURES	128
 #define MAX_CUSTOMDECALS	1024
@@ -722,6 +722,7 @@ int DrawSingleDecal(customdecal *decal)
 
 void DrawDecals()
 {
+	int i;
 	decalrendercounter = 0;
 	staticdecalrendercounter = 0;
 
@@ -754,7 +755,7 @@ void DrawDecals()
 
 	SetTexEnvs(ENVSTATE_REPLACE);
 
-	for (int i = 0; i < numdecals; i++)
+	for (i = 0; i < numdecals; i++)
 	{
 		if (DrawSingleDecal(&decals[i]))
 			decalrendercounter++;

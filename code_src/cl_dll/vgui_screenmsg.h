@@ -7,8 +7,7 @@
 using namespace vgui;
 
 #include "vgui_shadowtext.h"
-
-Font* FontFromMessage(const char* &ptext);
+#include "getfont.h"
 
 
 class CScreenMessage : public ShadowTextPanel
@@ -28,7 +27,7 @@ public:
 	void SetMessage( client_textmessage_t *msg )
 	{
 		const char *text = msg->pMessage;
-		Font *pFont = FontFromMessage(text);
+		Font *pFont = FontFromMessage((char*&)text);
 		setFont(pFont);
 		setText(text);
 		setFgColor(msg->r1, msg->g1, msg->b1, msg->a1);
@@ -117,7 +116,7 @@ public:
 	{
 		int w, h;
 		const char *text = msg->pMessage;
-		Font *pFont = FontFromMessage(text);
+		Font *pFont = FontFromMessage((char*&)text);
 		setSize(ScreenWidth, ScreenHeight);
 		setFont(pFont);
 		setText(text);

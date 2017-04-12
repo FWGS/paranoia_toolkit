@@ -7,17 +7,17 @@
 
 #include "../cl_dll/hud.h"
 #include "../cl_dll/cl_util.h"
-#include "../cl_dll/vgui_teamfortressviewport.h"
+#include "../cl_dll/vgui_TeamFortressViewport.h"
 
 
-#include "vgui_actionsignal.h"
+#include "VGUI_ActionSignal.h"
 #include "voice_vgui_tweakdlg.h"
 #include "voice_vgui_tweakdlg.h"
-#include "vgui_panel.h"
-#include "vgui_scrollbar.h"
-#include "vgui_slider.h"
+#include "VGUI_Panel.h"
+#include "VGUI_ScrollBar.h"
+#include "VGUI_Slider.h"
 #include "ivoicetweak.h"
-#include "vgui_button.h"
+#include "VGUI_Button.h"
 #include "vgui_checkbutton2.h"
 #include "vgui_helpers.h"
 

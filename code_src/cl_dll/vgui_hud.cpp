@@ -12,7 +12,7 @@
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_hud.h"
 #include "vgui_paranoiatext.h" // Wargon
-#include "..\game_shared\vgui_loadtga.h"
+#include "../game_shared/vgui_loadtga.h"
 #include<VGUI_TextImage.h>
 
 #include "ammohistory.h"

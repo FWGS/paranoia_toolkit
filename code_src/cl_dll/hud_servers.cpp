@@ -12,7 +12,14 @@
 #include "hud_servers.h"
 #include "net_api.h"
 #include <string.h>
+#ifdef _WIN32
 #include <winsock.h>
+#else
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#define CALLBACK
+#define __cdecl
+#endif
 
 static int	context_id;
 

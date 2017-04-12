@@ -90,7 +90,7 @@ struct HUDLIST {
 //
 //-----------------------------------------------------
 //
-#include "..\game_shared\voice_status.h"
+#include "../game_shared/voice_status.h"
 #include "hud_spectator.h"
 
 

@@ -11,7 +11,7 @@
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_tips.h"
 #include "vgui_shadowtext.h"
-#include "..\game_shared\vgui_loadtga.h"
+#include "../game_shared/vgui_loadtga.h"
 #include "getfont.h"
 
 #define TIPS_APPEAR_TIME		0.15
@@ -31,7 +31,7 @@ void ShowTip( client_textmessage_t *tempMessage )
 }
 
 
-Font* FontFromMessage(const char* &ptext);
+#include "getfont.h"
 
 void CTips::Initialize()
 {
@@ -86,7 +86,7 @@ void CTips::LoadMsg( client_textmessage_t *msg )
 	m_fShowTime = curtime;
 	m_fHideTime = curtime + msg->holdtime;
 	const char *pText = msg->pMessage;
-	Font *pFont = FontFromMessage(pText);
+	Font *pFont = FontFromMessage((char*&)pText);
 	m_pText->setFont(pFont);
 	m_pText->setText(pText);
 	m_pText->setFgColor(msg->r1, msg->g1, msg->b1, 0);

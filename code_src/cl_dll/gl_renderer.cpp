@@ -669,7 +669,8 @@ void DrawBump()
 //	CONPRINT("static start\n");
 
 	// Draw non-moved brush entities
-	for (int k = 0; k < numrenderents; k++)
+	int k;
+	for (k = 0; k < numrenderents; k++)
 	{
 		if (!IsEntityMoved(renderents[k])/* && !IsEntityTransparent(renderents[k])*/)
 			R_DrawBrushModel (renderents[k], TRUE);

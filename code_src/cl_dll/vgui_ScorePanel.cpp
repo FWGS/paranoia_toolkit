@@ -26,8 +26,8 @@
 #include "cl_entity.h"
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_ScorePanel.h"
-#include "..\game_shared\vgui_helpers.h"
-#include "..\game_shared\vgui_loadtga.h"
+#include "../game_shared/vgui_helpers.h"
+#include "../game_shared/vgui_loadtga.h"
 #include "vgui_SpectatorPanel.h"
 
 hud_player_info_t	 g_PlayerInfoList[MAX_PLAYERS+1];	   // player info from the engine
@@ -303,7 +303,8 @@ void ScorePanel::Update()
 void ScorePanel::SortTeams()
 {
 	// clear out team scores
-	for ( int i = 1; i <= m_iNumTeams; i++ )
+	int i;
+	for ( i = 1; i <= m_iNumTeams; i++ )
 	{
 		if ( !g_TeamInfo[i].scores_overriden )
 			g_TeamInfo[i].frags = g_TeamInfo[i].deaths = 0;
@@ -320,7 +321,8 @@ void ScorePanel::SortTeams()
 			continue; // skip over players who are not in a team
 
 		// find what team this player is in
-		for ( int j = 1; j <= m_iNumTeams; j++ )
+		int j;
+		for ( j = 1; j <= m_iNumTeams; j++ )
 		{
 			if ( !stricmp( g_PlayerExtraInfo[i].teamname, g_TeamInfo[j].name ) )
 				break;
@@ -462,7 +464,8 @@ void ScorePanel::SortPlayers( int iTeam, char *team )
 void ScorePanel::RebuildTeams()
 {
 	// clear out player counts from teams
-	for ( int i = 1; i <= m_iNumTeams; i++ )
+	int i;
+	for ( i = 1; i <= m_iNumTeams; i++ )
 	{
 		g_TeamInfo[i].players = 0;
 	}
@@ -479,7 +482,8 @@ void ScorePanel::RebuildTeams()
 			continue; // skip over players who are not in a team
 
 		// is this player in an existing team?
-		for ( int j = 1; j <= m_iNumTeams; j++ )
+		int j;
+		for ( j = 1; j <= m_iNumTeams; j++ )
 		{
 			if ( g_TeamInfo[j].name[0] == '\0' )
 				break;
@@ -541,7 +545,8 @@ void ScorePanel::FillGrid()
 
 	bool bNextRowIsGap = false;
 
-	for(int row=0; row < NUM_ROWS; row++)
+	int row;
+	for(row=0; row < NUM_ROWS; row++)
 	{
 		CGrid *pGridRow = &m_PlayerGrids[row];
 		pGridRow->SetRowUnderline(0, false, 0, 0, 0, 0, 0);

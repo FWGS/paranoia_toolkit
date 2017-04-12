@@ -434,7 +434,8 @@ void DumpLevel()
 	// calc the number of textures
 	int numtextures = 0;
 	texture_t** tex = (texture_t**)world->textures;
-	for (int i = 0; i < world->numtextures; i++)
+	int i;
+	for (i = 0; i < world->numtextures; i++)
 	{
 		if (tex[i]->name[0] != 0)
 			numtextures++;

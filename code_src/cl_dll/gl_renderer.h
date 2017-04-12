@@ -1,5 +1,7 @@
 
 #include "glmanager.h"
+#include <GL/gl.h>
+#include <GL/glext.h>
 #include "ref_params.h"
 #include "com_model.h"
 

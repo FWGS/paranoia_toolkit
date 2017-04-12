@@ -1,5 +1,7 @@
 //mp3 support added by Killar
 
+#ifdef _WIN32
+
 #include "hud.h"
 #include "cl_util.h"
 #include "mp3.h"
@@ -170,3 +172,4 @@ void CMP3::Frame()
 		SETVOL( 0, (CVAR_GET_FLOAT("fmod_volume") * 255) );
 	}
 }
+#endif // WIN32

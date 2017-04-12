@@ -158,12 +158,17 @@ int CHud :: Redraw( float flTime, int intermission )
 {
 	ApplyPostEffects(); // buz
 
+#ifdef _WIN32
 	gMP3.Frame();
+#else
+#warning "TODO"
+#endif
+
 
 	m_fOldTime = m_flTime;	// save time of previous redraw
 	m_flTime = flTime;
 	m_flTimeDelta = (double)m_flTime - m_fOldTime;
-	static m_flShotTime = 0;
+	static float m_flShotTime = 0;
 
 	DrawBlurTest(m_flTimeDelta);
 
@@ -381,7 +386,8 @@ int CHud :: DrawHudNumberString( int xpos, int ypos, int iMinX, int iNumber, int
 int CHud :: DrawHudStringReverse( int xpos, int ypos, int iMinX, char *szString, int r, int g, int b )
 {
 	// find the end of the string
-	for ( char *szIt = szString; *szIt != 0; szIt++ )
+	char *szIt;
+	for ( szIt = szString; *szIt != 0; szIt++ )
 	{ // we should count the length?		
 	}
 

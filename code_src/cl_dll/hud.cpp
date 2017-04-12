@@ -39,7 +39,7 @@
 
 #include "demo.h"
 #include "demo_api.h"
-#include "vgui_scorepanel.h"
+#include "vgui_ScorePanel.h"
 #include "triapiobjects.h"
 
 #include "glmanager.h" // buz
@@ -339,7 +339,11 @@ int __MsgFunc_PlayMP3(const char *pszName, int iSize, void *pbuf )
 
 void __CmdFunc_StopMP3( void )
 {
+#ifdef _WIN32
 	gMP3.StopMP3( 0 );
+#else
+#warning "TODO"
+#endif
 }
 
 // buz
@@ -433,11 +437,16 @@ void CHud :: Init( void )
 	CVAR_CREATE( "hud_classautokill", "1", FCVAR_ARCHIVE | FCVAR_USERINFO );		// controls whether or not to suicide immediately on TF class switch
 	CVAR_CREATE( "hud_takesshots", "0", FCVAR_ARCHIVE );		// controls whether or not to automatically take screenshots at the end of a round
 
+#ifdef _WIN32
 	if(gMP3.Initialize())
 	{
 		HOOK_MESSAGE( PlayMP3 );
 		HOOK_COMMAND( "stopmp3", StopMP3 );
 	}
+#else
+#warning "TODO"
+#endif
+
 
 	m_iLogo = 0;
 	m_iFOV = 90; // buz - make 90, not 0
@@ -510,7 +519,11 @@ CHud :: ~CHud()
 	delete [] m_rghSprites;
 	delete [] m_rgrcRects;
 	delete [] m_rgszSpriteNames;
+#ifdef _WIN32
 	gMP3.Shutdown(); // buz: ??? this may be not safe, gMP3 can be destructed before gHUD
+#else
+#warning "TODO"
+#endif
 
 	RendererCleanup();
 //	g_objmanager.Reset();
@@ -529,7 +542,9 @@ CHud :: ~CHud()
 
 	ServersShutdown();
 //	UnInstallExceptionHandler(); // buz
+#ifdef _WIN32
 	UnloadCrashRpt(); // buz
+#endif
 }
 
 // GetSpriteIndex()
@@ -604,7 +619,8 @@ void CHud :: VidInit( void )
 			// count the number of sprites of the appropriate res
 			m_iSpriteCount = 0;
 			client_sprite_t *p = m_pSpriteList;
-			for ( int j = 0; j < m_iSpriteCountAllRes; j++ )
+			int j;
+			for ( j = 0; j < m_iSpriteCountAllRes; j++ )
 			{
 				if ( p->iRes == m_iRes )
 					m_iSpriteCount++;

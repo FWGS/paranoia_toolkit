@@ -12,6 +12,9 @@
 #include "r_studioint.h"
 
 #include "glmanager.h"
+#ifndef _WIN32
+#include <dlfcn.h>
+#endif
 
 
 
@@ -40,10 +43,14 @@ bool GLManager::IsExtensionSupported(const char *ext)
 
 int GLManager::IsGLAllowed()
 {
+#ifdef _WIN32
 	if (glstate == GMSTATE_GL)
 		return TRUE;
 	else
 		return FALSE;
+#else
+	return FALSE;
+#endif
 }
 
 
@@ -71,6 +78,13 @@ void GLManager::VidInit()
 
 	// try to load library
 //	if (!v_GLAllowed->value)
+
+#ifndef _WIN32
+	glstate = GMSTATE_INITFAILED;
+	Log( "GL manager: not supported" );
+	return; // TODO: port GL to Linux!
+#else
+
 	if (gEngfuncs.CheckParm ("-noglfx", NULL))
 	{
 		Log("GL manager: disabled by user\n");
@@ -162,14 +176,16 @@ void GLManager::VidInit()
 		hOpengl32dll = 0;
 		glstate = GMSTATE_INITFAILED;
 	}
+#endif
 }
 
 
 GLManager::~GLManager()
 {
+#ifdef _WIN32
 	if (hOpengl32dll)
 		FreeLibrary( hOpengl32dll );
-
+#endif
 	Log("GL manager: shutdown\n");
 	hOpengl32dll = 0;
 }
@@ -203,10 +219,17 @@ void GLManager::LogDebugInfo()
 
 // ===================== functions loading ======================
 
+#ifndef _WIN32
+#define HMODULE void*
+#endif
 template <typename FuncType>
 inline void GLMLoadProc( FuncType &pfn, const char* name, HMODULE hlib )
 {
+#ifdef _WIN32
 	pfn = (FuncType)GetProcAddress( hlib, name );
+#else
+	pfn = (FuncType)dlsym( hlib, name );
+#endif
 }
 
 #define LOAD_PROC(x) GLMLoadProc( x, #x, hOpengl32dll ); \
@@ -219,7 +242,11 @@ inline void GLMLoadProc( FuncType &pfn, const char* name, HMODULE hlib )
 template <typename FuncType>
 inline void GLMLoadProc_EXT( FuncType &pfn, const char* name )
 {
+#ifdef _WIN32
 	pfn = (FuncType)gl.wglGetProcAddress( name );
+#else
+#warning "TODO"
+#endif
 }
 
 #define LOAD_PROC_EXT(x) GLMLoadProc_EXT( x, #x ); \
@@ -303,7 +330,9 @@ int GLManager::LoadFunctions()
 	LOAD_PROC(glVertex3fv);
 	LOAD_PROC(glVertexPointer);
 	LOAD_PROC(glViewport);
+#ifdef _WIN32
 	LOAD_PROC(wglGetProcAddress);
+#endif
 //	LOAD_PROC_EXT(glColorTableEXT);
 
 	return iret;

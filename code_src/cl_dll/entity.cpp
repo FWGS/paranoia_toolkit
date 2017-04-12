@@ -24,7 +24,7 @@
 #include "gl_renderer.h" // buz
 #include "gl_dlight.h" // buz
 
-#define DLLEXPORT __declspec( dllexport )
+#define DLLEXPORT EXPORT
 
 void Game_AddObjects( void );
 
