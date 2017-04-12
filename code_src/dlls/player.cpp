@@ -6103,7 +6103,7 @@ void CBasePlayer::SetJumpHeight(int value)
 {
 	m_iJumpHeight = value;
 	char buf[16];
-	itoa(m_iJumpHeight, buf, 10);
+	snprintf(buf, sizeof(buf), "%i", m_iJumpHeight);
 	g_engfuncs.pfnSetPhysicsKeyValue( edict(), "jh", buf );
 //	ALERT(at_aiconsole, "SETTING JUMP: %s\n", buf);
 }

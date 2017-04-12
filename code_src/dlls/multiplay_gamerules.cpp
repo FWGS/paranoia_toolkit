@@ -45,8 +45,9 @@ extern int g_teamplay;
 
 float g_flIntermissionStartTime = 0;
 
+#ifdef USE_VOICEGAMEMGR
 CVoiceGameMgr	g_VoiceGameMgr;
-
+#endif
 class CMultiplayGameMgrHelper : public IVoiceGameMgrHelper
 {
 public:
@@ -71,8 +72,9 @@ static CMultiplayGameMgrHelper g_GameMgrHelper;
 
 CHalfLifeMultiplay :: CHalfLifeMultiplay()
 {
+#ifdef USE_VOICEGAMEMGR
 	g_VoiceGameMgr.Init(&g_GameMgrHelper, gpGlobals->maxClients);
-
+#endif
 	RefreshSkillData();
 	m_flIntermissionEndTime = 0;
 	g_flIntermissionStartTime = 0;
@@ -118,8 +120,10 @@ CHalfLifeMultiplay :: CHalfLifeMultiplay()
 
 BOOL CHalfLifeMultiplay::ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 {
+#ifdef USE_VOICEGAMEMGR
 	if(g_VoiceGameMgr.ClientCommand(pPlayer, pcmd))
 		return TRUE;
+#endif
 
 	return CGameRules::ClientCommand(pPlayer, pcmd);
 }
@@ -188,8 +192,10 @@ extern cvar_t mp_chattime;
 //=========================================================
 void CHalfLifeMultiplay :: Think ( void )
 {
+#ifdef USE_VOICEGAMEMGR
 	g_VoiceGameMgr.Update(gpGlobals->frametime);
-
+#endif
+	
 	///// Check game rules /////
 	static int last_frags;
 	static int last_time;
@@ -399,7 +405,9 @@ BOOL CHalfLifeMultiplay :: GetNextBestWeapon( CBasePlayer *pPlayer, CBasePlayerI
 //=========================================================
 BOOL CHalfLifeMultiplay :: ClientConnected( edict_t *pEntity, const char *pszName, const char *pszAddress, char szRejectReason[ 128 ] )
 {
+#ifdef USE_VOICEGAMEMGR
 	g_VoiceGameMgr.ClientConnected(pEntity);
+#endif
 	return TRUE;
 }
 
