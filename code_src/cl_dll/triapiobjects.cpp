@@ -129,7 +129,7 @@ void CObjectsManager::Draw( void )
 }
 
 
-// черт, где-то я видел подобню функцию, но забыл где. Придется писать...
+// С‡РµСЂС‚, РіРґРµ-С‚Рѕ СЏ РІРёРґРµР» РїРѕРґРѕР±РЅСЋ С„СѓРЅРєС†РёСЋ, РЅРѕ Р·Р°Р±С‹Р» РіРґРµ. РџСЂРёРґРµС‚СЃСЏ РїРёСЃР°С‚СЊ...
 void MakeUpRight( const float *normal, float *up, float *right )
 {
 	vec3_t temp;
@@ -139,7 +139,7 @@ void MakeUpRight( const float *normal, float *up, float *right )
 		CrossProduct( normal, temp, right );
 		CrossProduct( right, normal, up );
 	}
-	else // вертикальный вектор
+	else // РІРµСЂС‚РёРєР°Р»СЊРЅС‹Р№ РІРµРєС‚РѕСЂ
 	{
 		right[0] = 0; right[1] = 1; right[2] = 0;
 		up[0] = 1; up[1] = 0; up[2] = 0;

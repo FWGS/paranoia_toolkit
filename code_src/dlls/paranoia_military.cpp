@@ -169,7 +169,7 @@ public:
 			return pev->origin + pev->view_ofs;
 	}
 
-	// Wargon: Юзать монстра можно только если он жив. Это нужно чтобы иконка юза не показывалась на мертвых монстрах.
+	// Wargon: Р®Р·Р°С‚СЊ РјРѕРЅСЃС‚СЂР° РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ РµСЃР»Рё РѕРЅ Р¶РёРІ. Р­С‚Рѕ РЅСѓР¶РЅРѕ С‡С‚РѕР±С‹ РёРєРѕРЅРєР° СЋР·Р° РЅРµ РїРѕРєР°Р·С‹РІР°Р»Р°СЃСЊ РЅР° РјРµСЂС‚РІС‹С… РјРѕРЅСЃС‚СЂР°С….
 	virtual int	ObjectCaps( void ) { if (pev->deadflag == DEAD_NO) return CTalkMonster :: ObjectCaps() | FCAP_IMPULSE_USE | FCAP_DISTANCE_USE; else return CTalkMonster::ObjectCaps(); }
 
 	int	Save( CSave &save ); 
@@ -197,7 +197,7 @@ public:
 
 	Vector	m_vecTossVelocity;
 
-	// Wargon: Если враг взят из данных игрока, то TRUE. Иначе FALSE. (1.1)
+	// Wargon: Р•СЃР»Рё РІСЂР°Рі РІР·СЏС‚ РёР· РґР°РЅРЅС‹С… РёРіСЂРѕРєР°, С‚Рѕ TRUE. РРЅР°С‡Рµ FALSE. (1.1)
 	BOOL m_fEnemyFromPlayer;
 
 	BOOL	m_fThrowGrenade;
@@ -302,7 +302,7 @@ void CMilitary :: TalkAboutDeadFriend( CTalkMonster *pfriend )
 //=========================================================
 BOOL CMilitary :: GetEnemy ( void )
 {
-	// Wargon: Если врага нет, то переменная сбрасывается. (1.1)
+	// Wargon: Р•СЃР»Рё РІСЂР°РіР° РЅРµС‚, С‚Рѕ РїРµСЂРµРјРµРЅРЅР°СЏ СЃР±СЂР°СЃС‹РІР°РµС‚СЃСЏ. (1.1)
 	if (m_hEnemy == NULL)
 	{
 		m_fEnemyFromPlayer = FALSE;
@@ -327,7 +327,7 @@ BOOL CMilitary :: GetEnemy ( void )
 				m_hEnemy = pMyMaster->m_hLastEnemy;
 				m_vecEnemyLKP = m_hEnemy->pev->origin;
 
-				// Wargon: Враг взят из данных игрока. (1.1)
+				// Wargon: Р’СЂР°Рі РІР·СЏС‚ РёР· РґР°РЅРЅС‹С… РёРіСЂРѕРєР°. (1.1)
 				m_fEnemyFromPlayer = TRUE;
 
 				if ( m_pSchedule )
@@ -426,9 +426,9 @@ int CMilitary :: ISoundMask ( void )
 }
 
 //=========================================================
-// buz: у грунтов FOkToSpeak очень простой - всего-лишь проверка на Gag.
-// но у дружественных игроку монстров эта функция означает возможность
-// базарить о всякой фигне - задавать друг другу вопросы, разговаривать о том о сем..
+// buz: Сѓ РіСЂСѓРЅС‚РѕРІ FOkToSpeak РѕС‡РµРЅСЊ РїСЂРѕСЃС‚РѕР№ - РІСЃРµРіРѕ-Р»РёС€СЊ РїСЂРѕРІРµСЂРєР° РЅР° Gag.
+// РЅРѕ Сѓ РґСЂСѓР¶РµСЃС‚РІРµРЅРЅС‹С… РёРіСЂРѕРєСѓ РјРѕРЅСЃС‚СЂРѕРІ СЌС‚Р° С„СѓРЅРєС†РёСЏ РѕР·РЅР°С‡Р°РµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ
+// Р±Р°Р·Р°СЂРёС‚СЊ Рѕ РІСЃСЏРєРѕР№ С„РёРіРЅРµ - Р·Р°РґР°РІР°С‚СЊ РґСЂСѓРі РґСЂСѓРіСѓ РІРѕРїСЂРѕСЃС‹, СЂР°Р·РіРѕРІР°СЂРёРІР°С‚СЊ Рѕ С‚РѕРј Рѕ СЃРµРј..
 //=========================================================
 BOOL CMilitary :: FOkToSpeak( void )
 {
@@ -504,7 +504,7 @@ BOOL CMilitary :: CheckMeleeAttack1 ( float flDot, float flDist )
 		}
 	}
 
-	// Wargon: Расстояние flDist уменьшено с 64 до 48. (1.1)
+	// Wargon: Р Р°СЃСЃС‚РѕСЏРЅРёРµ flDist СѓРјРµРЅСЊС€РµРЅРѕ СЃ 64 РґРѕ 48. (1.1)
 	if ( flDist <= 48 && flDot >= 0.7	&& 
 		 pEnemy->Classify() != CLASS_ALIEN_BIOWEAPON &&
 		 pEnemy->Classify() != CLASS_PLAYER_BIOWEAPON )
@@ -633,7 +633,7 @@ BOOL CMilitary :: CheckRangeAttack1 ( float flDot, float flDist )
 	{
 		TraceResult	tr;
 
-		if ( !m_hEnemy->IsPlayer() && flDist <= 48 ) // Wargon: Расстояние flDist уменьшено с 64 до 48. (1.1)
+		if ( !m_hEnemy->IsPlayer() && flDist <= 48 ) // Wargon: Р Р°СЃСЃС‚РѕСЏРЅРёРµ flDist СѓРјРµРЅСЊС€РµРЅРѕ СЃ 64 РґРѕ 48. (1.1)
 		{
 			// kick nonclients who are close enough, but don't shoot at them.
 			return FALSE;
@@ -864,7 +864,7 @@ int CMilitary :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, fl
 
 	Forget( bits_MEMORY_INCOVER );
 
-	// Wargon: Союзники не должны восставать против игрока.
+	// Wargon: РЎРѕСЋР·РЅРёРєРё РЅРµ РґРѕР»Р¶РЅС‹ РІРѕСЃСЃС‚Р°РІР°С‚СЊ РїСЂРѕС‚РёРІ РёРіСЂРѕРєР°.
 	return CBaseMonster::TakeDamage(pevInflictor, pevAttacker, flDamage, bitsDamageType);
 
 /*	// make sure friends talk about it if player hurts talkmonsters...
@@ -1014,7 +1014,7 @@ CBaseEntity *CMilitary :: Kick( void )
 	UTIL_MakeVectors( pev->angles );
 	Vector vecStart = pev->origin;
 	vecStart.z += pev->size.z * 0.5;
-	Vector vecEnd = vecStart + (gpGlobals->v_forward * 48); // Wargon: Расстояние уменьшено с 70 до 48. (1.1)
+	Vector vecEnd = vecStart + (gpGlobals->v_forward * 48); // Wargon: Р Р°СЃСЃС‚РѕСЏРЅРёРµ СѓРјРµРЅСЊС€РµРЅРѕ СЃ 70 РґРѕ 48. (1.1)
 
 	UTIL_TraceHull( vecStart, vecEnd, dont_ignore_monsters, head_hull, ENT(pev), &tr );
 
@@ -1894,14 +1894,14 @@ Schedule_t	slMilTossGrenadeCover[] =
 //=========================================================
 Task_t	tlMilTakeCoverFromBestSound[] =
 {
-// Wargon: Теперь союзники не ищут укрытия от врагов. (1.1)
+// Wargon: РўРµРїРµСЂСЊ СЃРѕСЋР·РЅРёРєРё РЅРµ РёС‰СѓС‚ СѓРєСЂС‹С‚РёСЏ РѕС‚ РІСЂР°РіРѕРІ. (1.1)
 //	{ TASK_SET_FAIL_SCHEDULE,			(float)SCHED_COWER			},// duck and cover if cannot move from explosion
 	{ TASK_STOP_MOVING,					(float)0					},
 	{ TASK_FIND_COVER_FROM_BEST_SOUND,	(float)0					},
 	{ TASK_RUN_PATH,					(float)0					},
 	{ TASK_WAIT_FOR_MOVEMENT,			(float)0					},
 	{ TASK_REMEMBER,					(float)bits_MEMORY_INCOVER	},
-// Wargon: Теперь союзники не ищут укрытия от врагов. (1.1)
+// Wargon: РўРµРїРµСЂСЊ СЃРѕСЋР·РЅРёРєРё РЅРµ РёС‰СѓС‚ СѓРєСЂС‹С‚РёСЏ РѕС‚ РІСЂР°РіРѕРІ. (1.1)
 //	{ TASK_TURN_LEFT,					(float)179					},
 };
 
@@ -2443,7 +2443,7 @@ Schedule_t *CMilitary :: GetSchedule( void )
 	case MONSTERSTATE_IDLE:
 	case MONSTERSTATE_ALERT:
 
-		// buz: перезарядиться, если врага нет и магазин полупуст
+		// buz: РїРµСЂРµР·Р°СЂСЏРґРёС‚СЊСЃСЏ, РµСЃР»Рё РІСЂР°РіР° РЅРµС‚ Рё РјР°РіР°Р·РёРЅ РїРѕР»СѓРїСѓСЃС‚
 		if (m_cAmmoLoaded < m_cClipSize / 2)
 		{
 			return GetScheduleOfType ( SCHED_RELOAD );
@@ -2495,7 +2495,7 @@ Schedule_t *CMilitary :: GetSchedule( void )
 	case MONSTERSTATE_COMBAT:
 		{
 // dead enemy
-			// Wargon: Кроме случаев, когда враг взят из данных игрока. (1.1)
+			// Wargon: РљСЂРѕРјРµ СЃР»СѓС‡Р°РµРІ, РєРѕРіРґР° РІСЂР°Рі РІР·СЏС‚ РёР· РґР°РЅРЅС‹С… РёРіСЂРѕРєР°. (1.1)
 			if ( HasConditions( bits_COND_ENEMY_DEAD ) && !m_fEnemyFromPlayer )
 			{
 				if (m_iszSpeakAs)
@@ -2690,7 +2690,7 @@ Schedule_t* CMilitary :: GetScheduleOfType ( int Type )
 		//	}
 		//	else
 		//	{
-		// Wargon: Теперь союзники не ищут укрытия от врагов. (1.1)
+		// Wargon: РўРµРїРµСЂСЊ СЃРѕСЋР·РЅРёРєРё РЅРµ РёС‰СѓС‚ СѓРєСЂС‹С‚РёСЏ РѕС‚ РІСЂР°РіРѕРІ. (1.1)
 		//		return &slMilTakeCover[ 0 ];
 		//	}
 		}
@@ -3010,9 +3010,9 @@ public:
 	static TYPEDESCRIPTION m_SaveData[];
 	
 	Schedule_t	*GetSchedule( void );
-	// имеет шлем
+	// РёРјРµРµС‚ С€Р»РµРј
 	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
-	// другие сентенсы
+	// РґСЂСѓРіРёРµ СЃРµРЅС‚РµРЅСЃС‹
 	int TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType );
 	void GibMonster( void );
 
@@ -3022,7 +3022,7 @@ public:
 
 	static const char *pSpetsnazSentences[];
 
-	// Wargon: При смерти спецназовца имитируется действие энтити player_loadsaved. (1.1)
+	// Wargon: РџСЂРё СЃРјРµСЂС‚Рё СЃРїРµС†РЅР°Р·РѕРІС†Р° РёРјРёС‚РёСЂСѓРµС‚СЃСЏ РґРµР№СЃС‚РІРёРµ СЌРЅС‚РёС‚Рё player_loadsaved. (1.1)
 	void RunTask( Task_t *pTask );
 	void EXPORT MonsterDeadThink( void );
 };
@@ -3121,7 +3121,7 @@ void CSpetsnaz :: Spawn()
 	pev->movetype		= MOVETYPE_STEP;
 	m_bloodColor		= BLOOD_COLOR_RED;
 	pev->effects		= 0;
-	// Wargon: Хелсы спецназовцев, заданные в параметрах энтити, игнорируются. (1.1)
+	// Wargon: РҐРµР»СЃС‹ СЃРїРµС†РЅР°Р·РѕРІС†РµРІ, Р·Р°РґР°РЅРЅС‹Рµ РІ РїР°СЂР°РјРµС‚СЂР°С… СЌРЅС‚РёС‚Рё, РёРіРЅРѕСЂРёСЂСѓСЋС‚СЃСЏ. (1.1)
 	// if (pev->health == 0)
 	pev->health			= gSkillData.alphaHealth;
 	m_flFieldOfView		= VIEW_FIELD_FULL;//0.2;
@@ -3436,7 +3436,7 @@ int CSpetsnaz :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, fl
 {
 	Forget( bits_MEMORY_INCOVER );
 
-	// Wargon: Союзники не должны восставать против игрока. И исключена возможность гибания спецназовцев - этого требует автозагрузка при смерти. (1.1)
+	// Wargon: РЎРѕСЋР·РЅРёРєРё РЅРµ РґРѕР»Р¶РЅС‹ РІРѕСЃСЃС‚Р°РІР°С‚СЊ РїСЂРѕС‚РёРІ РёРіСЂРѕРєР°. Р РёСЃРєР»СЋС‡РµРЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РіРёР±Р°РЅРёСЏ СЃРїРµС†РЅР°Р·РѕРІС†РµРІ - СЌС‚РѕРіРѕ С‚СЂРµР±СѓРµС‚ Р°РІС‚РѕР·Р°РіСЂСѓР·РєР° РїСЂРё СЃРјРµСЂС‚Рё. (1.1)
 	return CBaseMonster::TakeDamage(pevInflictor, pevAttacker, flDamage, bitsDamageType | DMG_NEVERGIB);
 
 /*	// make sure friends talk about it if player hurts talkmonsters...
@@ -3683,7 +3683,7 @@ void CSpetsnaz :: HandleAnimEvent( MonsterEvent_t *pEvent )
 		case MIL_AE_RELOAD:
 			EMIT_SOUND( ENT(pev), CHAN_WEAPON, "alpha/alpha_reload.wav", 1, ATTN_NORM );
 			m_cAmmoLoaded = m_cClipSize;
-			pev->health = gSkillData.alphaHealth; // Wargon: Пополнение хелсов при перезарядке. (1.1)
+			pev->health = gSkillData.alphaHealth; // Wargon: РџРѕРїРѕР»РЅРµРЅРёРµ С…РµР»СЃРѕРІ РїСЂРё РїРµСЂРµР·Р°СЂСЏРґРєРµ. (1.1)
 			ClearConditions(bits_COND_NO_AMMO_LOADED);
 			break;
 
@@ -3782,7 +3782,7 @@ Schedule_t *CSpetsnaz :: GetSchedule( void )
 	case MONSTERSTATE_IDLE:
 	case MONSTERSTATE_ALERT:
 
-		// buz: перезарядиться, если врага нет и магазин полупуст
+		// buz: РїРµСЂРµР·Р°СЂСЏРґРёС‚СЊСЃСЏ, РµСЃР»Рё РІСЂР°РіР° РЅРµС‚ Рё РјР°РіР°Р·РёРЅ РїРѕР»СѓРїСѓСЃС‚
 		if (m_cAmmoLoaded < m_cClipSize / 2)
 		{
 			return GetScheduleOfType ( SCHED_RELOAD );
@@ -3834,7 +3834,7 @@ Schedule_t *CSpetsnaz :: GetSchedule( void )
 	case MONSTERSTATE_COMBAT:
 		{
 // dead enemy
-			// Wargon: Кроме случаев, когда враг взят из данных игрока. (1.1)
+			// Wargon: РљСЂРѕРјРµ СЃР»СѓС‡Р°РµРІ, РєРѕРіРґР° РІСЂР°Рі РІР·СЏС‚ РёР· РґР°РЅРЅС‹С… РёРіСЂРѕРєР°. (1.1)
 			if ( HasConditions( bits_COND_ENEMY_DEAD ) && !m_fEnemyFromPlayer )
 			{
 				if (m_iszSpeakAs)
@@ -3886,7 +3886,7 @@ Schedule_t *CSpetsnaz :: GetSchedule( void )
 // no ammo
 			else if ( HasConditions ( bits_COND_NO_AMMO_LOADED ) )
 			{
-				// Wargon: Спецназовец часто бегает в укрытие через всю карту. Нам это не нужно. (1.1)
+				// Wargon: РЎРїРµС†РЅР°Р·РѕРІРµС† С‡Р°СЃС‚Рѕ Р±РµРіР°РµС‚ РІ СѓРєСЂС‹С‚РёРµ С‡РµСЂРµР· РІСЃСЋ РєР°СЂС‚Сѓ. РќР°Рј СЌС‚Рѕ РЅРµ РЅСѓР¶РЅРѕ. (1.1)
 //				if ((m_afCapability & bits_CAP_CROUCH_COVER) && !HasConditions(bits_COND_CROUCH_NOT_SAFE) ) // buz: reload here, if safe
 					return GetScheduleOfType ( SCHED_RELOAD );
 //				else
@@ -4038,7 +4038,7 @@ void CSpetsnaz :: RunAI ( void )
 	CMilitary::RunAI();
 }
 
-// Wargon: Дефолтный TASK_DIE оверрайден для имитации действия энтити player_loadsaved. (1.1)
+// Wargon: Р”РµС„РѕР»С‚РЅС‹Р№ TASK_DIE РѕРІРµСЂСЂР°Р№РґРµРЅ РґР»СЏ РёРјРёС‚Р°С†РёРё РґРµР№СЃС‚РІРёСЏ СЌРЅС‚РёС‚Рё player_loadsaved. (1.1)
 void CSpetsnaz :: RunTask ( Task_t *pTask )
 {
 	switch (pTask->iTask)
@@ -4088,7 +4088,7 @@ void CSpetsnaz :: RunTask ( Task_t *pTask )
 	}
 }
 
-// Wargon: Автозагрузка срабатывает с задержкой после смерти спецназовца. (1.1)
+// Wargon: РђРІС‚РѕР·Р°РіСЂСѓР·РєР° СЃСЂР°Р±Р°С‚С‹РІР°РµС‚ СЃ Р·Р°РґРµСЂР¶РєРѕР№ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё СЃРїРµС†РЅР°Р·РѕРІС†Р°. (1.1)
 void CSpetsnaz :: MonsterDeadThink ( void )
 {
 	SERVER_COMMAND("reload\n");
@@ -4134,7 +4134,7 @@ void CSpetsnazAPS :: Spawn()
 	pev->movetype		= MOVETYPE_STEP;
 	m_bloodColor		= BLOOD_COLOR_RED;
 	pev->effects		= 0;
-	// Wargon: Хелсы спецназовцев, заданные в параметрах энтити, игнорируются. (1.1)
+	// Wargon: РҐРµР»СЃС‹ СЃРїРµС†РЅР°Р·РѕРІС†РµРІ, Р·Р°РґР°РЅРЅС‹Рµ РІ РїР°СЂР°РјРµС‚СЂР°С… СЌРЅС‚РёС‚Рё, РёРіРЅРѕСЂРёСЂСѓСЋС‚СЃСЏ. (1.1)
 	// if (pev->health == 0)
 	pev->health			= gSkillData.alphaHealth;
 	m_flFieldOfView		= VIEW_FIELD_FULL; //0.2;

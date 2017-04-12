@@ -154,7 +154,7 @@ cvar_t *cv_decalsdebug;
 // Math
 // ===========================
 
-// пересечение линии с плоскостью
+// РїРµСЂРµСЃРµС‡РµРЅРёРµ Р»РёРЅРёРё СЃ РїР»РѕСЃРєРѕСЃС‚СЊСЋ
 void FindIntersectionPoint( const vec3_t &p1, const vec3_t &p2, const vec3_t &normal, const vec3_t &planepoint, vec3_t &newpoint )
 {
 	vec3_t planevec;
@@ -171,12 +171,12 @@ void FindIntersectionPoint( const vec3_t &p1, const vec3_t &p2, const vec3_t &no
 		VectorMA( p1, planedist/linedist, linevec, newpoint );
 		return;
 	}
-	VectorClear( newpoint ); // error - прямая параллельна плоскости
+	VectorClear( newpoint ); // error - РїСЂСЏРјР°СЏ РїР°СЂР°Р»Р»РµР»СЊРЅР° РїР»РѕСЃРєРѕСЃС‚Рё
 }
 
 
 
-// нормаль смотрит в сторону неотсекаемой части полигона
+// РЅРѕСЂРјР°Р»СЊ СЃРјРѕС‚СЂРёС‚ РІ СЃС‚РѕСЂРѕРЅСѓ РЅРµРѕС‚СЃРµРєР°РµРјРѕР№ С‡Р°СЃС‚Рё РїРѕР»РёРіРѕРЅР°
 int ClipPolygonByPlane (const vec3_t *arrIn, int numpoints, vec3_t normal, vec3_t planepoint, vec3_t *arrOut)
 {
 	int i, cur, prev;
@@ -190,7 +190,7 @@ int ClipPolygonByPlane (const vec3_t *arrIn, int numpoints, vec3_t normal, vec3_
 		dots[i] = DotProduct( vecDir, normal );
 		if (dots[i] > 0) first = i;
 	}
-	if (first == -1) return 0; // плоскость отсекла весь многоугольник
+	if (first == -1) return 0; // РїР»РѕСЃРєРѕСЃС‚СЊ РѕС‚СЃРµРєР»Р° РІРµСЃСЊ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє
 
 	VectorCopy( arrIn[first], arrOut[outCur] );
 	outCur++;
@@ -209,7 +209,7 @@ int ClipPolygonByPlane (const vec3_t *arrIn, int numpoints, vec3_t normal, vec3_
 			break;
 	}
 
-	if (cur == first) return outCur; // ничего не отсекается этой плоскостью
+	if (cur == first) return outCur; // РЅРёС‡РµРіРѕ РЅРµ РѕС‚СЃРµРєР°РµС‚СЃСЏ СЌС‚РѕР№ РїР»РѕСЃРєРѕСЃС‚СЊСЋ
 
 	if (dots[cur] < 0)
 	{

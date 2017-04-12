@@ -86,7 +86,7 @@ void CWorldItem::Spawn( void )
 	REMOVE_ENTITY(edict());
 }
 
-// Wargon: SaveData для юзабельных итемов.
+// Wargon: SaveData РґР»СЏ СЋР·Р°Р±РµР»СЊРЅС‹С… РёС‚РµРјРѕРІ.
 TYPEDESCRIPTION CItem::m_SaveData[] = 
 {
 	DEFINE_FIELD( CItem, m_iCurrCaps, FIELD_INTEGER ),
@@ -101,7 +101,7 @@ void CItem::Spawn( void )
 	UTIL_SetSize(pev, Vector(-16, -16, 0), Vector(16, 16, 16));
 	SetTouch(&CItem::ItemTouch);
 
-	// Wargon: Итем юзабельный.
+	// Wargon: РС‚РµРј СЋР·Р°Р±РµР»СЊРЅС‹Р№.
 	SetUse( &CItem::ItemUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 
@@ -137,7 +137,7 @@ void CItem::ItemTouch( CBaseEntity *pOther )
 		SUB_UseTargets( pOther, USE_TOGGLE, 0 );
 		SetTouch( NULL );
 
-		// Wargon: Итем неюзабельный.
+		// Wargon: РС‚РµРј РЅРµСЋР·Р°Р±РµР»СЊРЅС‹Р№.
 		SetUse( NULL );
 		m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -160,7 +160,7 @@ void CItem::ItemTouch( CBaseEntity *pOther )
 
 CBaseEntity* CItem::Respawn( void )
 {
-	// Wargon: Итем юзабельный.
+	// Wargon: РС‚РµРј СЋР·Р°Р±РµР»СЊРЅС‹Р№.
 	SetUse( NULL );
 	m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -186,7 +186,7 @@ void CItem::Materialize( void )
 
 	SetTouch(&CItem:: ItemTouch );
 
-	// Wargon: Итем юзабельный.
+	// Wargon: РС‚РµРј СЋР·Р°Р±РµР»СЊРЅС‹Р№.
 	SetUse( &CItem::ItemUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 }

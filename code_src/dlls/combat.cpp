@@ -968,7 +968,7 @@ int CBaseMonster :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker,
 		{
 			Killed( pevAttacker, GIB_ALWAYS );
 		}
-		// Wargon: Íèêîãäà íå ãèáàòü åñëè òèï äàìàãè - DMG_SLASH. (1.1)
+		// Wargon: ÐÐ¸ÐºÐ¾Ð³Ð´Ð° Ð½Ðµ Ð³Ð¸Ð±Ð°Ñ‚ÑŒ ÐµÑÐ»Ð¸ Ñ‚Ð¸Ð¿ Ð´Ð°Ð¼Ð°Ð³Ð¸ - DMG_SLASH. (1.1)
 		else if ((bitsDamageType & DMG_NEVERGIB) || (bitsDamageType & DMG_SLASH))
 		{
 			Killed( pevAttacker, GIB_NEVER );
@@ -1438,14 +1438,14 @@ void CBaseMonster :: TraceAttack( entvars_t *pevAttacker, float flDamage, Vector
 		m_LastHitGroup = ptr->iHitgroup;
 		TraceBleed( flDamage, vecDir, ptr, bitsDamageType );
 
-		TraceResult btr; // Wargon: Ïåðåìåííàÿ äëÿ òðåéñà äåêàëè ìîçãîâ îò õåäøîòîâ.
+		TraceResult btr; // Wargon: ÐŸÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ Ð´Ð»Ñ Ñ‚Ñ€ÐµÐ¹ÑÐ° Ð´ÐµÐºÐ°Ð»Ð¸ Ð¼Ð¾Ð·Ð³Ð¾Ð² Ð¾Ñ‚ Ñ…ÐµÐ´ÑˆÐ¾Ñ‚Ð¾Ð².
 
 		switch ( ptr->iHitgroup )
 		{
 		case HITGROUP_GENERIC:
 			break;
 		case HITGROUP_HEAD:
-			// Wargon: Äåêàëü ìîçãîâ îò õåäøîòîâ.
+			// Wargon: Ð”ÐµÐºÐ°Ð»ÑŒ Ð¼Ð¾Ð·Ð³Ð¾Ð² Ð¾Ñ‚ Ñ…ÐµÐ´ÑˆÐ¾Ñ‚Ð¾Ð².
 			UTIL_TraceLine( ptr->vecEndPos, ptr->vecEndPos + vecDir * 172, ignore_monsters, ENT(pev), &btr );
 			UTIL_CustomDecal( &btr, "brains" );
 
@@ -1471,7 +1471,7 @@ void CBaseMonster :: TraceAttack( entvars_t *pevAttacker, float flDamage, Vector
 			break;
 		}
 
-		SpawnBlood(ptr->vecEndPos, BloodColor(), flDamage * 2); // Wargon: Ïîáîëüøå êðîâè.
+		SpawnBlood(ptr->vecEndPos, BloodColor(), flDamage * 2); // Wargon: ÐŸÐ¾Ð±Ð¾Ð»ÑŒÑˆÐµ ÐºÑ€Ð¾Ð²Ð¸.
 		AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType );
 	}
 }

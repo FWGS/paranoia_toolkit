@@ -330,7 +330,7 @@ void CGameRules::RefreshSkillData ( void )
 	gSkillData.plrLeg = GetSkillCvar( "sk_player_leg" );
 	gSkillData.plrArm = GetSkillCvar( "sk_player_arm" );
 
-	// Wargon: Множители дамаги для monster_zombie. (1.1)
+	// Wargon: РњРЅРѕР¶РёС‚РµР»Рё РґР°РјР°РіРё РґР»СЏ monster_zombie. (1.1)
 	gSkillData.zomHead = GetSkillCvar( "sk_zombie_head" );
 	gSkillData.zomChest = GetSkillCvar( "sk_zombie_chest" );
 	gSkillData.zomStomach = GetSkillCvar( "sk_zombie_stomach" );
@@ -341,7 +341,7 @@ void CGameRules::RefreshSkillData ( void )
 	gSkillData.plrPrimaryMaxSpeed = GetSkillCvar( "sk_primary_speed" );
 	gSkillData.plrSecondaryMaxSpeed = GetSkillCvar( "sk_secondary_speed" );
 
-	// Wargon: Патроны из мертвых вражин. (1.1)
+	// Wargon: РџР°С‚СЂРѕРЅС‹ РёР· РјРµСЂС‚РІС‹С… РІСЂР°Р¶РёРЅ. (1.1)
 	gSkillData.maxDeadEnemyAmmo = GetSkillCvar( "sk_dead_enemy_ammo" );
 }
 

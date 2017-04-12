@@ -361,7 +361,7 @@ void InitGlows();
 void GammaGraphInit();
 void InitPostEffects();
 
-void CanUseInit( void ); // Wargon: Иконка юза.
+void CanUseInit( void ); // Wargon: РРєРѕРЅРєР° СЋР·Р°.
 
 // This is called every time the DLL is loaded
 void CHud :: Init( void )
@@ -385,7 +385,7 @@ void CHud :: Init( void )
 	SubtitleInit(); // buz
 	TabPanelInit(); // buz
 
-	CanUseInit(); // Wargon: Иконка юза.
+	CanUseInit(); // Wargon: РРєРѕРЅРєР° СЋР·Р°.
 
 	HOOK_MESSAGE( Logo );
 	HOOK_MESSAGE( ResetHUD );
@@ -450,7 +450,7 @@ void CHud :: Init( void )
 	m_pCvarDraw = CVAR_CREATE( "hud_draw", "1", FCVAR_ARCHIVE );
 	cl_lw = gEngfuncs.pfnGetCvarPointer( "cl_lw" );
 
-	// Wargon: fmod_volume регулирует громкость звуков, воспроизводимых через FMOD.
+	// Wargon: fmod_volume СЂРµРіСѓР»РёСЂСѓРµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р·РІСѓРєРѕРІ, РІРѕСЃРїСЂРѕРёР·РІРѕРґРёРјС‹С… С‡РµСЂРµР· FMOD.
 	CVAR_CREATE( "fmod_volume", "1.0", FCVAR_ARCHIVE );
 
 	m_pSpriteList = NULL;

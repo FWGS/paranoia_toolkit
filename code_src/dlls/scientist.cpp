@@ -75,7 +75,7 @@ public:
 	void RunTask( Task_t *pTask );
 	void StartTask( Task_t *pTask );
 
-	// Wargon: Þçàòü ìîíñòðà ìîæíî òîëüêî åñëè îí æèâ. Ýòî íóæíî ÷òîáû èêîíêà þçà íå ïîêàçûâàëàñü íà ìåðòâûõ ìîíñòðàõ.
+	// Wargon: Ð®Ð·Ð°Ñ‚ÑŒ Ð¼Ð¾Ð½ÑÑ‚Ñ€Ð° Ð¼Ð¾Ð¶Ð½Ð¾ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÐµÑÐ»Ð¸ Ð¾Ð½ Ð¶Ð¸Ð². Ð­Ñ‚Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¸ÐºÐ¾Ð½ÐºÐ° ÑŽÐ·Ð° Ð½Ðµ Ð¿Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ð»Ð°ÑÑŒ Ð½Ð° Ð¼ÐµÑ€Ñ‚Ð²Ñ‹Ñ… Ð¼Ð¾Ð½ÑÑ‚Ñ€Ð°Ñ….
 	int	ObjectCaps( void ) { if (pev->deadflag == DEAD_NO) return CTalkMonster :: ObjectCaps() | FCAP_IMPULSE_USE | FCAP_DISTANCE_USE; else return CTalkMonster::ObjectCaps(); }
 
 	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType);

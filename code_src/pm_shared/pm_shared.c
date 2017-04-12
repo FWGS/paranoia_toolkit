@@ -2981,7 +2981,7 @@ void PM_DropPunchAngle ( vec3_t punchangle )
 	len = max( len, 0.0 );
 	VectorScale ( punchangle, len, punchangle);*/
 
-	// buz: у нас теперь новый, свежеспертый из хл2, пунч.
+	// buz: Сѓ РЅР°СЃ С‚РµРїРµСЂСЊ РЅРѕРІС‹Р№, СЃРІРµР¶РµСЃРїРµСЂС‚С‹Р№ РёР· С…Р»2, РїСѓРЅС‡.
 	float damping;
 	float springForceMagnitude;
 

@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright В© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -35,7 +35,7 @@
 // Global engine <-> studio model rendering code interface
 engine_studio_api_t IEngineStudio;
 
-// buz: освещение пола, где стоит игрок
+// buz: РѕСЃРІРµС‰РµРЅРёРµ РїРѕР»Р°, РіРґРµ СЃС‚РѕРёС‚ РёРіСЂРѕРє
 vec3_t	gLighting;
 float	gLightLevel;
 
@@ -630,7 +630,7 @@ void CStudioModelRenderer::StudioCalcRotations ( float pos[][3], vec4_t *q, mstu
 	// add in programtic controllers
 	pbone		= (mstudiobone_t *)((byte *)m_pStudioHeader + m_pStudioHeader->boneindex);
 
-	// buz: хак, позволяющий не интерполировать контроллеры для стационарного пулемета
+	// buz: С…Р°Рє, РїРѕР·РІРѕР»СЏСЋС‰РёР№ РЅРµ РёРЅС‚РµСЂРїРѕР»РёСЂРѕРІР°С‚СЊ РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹ РґР»СЏ СЃС‚Р°С†РёРѕРЅР°СЂРЅРѕРіРѕ РїСѓР»РµРјРµС‚Р°
 	if (m_pCurrentEntity->curstate.renderfx == 51)
 		dadt = 1;
 
@@ -1203,7 +1203,7 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 			IEngineStudio.StudioDynamicLight(m_pCurrentEntity, &lighting );
 			IEngineStudio.StudioEntityLight( &lighting );
 
-			// buz: копируем освещенность в глобальный вектор
+			// buz: РєРѕРїРёСЂСѓРµРј РѕСЃРІРµС‰РµРЅРЅРѕСЃС‚СЊ РІ РіР»РѕР±Р°Р»СЊРЅС‹Р№ РІРµРєС‚РѕСЂ
 			if (m_pCurrentEntity->curstate.renderfx == 60)
 			{
 				VectorCopy(lighting.color, gLighting);

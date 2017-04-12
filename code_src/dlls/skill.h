@@ -161,7 +161,7 @@ struct skilldata_t
 	float plrLeg;
 	float plrArm;
 
-// Wargon: Множители дамаги для monster_zombie. (1.1)
+// Wargon: РњРЅРѕР¶РёС‚РµР»Рё РґР°РјР°РіРё РґР»СЏ monster_zombie. (1.1)
 	float zomHead;
 	float zomChest;
 	float zomStomach;
@@ -172,7 +172,7 @@ struct skilldata_t
 	float plrPrimaryMaxSpeed;	// in primary weapon mode
 	float plrSecondaryMaxSpeed;	// in secondary weapon mode
 
-// Wargon: Патроны из мертвых вражин. (1.1)
+// Wargon: РџР°С‚СЂРѕРЅС‹ РёР· РјРµСЂС‚РІС‹С… РІСЂР°Р¶РёРЅ. (1.1)
 	float maxDeadEnemyAmmo;
 };
 

@@ -146,7 +146,7 @@ void CFuncMachinegun::Spawn()
 	pev->solid		= SOLID_BBOX;
 	pev->angles.x	= 0; // remove pitch
 //	m_flLastAnimTime = gpGlobals->time;
-	pev->renderfx = 51; // õàê äëÿ ðåíäåðåðà, ÷òîáû îí íå èíòåðïîëèðîâàë êîíòðîëëåðû
+	pev->renderfx = 51; // Ñ…Ð°Ðº Ð´Ð»Ñ Ñ€ÐµÐ½Ð´ÐµÑ€ÐµÑ€Ð°, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ð½ Ð½Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð» ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€Ñ‹
 
 	SET_MODEL( ENT(pev), STRING(pev->model) );
 	UTIL_SetSize( pev, Vector(-25,-25,0), Vector(25,25,60));

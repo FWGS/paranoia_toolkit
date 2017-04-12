@@ -456,8 +456,8 @@ void CBaseMonster :: RunTask ( Task_t *pTask )
 				// Re-evaluate when you think your finished, or the target has moved too far
 				if ( (distance < m_flRushDistance) || (m_vecMoveGoal - m_hTargetEnt->pev->origin).Length() > m_flRushDistance * 0.5 )
 				{
-					// buz: за то время, пока мы бежали к цели, она могла обновиться.
-					//  спрашиваем цель еще раз.
+					// buz: Р·Р° С‚Рѕ РІСЂРµРјСЏ, РїРѕРєР° РјС‹ Р±РµР¶Р°Р»Рё Рє С†РµР»Рё, РѕРЅР° РјРѕРіР»Р° РѕР±РЅРѕРІРёС‚СЊСЃСЏ.
+					//  СЃРїСЂР°С€РёРІР°РµРј С†РµР»СЊ РµС‰Рµ СЂР°Р·.
 					CStartRush* pRush = (CStartRush*)UTIL_FindEntityByTargetname(NULL, STRING( m_hRushEntity ));
 					if (pRush)
 						m_hTargetEnt = pRush->GetDestinationEntity();
@@ -983,7 +983,7 @@ void CBaseMonster :: StartTask ( Task_t *pTask )
 
 				if ( !MoveToTarget( act, 0.5 ) )
 				{
-					m_flRushNextTime = gpGlobals->time + 3;// попробуем через три секунды еще раз
+					m_flRushNextTime = gpGlobals->time + 3;// РїРѕРїСЂРѕР±СѓРµРј С‡РµСЂРµР· С‚СЂРё СЃРµРєСѓРЅРґС‹ РµС‰Рµ СЂР°Р·
 					TaskFail();
 				//	ALERT(at_console, "NO PATH!!!\n");
 				}

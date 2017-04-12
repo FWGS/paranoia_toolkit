@@ -32,7 +32,7 @@
 
 WEAPON *gpActiveSel;	// NULL means off, 1 means just the menu bar, otherwise
 						// this points to the active weapon menu item
-//WEAPON *gpLastSel;		// Last weapon menu selection buz: нах
+//WEAPON *gpLastSel;		// Last weapon menu selection buz: РЅР°С…
 
 client_sprite_t *GetSpriteList(client_sprite_t *pList, const char *psz, int iRes, int iCount);
 
@@ -621,7 +621,7 @@ void WeaponsResource :: SelectSlot( int iSlot, int fAdvance, int iDirection )
 		m_rgColumnSizes[iSlot] = 1;
 		gpActiveSel = GetFirstPos( iSlot );
 
-		// Wargon: hud_fastswitch для нового HUD'а.
+		// Wargon: hud_fastswitch РґР»СЏ РЅРѕРІРѕРіРѕ HUD'Р°.
 		if (gpActiveSel && fastSwitch && !(GetNextActivePos(gpActiveSel->iSlot, gpActiveSel->iSlotPos)) && (iSlot != 0))
 		{
 			ServerCmd(gpActiveSel->szName);
@@ -651,7 +651,7 @@ void WeaponsResource :: SelectSlot( int iSlot, int fAdvance, int iDirection )
 			m_iSelectedColumn = iSlot;
 			gpActiveSel = GetFirstPos( iSlot );
 
-			// Wargon: hud_fastswitch для нового HUD'а.
+			// Wargon: hud_fastswitch РґР»СЏ РЅРѕРІРѕРіРѕ HUD'Р°.
 			if (gpActiveSel && fastSwitch && !(GetNextActivePos(gpActiveSel->iSlot, gpActiveSel->iSlotPos)) && (iSlot != 0))
 			{
 				ServerCmd(gpActiveSel->szName);

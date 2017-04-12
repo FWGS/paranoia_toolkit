@@ -29,7 +29,7 @@
 #define HEALTH_ZERO_ALPHA	150
 #define HEALTH_ALPHA		70
 
-// Wargon: Иконка юза.
+// Wargon: РРєРѕРЅРєР° СЋР·Р°.
 #define USAGE_FADE_TIME 1
 #define USAGE_ALPHA 70
 
@@ -46,11 +46,11 @@ const char* weaponNames[NUM_WEAPON_ICONS] =
 	"weapon_groza",
 	"weapon_rpk",
 	"weapon_handgrenade",
-	"weapon_rpg", // Wargon: Иконка боеприпасов для RPG.
+	"weapon_rpg", // Wargon: РРєРѕРЅРєР° Р±РѕРµРїСЂРёРїР°СЃРѕРІ РґР»СЏ RPG.
 	"machinegun",
 };
 
-// Wargon: Иконка юза.
+// Wargon: РРєРѕРЅРєР° СЋР·Р°.
 int CanUseStatus;
 int __MsgFunc_CanUse( const char *pszName, int iSize, void *pbuf )
 {
@@ -176,7 +176,7 @@ void CHud2::Initialize()
 	health = -1;
 	armor = -1;
 	m_fMedkitUpdateTime = 0;
-	m_fUsageUpdateTime = 0; // Wargon: Иконка юза.
+	m_fUsageUpdateTime = 0; // Wargon: РРєРѕРЅРєР° СЋР·Р°.
 }
 
 CHud2::CHud2() : Panel(0, 0, XRES(640), YRES(480))
@@ -309,7 +309,7 @@ CHud2::CHud2() : Panel(0, 0, XRES(640), YRES(480))
 	}
 
 	//
-	// Wargon: Иконка юза.
+	// Wargon: РРєРѕРЅРєР° СЋР·Р°.
 	//
 	m_pUsageIcon = new CImageLabel("usage", ScreenWidth / 2 - 12, ScreenHeight / 2 + 100);
 	if (!m_pUsageIcon->m_pTGA)
@@ -361,7 +361,7 @@ void CHud2::solve()
 {
 	float curtime = gEngfuncs.GetClientTime();
 
-	// Wargon: Иконка юза.
+	// Wargon: РРєРѕРЅРєР° СЋР·Р°.
 	if (m_pUsageIcon)
 	{
 		m_fUsageUpdateTime = curtime;
@@ -532,7 +532,7 @@ void CHud2::paint()
 	//
 	// draw ammo counters
 	//
-	if ( (gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT))) && ShouldDrawHUD() ) // Wargon: Информация о патронах рисуется только если hud_draw = 1.
+	if ( (gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT))) && ShouldDrawHUD() ) // Wargon: РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїР°С‚СЂРѕРЅР°С… СЂРёСЃСѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РµСЃР»Рё hud_draw = 1.
 	{
 		WEAPON *pw = gHUD.m_Ammo.m_pWeapon; // shorthand
 		if (gHUD.m_SpecTank_on)

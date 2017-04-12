@@ -1916,8 +1916,8 @@ int sys_wglChoosePixelFormat(HDC hdc, PIXELFORMATDESCRIPTOR *pfd)
 
 //	add_log("pixelformat set\n");
 
-	pfd->cAlphaBits = 8; // » Õ»»œ®“!
-	pfd->cStencilBits = 8; // » Õ»»œ®“!
+	pfd->cAlphaBits = 8; // –ò –ù–ò–ò–ü–Å–¢!
+	pfd->cStencilBits = 8; // –ò –ù–ò–ò–ü–Å–¢!
 	return orig_wglChoosePixelFormat(hdc, pfd);
 }
 

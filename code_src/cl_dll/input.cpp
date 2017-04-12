@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -778,7 +778,7 @@ void DLLEXPORT CL_CreateMove ( float frametime, struct usercmd_s *cmd, int activ
 		else if (viewangles[PITCH] < -gHUD.m_SpecTank_coneVer)
 			viewangles[PITCH] = -gHUD.m_SpecTank_coneVer;
 
-		// âñåì ñïàñèáî, âñå ñâîáîäíû
+		// Ð²ÑÐµÐ¼ ÑÐ¿Ð°ÑÐ¸Ð±Ð¾, Ð²ÑÐµ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ñ‹
 		gEngfuncs.SetViewAngles( (float *)viewangles );
 	}
 	

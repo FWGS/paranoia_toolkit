@@ -51,7 +51,7 @@ public:
 	int GetItemInfo(ItemInfo *p);
 	int AddToPlayer( CBasePlayer *pPlayer );
 
-	// Wargon: Фикс невозможности использовать MP5, если у него остались только подствольные гранаты.
+	// Wargon: Р¤РёРєСЃ РЅРµРІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ MP5, РµСЃР»Рё Сѓ РЅРµРіРѕ РѕСЃС‚Р°Р»РёСЃСЊ С‚РѕР»СЊРєРѕ РїРѕРґСЃС‚РІРѕР»СЊРЅС‹Рµ РіСЂР°РЅР°С‚С‹.
 	BOOL IsUseable( void );
 
 	void PrimaryAttack( void );
@@ -156,7 +156,7 @@ int CMP5::GetItemInfo(ItemInfo *p)
 	return 1;
 }
 
-// Wargon: Фикс невозможности использовать MP5, если у него остались только подствольные гранаты.
+// Wargon: Р¤РёРєСЃ РЅРµРІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ MP5, РµСЃР»Рё Сѓ РЅРµРіРѕ РѕСЃС‚Р°Р»РёСЃСЊ С‚РѕР»СЊРєРѕ РїРѕРґСЃС‚РІРѕР»СЊРЅС‹Рµ РіСЂР°РЅР°С‚С‹.
 BOOL CMP5::IsUseable( void )
 {
 	if (m_iClip <= 0 && (m_pPlayer->m_rgAmmo[ PrimaryAmmoIndex() ] <= 0 && iMaxAmmo1() != -1) && (m_pPlayer->m_rgAmmo[ SecondaryAmmoIndex() ] <= 0 && iMaxAmmo2() != -1))

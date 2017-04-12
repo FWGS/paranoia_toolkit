@@ -196,7 +196,7 @@ void CTips::paintBackground()
 
 
 
-// íåâàæíî, êóäà-áû ýòî çàñóíóòü..
+// Ð½ÐµÐ²Ð°Ð¶Ð½Ð¾, ÐºÑƒÐ´Ð°-Ð±Ñ‹ ÑÑ‚Ð¾ Ð·Ð°ÑÑƒÐ½ÑƒÑ‚ÑŒ..
 
 #include "vgui_screenmsg.h"
 
@@ -210,7 +210,7 @@ void VGuiAddScreenMessage( client_textmessage_t *msg )
 		gEngfuncs.Con_Printf("Screenmessage error: ViewPort is not constructed!\n");
 }
 
-// Wargon: Çàñóíó è ÿ ýòî ñþäà. )
+// Wargon: Ð—Ð°ÑÑƒÐ½Ñƒ Ð¸ Ñ ÑÑ‚Ð¾ ÑÑŽÐ´Ð°. )
 void VGuiAddScrollingMessage( client_textmessage_t *msg )
 {
 	if (gViewPort && gViewPort->m_pScrollingMsg)

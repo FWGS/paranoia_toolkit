@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright В© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -570,7 +570,7 @@ void DLLEXPORT HUD_CreateEntities( void )
 //	CONPRINT("createentities\n");
 
 	// buz:
-	// эта клиентская энтитя используется для проверки уровня освещенности
+	// СЌС‚Р° РєР»РёРµРЅС‚СЃРєР°СЏ СЌРЅС‚РёС‚СЏ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё СѓСЂРѕРІРЅСЏ РѕСЃРІРµС‰РµРЅРЅРѕСЃС‚Рё
 	int modelindex;
 	struct model_s *mod = gEngfuncs.CL_LoadModel( "models/can.mdl", &modelindex );
 	if (!mod || !modelindex)

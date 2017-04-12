@@ -29,7 +29,7 @@ void ShowTip( client_textmessage_t *tempMessage ); // buz
 void VGuiAddScreenMessage( client_textmessage_t *msg ); // buz
 void VGuiAddPickupMessage( client_textmessage_t *msg ); // buz
 
-// Wargon: —ÍÓÎÎˇ˘ËÈÒˇ ÚÂÍÒÚ.
+// Wargon: –°–∫—Ä–æ–ª–ª—è—â–∏–π—Å—è —Ç–µ–∫—Å—Ç.
 void VGuiAddScrollingMessage( client_textmessage_t *msg );
 
 DECLARE_MESSAGE( m_Message, HudText )
@@ -480,7 +480,7 @@ void CHudMessage::MessageAdd( const char *pName, float time )
 				VGuiAddPickupMessage( tempMessage );
 				return;
 			}
-			else if (tempMessage->effect == 6) // Wargon: —ÍÓÎÎˇ˘ËÈÒˇ ÚÂÍÒÚ.
+			else if (tempMessage->effect == 6) // Wargon: –°–∫—Ä–æ–ª–ª—è—â–∏–π—Å—è —Ç–µ–∫—Å—Ç.
 			{
 				VGuiAddScrollingMessage( tempMessage );
 				return;

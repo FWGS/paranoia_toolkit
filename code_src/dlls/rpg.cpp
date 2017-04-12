@@ -24,7 +24,7 @@
 #include "gamerules.h"
 #include "paranoia_wpn.h" // Wargon
 
-class CRpg : public CBaseToggleWeapon // Wargon: Было CBasePlayerWeapon.
+class CRpg : public CBaseToggleWeapon // Wargon: Р‘С‹Р»Рѕ CBasePlayerWeapon.
 {
 public:
 
@@ -82,12 +82,12 @@ public:
 	void EXPORT RocketTouch( CBaseEntity *pOther );
 	static CRpgRocket *CreateRpgRocket( Vector vecOrigin, Vector vecAngles, CBaseEntity *pOwner, CRpg *pLauncher );
 
-	int m_iFireTrail; // Wargon: переменная для огненного следа у ракет.
+	int m_iFireTrail; // Wargon: РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РѕРіРЅРµРЅРЅРѕРіРѕ СЃР»РµРґР° Сѓ СЂР°РєРµС‚.
 	int m_iTrail;
 	float m_flIgniteTime;
 	CRpg *m_pLauncher;// pointer back to the launcher that fired me. 
 };
-// Wargon: Объявления CRpg и CRpgRocket перемещены из weapons.h.
+// Wargon: РћР±СЉСЏРІР»РµРЅРёСЏ CRpg Рё CRpgRocket РїРµСЂРµРјРµС‰РµРЅС‹ РёР· weapons.h.
 
 enum rpg_e {
 	RPG_IDLE = 0,
@@ -104,7 +104,7 @@ enum rpg_e {
 
 LINK_ENTITY_TO_CLASS( weapon_rpg, CRpg );
 
-// Wargon: SaveData перемещен из weapons.cpp.
+// Wargon: SaveData РїРµСЂРµРјРµС‰РµРЅ РёР· weapons.cpp.
 TYPEDESCRIPTION	CRpg::m_SaveData[] = 
 {
 	DEFINE_FIELD( CRpg, m_fSpotActive, FIELD_INTEGER ),
@@ -189,7 +189,7 @@ void CLaserSpot::Precache( void )
 
 LINK_ENTITY_TO_CLASS( rpg_rocket, CRpgRocket );
 
-// Wargon: SaveData перемещен из weapons.cpp.
+// Wargon: SaveData РїРµСЂРµРјРµС‰РµРЅ РёР· weapons.cpp.
 TYPEDESCRIPTION	CRpgRocket::m_SaveData[] = 
 {
 	DEFINE_FIELD( CRpgRocket, m_flIgniteTime, FIELD_TIME ),
@@ -264,7 +264,7 @@ void CRpgRocket :: Precache( void )
 {
 	PRECACHE_MODEL("models/rpgrocket.mdl");
 	m_iTrail = PRECACHE_MODEL("sprites/smoke.spr");
-	m_iFireTrail = PRECACHE_MODEL( "sprites/muz3.spr" ); // Wargon: Спрайт для огненного следа у ракет.
+	m_iFireTrail = PRECACHE_MODEL( "sprites/muz3.spr" ); // Wargon: РЎРїСЂР°Р№С‚ РґР»СЏ РѕРіРЅРµРЅРЅРѕРіРѕ СЃР»РµРґР° Сѓ СЂР°РєРµС‚.
 	PRECACHE_SOUND ("weapons/rocket1.wav");
 }
 
@@ -370,7 +370,7 @@ void CRpgRocket :: FollowThink( void )
 		}
 	}
 
-	// Wargon: Непонятно, почему у ракет не рисуется glow-спрайт. Исправил положение, сделав свой огонь для ракеты через мессагу.
+	// Wargon: РќРµРїРѕРЅСЏС‚РЅРѕ, РїРѕС‡РµРјСѓ Сѓ СЂР°РєРµС‚ РЅРµ СЂРёСЃСѓРµС‚СЃСЏ glow-СЃРїСЂР°Р№С‚. РСЃРїСЂР°РІРёР» РїРѕР»РѕР¶РµРЅРёРµ, СЃРґРµР»Р°РІ СЃРІРѕР№ РѕРіРѕРЅСЊ РґР»СЏ СЂР°РєРµС‚С‹ С‡РµСЂРµР· РјРµСЃСЃР°РіСѓ.
 	MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
 		WRITE_BYTE( TE_SPRITE );
 		WRITE_COORD( pev->origin.x);
@@ -441,7 +441,7 @@ void CRpg::Spawn( )
 	m_iId = WEAPON_RPG;
 
 	SET_MODEL(ENT(pev), "models/w_rpg.mdl");
-	m_fSpotActive = 0; // Wargon: Лазерный целеуказатель выключен.
+	m_fSpotActive = 0; // Wargon: Р›Р°Р·РµСЂРЅС‹Р№ С†РµР»РµСѓРєР°Р·Р°С‚РµР»СЊ РІС‹РєР»СЋС‡РµРЅ.
 
 #ifdef CLIENT_DLL
 	if ( bIsMultiplayer() )
@@ -487,7 +487,7 @@ int CRpg::GetItemInfo(ItemInfo *p)
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = RPG_MAX_CLIP;
-	// Wargon: Другой слот и позиция.
+	// Wargon: Р”СЂСѓРіРѕР№ СЃР»РѕС‚ Рё РїРѕР·РёС†РёСЏ.
 	p->iSlot = 4;
 	p->iPosition = 1;
 	p->iId = m_iId = WEAPON_RPG;
@@ -565,7 +565,7 @@ void CRpg::PrimaryAttack()
 		UTIL_MakeVectors( m_pPlayer->pev->v_angle );
 		Vector vecSrc = m_pPlayer->GetGunPosition( ) + gpGlobals->v_forward * 16 + gpGlobals->v_right * 8 + gpGlobals->v_up * -8;
 
-		// Wargon: Добавлено для правильной работы прицела.
+		// Wargon: Р”РѕР±Р°РІР»РµРЅРѕ РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ СЂР°Р±РѕС‚С‹ РїСЂРёС†РµР»Р°.
 		Vector vecAiming = m_pPlayer->GetAutoaimVector( AUTOAIM_5DEGREES );
 		float spread = ExpandSpread( m_pMySpread->sec_expand );
 		EqualizeSpread( &spread, m_pMySpread->sec_equalize );
@@ -589,7 +589,7 @@ void CRpg::PrimaryAttack()
 
 		PLAYBACK_EVENT( flags, m_pPlayer->edict(), m_usRpg );
 
-		// Wargon: Добавлено для правильной работы прицела.
+		// Wargon: Р”РѕР±Р°РІР»РµРЅРѕ РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ СЂР°Р±РѕС‚С‹ РїСЂРёС†РµР»Р°.
 		DefSecPunch();
 
 		m_iClip--; 

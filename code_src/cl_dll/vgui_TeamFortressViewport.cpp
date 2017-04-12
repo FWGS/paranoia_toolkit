@@ -158,7 +158,7 @@ public:
 		drawSetTextFont(m_pFont);
 		drawSetTextColor(0, 250, 0, 0);
 
-	fff	char* pos = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß";
+	fff	char* pos = "ÐÐ‘Ð’Ð“Ð”Ð•Ð–Ð—Ð˜Ð™ÐšÐ›ÐœÐÐžÐŸÐ Ð¡Ð¢Ð£Ð¤Ð¥Ð¦Ð§Ð¨Ð©ÐªÐ«Ð¬Ð­Ð®Ð¯";
 		int xpos = 0;
 		
 		while(*pos != 0)
@@ -168,7 +168,7 @@ public:
 			xpos += 16;
 		}
 
-		pos = "àáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+		pos = "Ð°Ð±Ð²Ð³Ð´ÐµÐ¶Ð·Ð¸Ð¹ÐºÐ»Ð¼Ð½Ð¾Ð¿Ñ€ÑÑ‚ÑƒÑ„Ñ…Ñ†Ñ‡ÑˆÑ‰ÑŠÑ‹ÑŒÑÑŽÑ";
 		xpos = 0;
 
 		while(*pos != 0)
@@ -178,7 +178,7 @@ public:
 			xpos += 16;
 		} fffffffffff
 		drawSetTextPos(0,17);
-		char* textstring = "Èçíà÷àëüíî èìåíîâàëàñü â ïðàâèòåëüñòâåííûõ îáúåêòàõ...";
+		char* textstring = "Ð˜Ð·Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾ Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð»Ð°ÑÑŒ Ð² Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð°Ñ…...";
 		drawPrintText(textstring, strlen(textstring) - 1);
 
 		int xpos = 0;
@@ -192,7 +192,7 @@ public:
 		}
 
 		int wide, tall;
-		m_pFont->getTextSize("Èçíà÷àëüíî èìåíîâàëàñü â ïðàâèòåëüñòâåííûõ îáúåêòàõ...", wide, tall);
+		m_pFont->getTextSize("Ð˜Ð·Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾ Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð»Ð°ÑÑŒ Ð² Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð°Ñ…...", wide, tall);
 		drawSetColor(100, 0, 0, 0);
 		drawFilledRect(0, 34, wide, 34+tall);
 		//gEngfuncs.Con_Printf("wide %d, tall %d\n", wide, tall);
@@ -650,7 +650,7 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_pRadio = NULL; // buz
 	m_pGamma = NULL; // buz
 
-	// Wargon: Ñêðîëëÿùèéñÿ òåêñò.
+	// Wargon: Ð¡ÐºÑ€Ð¾Ð»Ð»ÑÑ‰Ð¸Ð¹ÑÑ Ñ‚ÐµÐºÑÑ‚.
 	m_pScrollingMsg = NULL;
 
 	CreatePickupMessagePanels(); // buz
@@ -754,7 +754,7 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_pScreenMsg = new CScreenMessage();
 	m_pScreenMsg->setParent(this);
 
-	// Wargon: Ñêðîëëÿùèéñÿ òåêñò.
+	// Wargon: Ð¡ÐºÑ€Ð¾Ð»Ð»ÑÑ‰Ð¸Ð¹ÑÑ Ñ‚ÐµÐºÑÑ‚.
 	m_pScrollingMsg = new CScrollingMessage();
 	m_pScrollingMsg->setParent(this);
 }
@@ -802,7 +802,7 @@ void TeamFortressViewport::Initialize( void )
 		m_pTips->Initialize(); // buz
 	if (m_pScreenMsg)
 		m_pScreenMsg->Initialize(); // buz
-	// Wargon: Ñêðîëëÿùèéñÿ òåêñò.
+	// Wargon: Ð¡ÐºÑ€Ð¾Ð»Ð»ÑÑ‰Ð¸Ð¹ÑÑ Ñ‚ÐµÐºÑÑ‚.
 	if (m_pScrollingMsg)
 		m_pScrollingMsg->Initialize();
 

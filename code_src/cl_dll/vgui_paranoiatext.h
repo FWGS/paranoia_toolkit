@@ -24,7 +24,7 @@ public:
 	int KeyInput(int down, int keynum, const char *pszCurrentBinding);
 	void paint();
 	void ResetBackground();
-//	void StateChanged(CCheckButton2 *pButton); // будет использовано для переключения режима отрисовки мира
+//	void StateChanged(CCheckButton2 *pButton); // Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ СЂРµР¶РёРјР° РѕС‚СЂРёСЃРѕРІРєРё РјРёСЂР°
 	char	m_loadedFileName[128];
 
 	void Render( void )

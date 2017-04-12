@@ -53,7 +53,7 @@ CBaseEntity
 // UNDONE: This will ignore transition volumes (trigger_transition), but not the PVS!!!
 #define		FCAP_FORCE_TRANSITION		0x00000080		// ALWAYS goes across transitions
 
-// Wargon: Ýíòèòÿ íå áóäåò ïîêàçûâàòü èêîíêó þçà, äàæå åñëè îíà þçàáåëüíà.
+// Wargon: Ð­Ð½Ñ‚Ð¸Ñ‚Ñ Ð½Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¸ÐºÐ¾Ð½ÐºÑƒ ÑŽÐ·Ð°, Ð´Ð°Ð¶Ðµ ÐµÑÐ»Ð¸ Ð¾Ð½Ð° ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð°.
 #define		FCAP_HIDE_USE				0x00000400
 
 #include "saverestore.h"
@@ -186,7 +186,7 @@ public:
 	Vector				m_vecPostAssistVel; // LRC
 	Vector				m_vecPostAssistAVel; // LRC
 	float				m_fNextThink; // LRC - for SetNextThink and SetPhysThink. Marks the time when a think will be performed - not necessarily the same as pev->nextthink!
-	float				m_fPevNextThink; // LRC - always set equal to pev->nextthink, so that we can tell when the latter gets changed by the @#$^Â¬! engine.
+	float				m_fPevNextThink; // LRC - always set equal to pev->nextthink, so that we can tell when the latter gets changed by the @#$^Ð’Â¬! engine.
 	int					m_iLFlags; // LRC- a new set of flags. (pev->spawnflags and pev->flags are full...)
 	virtual void		DesiredAction( void ) {}; // LRC - for postponing stuff until PostThink time, not as a think.
 	int					m_iStyle; // LRC - almost anything can have a lightstyle these days...
@@ -770,7 +770,7 @@ public:
 #define DMG_MORTAR			(1 << 23)	// Hit by air raid (done to distinguish grenade from mortar)
 
 // these are the damage types that are allowed to gib corpses
-#define DMG_GIB_CORPSE		( DMG_CRUSH | DMG_FALL | DMG_BLAST | DMG_SONIC /* | DMG_CLUB */ ) // Wargon: DMG_CLUB íå ìîæåò ãèáàòü òðóïû.
+#define DMG_GIB_CORPSE		( DMG_CRUSH | DMG_FALL | DMG_BLAST | DMG_SONIC /* | DMG_CLUB */ ) // Wargon: DMG_CLUB Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð³Ð¸Ð±Ð°Ñ‚ÑŒ Ñ‚Ñ€ÑƒÐ¿Ñ‹.
 
 // these are the damage types that have client hud art
 #define DMG_SHOWNHUD		(DMG_POISON | DMG_ACID | DMG_FREEZE | DMG_SLOWFREEZE | DMG_DROWN | DMG_BURN | DMG_SLOWBURN | DMG_NERVEGAS | DMG_RADIATION | DMG_SHOCK)
@@ -873,7 +873,7 @@ public:
 	BYTE	m_bUnlockedSentence;
 	int		m_sounds;
 
-	// Wargon: Ïåðåìåííàÿ äëÿ ñêðûòèÿ èêîíêè þçà.
+	// Wargon: ÐŸÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ Ð´Ð»Ñ ÑÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¸ÐºÐ¾Ð½ÐºÐ¸ ÑŽÐ·Ð°.
 	int m_hide_use;
 };
 

@@ -282,7 +282,7 @@ extern int			UTIL_IsMasterTriggered	(string_t sMaster, CBaseEntity *pActivator);
 extern void			UTIL_BloodStream( const Vector &origin, const Vector &direction, int color, int amount );
 extern void			UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, int amount );
 extern Vector		UTIL_RandomBloodVector( void );
-extern void			UTIL_CustomDecal( TraceResult *pTrace, const char *name, int persistent = 0 ); // Wargon: Это должно быть объявлено здесь чтобы можно было рисовать кастомне декали из кода монстриков.
+extern void			UTIL_CustomDecal( TraceResult *pTrace, const char *name, int persistent = 0 ); // Wargon: Р­С‚Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕР±СЉСЏРІР»РµРЅРѕ Р·РґРµСЃСЊ С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ СЂРёСЃРѕРІР°С‚СЊ РєР°СЃС‚РѕРјРЅРµ РґРµРєР°Р»Рё РёР· РєРѕРґР° РјРѕРЅСЃС‚СЂРёРєРѕРІ.
 extern BOOL			UTIL_ShouldShowBlood( int bloodColor );
 extern void			UTIL_BloodDecalTrace( TraceResult *pTrace, int bloodColor );
 extern void			UTIL_DecalTrace( TraceResult *pTrace, int decalNumber );

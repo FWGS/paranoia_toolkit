@@ -7,7 +7,7 @@
 #define _VGUIHUD_H
 using namespace vgui;
 
-#define NUM_WEAPON_ICONS 13 // Wargon: Добавлена одна иконка боеприпасов для RPG.
+#define NUM_WEAPON_ICONS 13 // Wargon: Р”РѕР±Р°РІР»РµРЅР° РѕРґРЅР° РёРєРѕРЅРєР° Р±РѕРµРїСЂРёРїР°СЃРѕРІ РґР»СЏ RPG.
 
 class ImageHolder;
 
@@ -29,7 +29,7 @@ protected:
 	virtual void paint();
 
 protected:
-	// Wargon: Иконка юза.
+	// Wargon: РРєРѕРЅРєР° СЋР·Р°.
 	CImageLabel *m_pUsageIcon;
 	float m_fUsageUpdateTime;
 

@@ -2380,8 +2380,8 @@ void            FinalLightFace(const int facenum)
     //
     minlight = FloatForKey(g_face_entity[facenum], "_minlight") * 128;
 
-	// buz: бля, хотел все упростить, но потом полезли хаки и прочее, и как всегда
-	// все засралось непонять чем.
+	// buz: Р±Р»СЏ, С…РѕС‚РµР» РІСЃРµ СѓРїСЂРѕСЃС‚РёС‚СЊ, РЅРѕ РїРѕС‚РѕРј РїРѕР»РµР·Р»Рё С…Р°РєРё Рё РїСЂРѕС‡РµРµ, Рё РєР°Рє РІСЃРµРіРґР°
+	// РІСЃРµ Р·Р°СЃСЂР°Р»РѕСЃСЊ РЅРµРїРѕРЅСЏС‚СЊ С‡РµРј.
 
 	sample_t *samp_orighlight = fl->samples[0];
 	sample_t *samp_baselight = NULL;

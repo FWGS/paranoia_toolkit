@@ -1566,7 +1566,7 @@ Vector UTIL_RandomBloodVector( void )
 // buz
 extern int gmsgCustomDecal;
 
-void UTIL_CustomDecal( TraceResult *pTrace, const char *name, int persistent /* =0 */ ) // Wargon: Значение по умолчанию прописано в util.h.
+void UTIL_CustomDecal( TraceResult *pTrace, const char *name, int persistent /* =0 */ ) // Wargon: Р—РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РїСЂРѕРїРёСЃР°РЅРѕ РІ util.h.
 {
 	if (pTrace->flFraction == 1.0)
 		return;

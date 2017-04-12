@@ -227,7 +227,7 @@ public:
 	int			m_iFOV;			// field of view
 	int			m_iClientFOV;	// client's known FOV
 
-	void ViewPunch( float p, float y, float r ); // buz - нагло спер из хл2
+	void ViewPunch( float p, float y, float r ); // buz - РЅР°РіР»Рѕ СЃРїРµСЂ РёР· С…Р»2
 
 	// usable player items 
 	CBasePlayerItem	*m_rgpPlayerItems[MAX_ITEM_TYPES];

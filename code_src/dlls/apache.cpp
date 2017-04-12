@@ -61,7 +61,7 @@ class CApache : public CBaseMonster
 	int  TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType );
 	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
 
-	// Wargon: Îâåððàéä ðåëàòèîíøèïà âåðòîëåòà. (1.1)
+	// Wargon: ÐžÐ²ÐµÑ€Ñ€Ð°Ð¹Ð´ Ñ€ÐµÐ»Ð°Ñ‚Ð¸Ð¾Ð½ÑˆÐ¸Ð¿Ð° Ð²ÐµÑ€Ñ‚Ð¾Ð»ÐµÑ‚Ð°. (1.1)
 	int IRelationship( CBaseEntity *pTarget );
 
 	int m_iRockets;
@@ -196,7 +196,7 @@ void CApache::NullThink( void )
 
 void CApache::StartupUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	// Wargon: Ôèêñ íåñáèâàåìîñòè âåðòîëåòà.
+	// Wargon: Ð¤Ð¸ÐºÑ Ð½ÐµÑÐ±Ð¸Ð²Ð°ÐµÐ¼Ð¾ÑÑ‚Ð¸ Ð²ÐµÑ€Ñ‚Ð¾Ð»ÐµÑ‚Ð°.
 	pev->spawnflags &= ~SF_MONSTER_INVINCIBLE;
 
 	SetThink(&CApache:: HuntThink );
@@ -219,7 +219,7 @@ void CApache :: Killed( entvars_t *pevAttacker, int iGib )
 	pev->health = 0;
 	pev->takedamage = DAMAGE_NO;
 
-	// Wargon: Ôèêñ íåñðàáàòûâàíèÿ òðèããåðà ïðè ñìåðòè âåðòîëåòà.
+	// Wargon: Ð¤Ð¸ÐºÑ Ð½ÐµÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ð½Ð¸Ñ Ñ‚Ñ€Ð¸Ð³Ð³ÐµÑ€Ð° Ð¿Ñ€Ð¸ ÑÐ¼ÐµÑ€Ñ‚Ð¸ Ð²ÐµÑ€Ñ‚Ð¾Ð»ÐµÑ‚Ð°.
 	pev->deadflag = DEAD_DEAD;
 	FCheckAITrigger();
 
@@ -494,7 +494,7 @@ void CApache :: HuntThink( void )
 				m_flPrevSeen = gpGlobals->time;
 			m_flLastSeen = gpGlobals->time;
 
-			// Wargon: Ôèêñ òî÷êè ïðèöåëèâàíèÿ.
+			// Wargon: Ð¤Ð¸ÐºÑ Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð¿Ñ€Ð¸Ñ†ÐµÐ»Ð¸Ð²Ð°Ð½Ð¸Ñ.
 			m_posTarget = m_hEnemy->Center() + Vector( -16, 16, 64 );
 		}
 		else
@@ -958,7 +958,7 @@ void CApache::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir
 	}
 }
 
-// Wargon: Âåðòîëåò íå ñ÷èòàåò àëüôîâöåâ âðàãàìè. (1.1)
+// Wargon: Ð’ÐµÑ€Ñ‚Ð¾Ð»ÐµÑ‚ Ð½Ðµ ÑÑ‡Ð¸Ñ‚Ð°ÐµÑ‚ Ð°Ð»ÑŒÑ„Ð¾Ð²Ñ†ÐµÐ² Ð²Ñ€Ð°Ð³Ð°Ð¼Ð¸. (1.1)
 int CApache::IRelationship ( CBaseEntity *pTarget )
 {
 	if (FClassnameIs(pTarget->pev, "monster_human_alpha"))

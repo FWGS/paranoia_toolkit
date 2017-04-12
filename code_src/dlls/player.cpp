@@ -263,7 +263,7 @@ int gmsgCustomDLight = 0; // buz
 int gmsgSkymarker_Sky = 0; // buz
 int gmsgSkymarker_World = 0; // buz
 
-// Wargon: Èêîíêà þçà.
+// Wargon: Ð˜ÐºÐ¾Ð½ÐºÐ° ÑŽÐ·Ð°.
 int gmsgCanUse = 0;
 
 void LinkUserMessages( void )
@@ -335,7 +335,7 @@ void LinkUserMessages( void )
 	gmsgSkymarker_Sky = REG_USER_MSG("skymark_sky", -1); // buz
 	gmsgSkymarker_World = REG_USER_MSG("skymark_w", -1); // buz
 
-	// Wargon: Èêîíêà þçà.
+	// Wargon: Ð˜ÐºÐ¾Ð½ÐºÐ° ÑŽÐ·Ð°.
 	gmsgCanUse = REG_USER_MSG("CanUse", -1);
 }
 
@@ -598,8 +598,8 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 	m_lastDamageAmount = flDamage;
 
 	// Armor. 
-	// buz: áðîíÿ íå ñïàñàåò îò óäàðîâ âïëîòíóþ
-	// Wargon: Áðîíÿ òàêæå íå çàùèùàåò îò ãàçà. (1.1)
+	// buz: Ð±Ñ€Ð¾Ð½Ñ Ð½Ðµ ÑÐ¿Ð°ÑÐ°ÐµÑ‚ Ð¾Ñ‚ ÑƒÐ´Ð°Ñ€Ð¾Ð² Ð²Ð¿Ð»Ð¾Ñ‚Ð½ÑƒÑŽ
+	// Wargon: Ð‘Ñ€Ð¾Ð½Ñ Ñ‚Ð°ÐºÐ¶Ðµ Ð½Ðµ Ð·Ð°Ñ‰Ð¸Ñ‰Ð°ÐµÑ‚ Ð¾Ñ‚ Ð³Ð°Ð·Ð°. (1.1)
 	if (pev->armorvalue && !(bitsDamageType & (DMG_FALL | DMG_DROWN | DMG_CLUB | DMG_SLASH | DMG_NERVEGAS)) )// armor doesn't protect against fall or drown damage!
 	{
 		float flNew = flDamage * flRatio;
@@ -1156,7 +1156,7 @@ entvars_t *g_pevLastInflictor;  // Set in combat.cpp.  Used to pass the damage i
 
 void CBasePlayer::Killed( entvars_t *pevAttacker, int iGib )
 {
-	// Wargon: Åñëè èãðîêà óáèëè õåäøîòîì, òî âûâîäèòñÿ ñîîòâåòñòâóþùàÿ ìåññàãà.
+	// Wargon: Ð•ÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾ÐºÐ° ÑƒÐ±Ð¸Ð»Ð¸ Ñ…ÐµÐ´ÑˆÐ¾Ñ‚Ð¾Ð¼, Ñ‚Ð¾ Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ÑÑ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰Ð°Ñ Ð¼ÐµÑÑÐ°Ð³Ð°.
 	if (m_LastHitGroup == HITGROUP_HEAD)
 		UTIL_ShowMessage("#TIPS_HEADSHOOT", this );
 
@@ -1726,7 +1726,7 @@ void CBasePlayer::StartObserver( Vector vecPosition, Vector vecViewAngle )
 // PlayerUse - handles USE keypress
 //
 #define	PLAYER_SEARCH_RADIUS	(float)64
-#define PLAYER_DISTUSE_RADIUS	(float)128 // Wargon: Ðàññòîÿíèå äàëüíåãî þçà óìåíüøåíî.
+#define PLAYER_DISTUSE_RADIUS	(float)128 // Wargon: Ð Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð´Ð°Ð»ÑŒÐ½ÐµÐ³Ð¾ ÑŽÐ·Ð° ÑƒÐ¼ÐµÐ½ÑŒÑˆÐµÐ½Ð¾.
 
 void CBasePlayer::PlayerUse ( void )
 {
@@ -4144,7 +4144,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_aks" );
 		GiveNamedItem( "ammo_aksbox" );
 
-		// Wargon: weapon_rpg è ammo_rpgclip ïåðåìåùåíû èç impulse 111.
+		// Wargon: weapon_rpg Ð¸ ammo_rpgclip Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ñ‹ Ð¸Ð· impulse 111.
 		GiveNamedItem( "weapon_rpg" );
 		GiveNamedItem( "ammo_rpgclip" );
 
@@ -5057,11 +5057,11 @@ void CBasePlayer :: UpdateClientData( void )
 		m_flNextSBarUpdateTime = gpGlobals->time + 0.2;
 	}
 
-	// Wargon: Åñëè êîñòþìà íåò, òî ôîíàðèê âûêëþ÷àåòñÿ.
+	// Wargon: Ð•ÑÐ»Ð¸ ÐºÐ¾ÑÑ‚ÑŽÐ¼Ð° Ð½ÐµÑ‚, Ñ‚Ð¾ Ñ„Ð¾Ð½Ð°Ñ€Ð¸Ðº Ð²Ñ‹ÐºÐ»ÑŽÑ‡Ð°ÐµÑ‚ÑÑ.
 	if (!(pev->weapons & (1<<WEAPON_SUIT)) && FlashlightIsOn())
 		FlashlightTurnOff();
 
-	// Wargon: Ñåðâåðíûé êîä èêîíêè þçà.
+	// Wargon: Ð¡ÐµÑ€Ð²ÐµÑ€Ð½Ñ‹Ð¹ ÐºÐ¾Ð´ Ð¸ÐºÐ¾Ð½ÐºÐ¸ ÑŽÐ·Ð°.
 	CBaseEntity *pObject = NULL;
 	CBaseEntity *pClosest = NULL;
 	Vector vecLOS;

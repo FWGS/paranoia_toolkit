@@ -296,7 +296,7 @@ public:
 	void EXPORT DestroyItem( void );
 	void EXPORT DefaultTouch( CBaseEntity *pOther );	// default weapon touch
 
-	// Wargon: Переменные для юзабельности оружий.
+	// Wargon: РџРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ СЋР·Р°Р±РµР»СЊРЅРѕСЃС‚Рё РѕСЂСѓР¶РёР№.
 	void EXPORT DefaultUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value ) { DefaultTouch( pActivator ); }
 	virtual int ObjectCaps( void ) { return m_iCurrCaps | FCAP_ACROSS_TRANSITION; }
 	int m_iCurrCaps;
@@ -441,7 +441,7 @@ class CBasePlayerAmmo : public CBaseEntity
 public:
 	virtual void Spawn( void );
 
-	// Wargon: Переменные для юзабельности патронов.
+	// Wargon: РџРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ СЋР·Р°Р±РµР»СЊРЅРѕСЃС‚Рё РїР°С‚СЂРѕРЅРѕРІ.
 	virtual int Save( CSave &save );
 	virtual int Restore( CRestore &restore );
 	static TYPEDESCRIPTION m_SaveData[];
@@ -756,7 +756,7 @@ public:
 	static CLaserSpot *CreateSpot( const char* spritename );
 };
 
-// Wargon: Объявления CRpg и CRpgRocket перемещены в rpg.cpp.
+// Wargon: РћР±СЉСЏРІР»РµРЅРёСЏ CRpg Рё CRpgRocket РїРµСЂРµРјРµС‰РµРЅС‹ РІ rpg.cpp.
 /*
 class CRpg : public CBasePlayerWeapon
 {

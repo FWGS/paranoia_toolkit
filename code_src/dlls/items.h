@@ -22,7 +22,7 @@ public:
 	void	Spawn( void );
 	CBaseEntity*	Respawn( void );
 
-	// Wargon: Переменные для юзабельных итемов.
+	// Wargon: РџРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ СЋР·Р°Р±РµР»СЊРЅС‹С… РёС‚РµРјРѕРІ.
 	virtual int Save( CSave &save );
 	virtual int Restore( CRestore &restore );
 	static TYPEDESCRIPTION m_SaveData[];

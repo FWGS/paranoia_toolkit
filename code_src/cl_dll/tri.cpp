@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright В© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -462,7 +462,7 @@ void OrthoScope(void)
 =================================
 DrawRain
 
-Рисование капель и снежинок.
+Р РёСЃРѕРІР°РЅРёРµ РєР°РїРµР»СЊ Рё СЃРЅРµР¶РёРЅРѕРє.
 =================================
 */
 //extern cl_drip FirstChainDrip;
@@ -594,7 +594,7 @@ void DrawRain( void )
 =================================
 DrawFXObjects
 
-Рисование водяных кругов
+Р РёСЃРѕРІР°РЅРёРµ РІРѕРґСЏРЅС‹С… РєСЂСѓРіРѕРІ
 =================================
 */
 //extern cl_rainfx FirstChainFX;

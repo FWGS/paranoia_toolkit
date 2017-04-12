@@ -14,7 +14,7 @@ class MemBlock
 public:
 	MemBlock(int numElements)
 	{
-		// элемент 0 используется в качестве начала списка занятых ячеек
+		// СЌР»РµРјРµРЅС‚ 0 РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ РєР°С‡РµСЃС‚РІРµ РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР° Р·Р°РЅСЏС‚С‹С… СЏС‡РµРµРє
 		m_iArraySize = numElements + 1;
 		m_pArray = new chunk_t[m_iArraySize];		
 
@@ -38,7 +38,7 @@ public:
 	{
 		if (m_iArraySize > 1)
 		{
-			m_pArray[0].next = 0; // если он ссылается сам на себя, значит список занятых пуст
+			m_pArray[0].next = 0; // РµСЃР»Рё РѕРЅ СЃСЃС‹Р»Р°РµС‚СЃСЏ СЃР°Рј РЅР° СЃРµР±СЏ, Р·РЅР°С‡РёС‚ СЃРїРёСЃРѕРє Р·Р°РЅСЏС‚С‹С… РїСѓСЃС‚
 			m_iFirstFree = 1;
 
 			for (int i = 1; i < m_iArraySize; ++i)
@@ -51,9 +51,9 @@ public:
 		if (m_iFirstFree != m_iArraySize)
 		{
 			int savedFirstFree = m_pArray[m_iFirstFree].next;
-			m_pArray[m_iFirstFree].next = m_pArray[0].next; // добавляем свободную ячейку в
-			m_pArray[0].next = m_iFirstFree;				//   список занятых
-			m_iFirstFree = savedFirstFree;	// исключаем ячейку из списка свободных
+			m_pArray[m_iFirstFree].next = m_pArray[0].next; // РґРѕР±Р°РІР»СЏРµРј СЃРІРѕР±РѕРґРЅСѓСЋ СЏС‡РµР№РєСѓ РІ
+			m_pArray[0].next = m_iFirstFree;				//   СЃРїРёСЃРѕРє Р·Р°РЅСЏС‚С‹С…
+			m_iFirstFree = savedFirstFree;	// РёСЃРєР»СЋС‡Р°РµРј СЏС‡РµР№РєСѓ РёР· СЃРїРёСЃРєР° СЃРІРѕР±РѕРґРЅС‹С…
 			return &(m_pArray[m_pArray[0].next].data);
 		}
 		else
@@ -67,7 +67,7 @@ public:
 
 	bool StartPass( void )
 	{
-		m_iCurrent = 0; // начинаем обход с нулевого элемента
+		m_iCurrent = 0; // РЅР°С‡РёРЅР°РµРј РѕР±С…РѕРґ СЃ РЅСѓР»РµРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
 		if (m_iArraySize > 1)
 			return true;
@@ -92,17 +92,17 @@ public:
 	void DeleteCurrent( void )
 	{
 		int delindex = m_pArray[m_iCurrent].next;
-		m_pArray[m_iCurrent].next = m_pArray[delindex].next; // выбрасываем элемент из цепи занятых
+		m_pArray[m_iCurrent].next = m_pArray[delindex].next; // РІС‹Р±СЂР°СЃС‹РІР°РµРј СЌР»РµРјРµРЅС‚ РёР· С†РµРїРё Р·Р°РЅСЏС‚С‹С…
 		m_pArray[delindex].next = m_iFirstFree;
-		m_iFirstFree = delindex; // включаем элемент в начало цепи свободных
+		m_iFirstFree = delindex; // РІРєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚ РІ РЅР°С‡Р°Р»Рѕ С†РµРїРё СЃРІРѕР±РѕРґРЅС‹С…
 	}
 
 private:
 	chunk_t* m_pArray;
 	int	m_iArraySize;
-	int	m_iCurrent;	// для прохождения через массив
+	int	m_iCurrent;	// РґР»СЏ РїСЂРѕС…РѕР¶РґРµРЅРёСЏ С‡РµСЂРµР· РјР°СЃСЃРёРІ
 	
-	int	m_iFirstFree;	// начало списка свободных элементов
+	int	m_iFirstFree;	// РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР° СЃРІРѕР±РѕРґРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
 };
 
 

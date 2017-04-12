@@ -461,7 +461,7 @@ cvar_t	sk_player_leg1	= { "sk_player_leg1","1" };
 cvar_t	sk_player_leg2	= { "sk_player_leg2","1" };
 cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 
-// Wargon: Множители дамаги для monster_zombie. (1.1)
+// Wargon: РњРЅРѕР¶РёС‚РµР»Рё РґР°РјР°РіРё РґР»СЏ monster_zombie. (1.1)
 cvar_t	sk_zombie_head1	= { "sk_zombie_head1","2" };
 cvar_t	sk_zombie_head2	= { "sk_zombie_head2","2" };
 cvar_t	sk_zombie_head3	= { "sk_zombie_head3","2" };
@@ -582,7 +582,7 @@ cvar_t	bullet_punch_divide = {"bullet_punch_divide","8"};
 cvar_t	blast_punch_max = {"blast_punch_max","100"};
 cvar_t	blast_punch_divide = {"blast_punch_divide","5"};
 
-// Wargon: Патроны из мертвых вражин. (1.1)
+// Wargon: РџР°С‚СЂРѕРЅС‹ РёР· РјРµСЂС‚РІС‹С… РІСЂР°Р¶РёРЅ. (1.1)
 cvar_t	sk_dead_enemy_ammo1 = {"sk_dead_enemy_ammo1","0"};
 cvar_t	sk_dead_enemy_ammo2 = {"sk_dead_enemy_ammo2","0"};
 cvar_t	sk_dead_enemy_ammo3 = {"sk_dead_enemy_ammo3","0"};
@@ -1036,7 +1036,7 @@ void GameDLLInit( void )
 	CVAR_REGISTER ( &sk_player_leg2 );
 	CVAR_REGISTER ( &sk_player_leg3 );
 
-// Wargon: Множители дамаги для monster_zombie. (1.1)
+// Wargon: РњРЅРѕР¶РёС‚РµР»Рё РґР°РјР°РіРё РґР»СЏ monster_zombie. (1.1)
 	CVAR_REGISTER ( &sk_zombie_head1 );
 	CVAR_REGISTER ( &sk_zombie_head2 );
 	CVAR_REGISTER ( &sk_zombie_head3 );
@@ -1147,7 +1147,7 @@ void GameDLLInit( void )
 	CVAR_REGISTER ( &blast_punch_max );
 	CVAR_REGISTER ( &blast_punch_divide );
 
-// Wargon: Патроны из мертвых вражин. (1.1)
+// Wargon: РџР°С‚СЂРѕРЅС‹ РёР· РјРµСЂС‚РІС‹С… РІСЂР°Р¶РёРЅ. (1.1)
 	CVAR_REGISTER ( &sk_dead_enemy_ammo1 );
 	CVAR_REGISTER ( &sk_dead_enemy_ammo2 );
 	CVAR_REGISTER ( &sk_dead_enemy_ammo3 );

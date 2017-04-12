@@ -538,7 +538,7 @@ int	CBaseButton::ObjectCaps( void )
 	return (CBaseToggle:: ObjectCaps() & ~FCAP_ACROSS_TRANSITION) |
 		(pev->takedamage?0:FCAP_IMPULSE_USE) |
 		(pev->spawnflags & SF_BUTTON_ONLYDIRECT?FCAP_ONLYDIRECT_USE:0) |
-		(m_hide_use?FCAP_HIDE_USE:0); // Wargon: Èêîíêà þçà íå áóäåò îòîáðàæàòüñÿ íà ýòîé ýíòèòè åñëè m_hide_use = 1.
+		(m_hide_use?FCAP_HIDE_USE:0); // Wargon: Ð˜ÐºÐ¾Ð½ÐºÐ° ÑŽÐ·Ð° Ð½Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°Ñ‚ÑŒÑÑ Ð½Ð° ÑÑ‚Ð¾Ð¹ ÑÐ½Ñ‚Ð¸Ñ‚Ð¸ ÐµÑÐ»Ð¸ m_hide_use = 1.
 }
 
 TYPEDESCRIPTION CBaseButton::m_SaveData[] =
@@ -546,7 +546,7 @@ TYPEDESCRIPTION CBaseButton::m_SaveData[] =
 	DEFINE_FIELD( CBaseButton, m_fStayPushed, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CBaseButton, m_fRotating, FIELD_BOOLEAN ),
 
-	// Wargon: Ñîõðàíåíèå m_hide_use.
+	// Wargon: Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ m_hide_use.
 	DEFINE_FIELD( CBaseButton, m_hide_use, FIELD_INTEGER ),
 
 	DEFINE_FIELD( CBaseButton, m_sounds, FIELD_INTEGER ),
@@ -659,7 +659,7 @@ void CBaseButton::KeyValue( KeyValueData *pkvd )
 		m_sounds = atoi(pkvd->szValue);
 		pkvd->fHandled = TRUE;
 	}
-	// Wargon: hide_use èñïîëüçóåòñÿ äëÿ ñêðûòèÿ èêîíêè þçà.
+	// Wargon: hide_use Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð´Ð»Ñ ÑÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¸ÐºÐ¾Ð½ÐºÐ¸ ÑŽÐ·Ð°.
 	else if (FStrEq(pkvd->szKeyName, "hide_use"))
 	{
 		m_hide_use = atoi(pkvd->szValue);

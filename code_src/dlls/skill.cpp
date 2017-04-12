@@ -37,7 +37,7 @@ float GetSkillCvar( char *pName )
 
 	flValue = CVAR_GET_FLOAT ( szBuffer );
 
-// Wargon: Это сообщение не нужно. В skill.cfg нулевые значения допустимы.
+// Wargon: Р­С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РЅРµ РЅСѓР¶РЅРѕ. Р’ skill.cfg РЅСѓР»РµРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РґРѕРїСѓСЃС‚РёРјС‹.
 //	if ( flValue <= 0 )
 //	{
 //		ALERT ( at_debug, "\n\n** GetSkillCVar Got a zero for %s **\n\n", szBuffer );

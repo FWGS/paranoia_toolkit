@@ -38,7 +38,7 @@ public:
 		m_fadein = msg->fadein;
 		m_fadeout = msg->fadeout;
 
-		// Wargon: Если координаты заданы неправильно, то текст просто центрируется.
+		// Wargon: Р•СЃР»Рё РєРѕРѕСЂРґРёРЅР°С‚С‹ Р·Р°РґР°РЅС‹ РЅРµРїСЂР°РІРёР»СЊРЅРѕ, С‚Рѕ С‚РµРєСЃС‚ РїСЂРѕСЃС‚Рѕ С†РµРЅС‚СЂРёСЂСѓРµС‚СЃСЏ.
 		if (msg->x < 0 || msg->x > 1 || msg->y < 0 || msg->y > 1)
 		{
 			// gEngfuncs.Con_Printf("Error: invalid message coordinates!\n");
@@ -98,7 +98,7 @@ protected:
 	float m_fadeout;
 };
 
-// Wargon: Код скроллящегося снизу вверх текста. Использован $effect 6.
+// Wargon: РљРѕРґ СЃРєСЂРѕР»Р»СЏС‰РµРіРѕСЃСЏ СЃРЅРёР·Сѓ РІРІРµСЂС… С‚РµРєСЃС‚Р°. РСЃРїРѕР»СЊР·РѕРІР°РЅ $effect 6.
 class CScrollingMessage : public ShadowTextPanel
 {
 public:

@@ -95,7 +95,7 @@ int CMP3::PlayMP3( const char *pszSong )
 	m_flFadeoutStart = 0;
 	m_flFadeoutDuration = 0;
 
-	// Wargon: fmod_volume регулирует громкость звуков, воспроизводимых через FMOD.
+	// Wargon: fmod_volume СЂРµРіСѓР»РёСЂСѓРµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р·РІСѓРєРѕРІ, РІРѕСЃРїСЂРѕРёР·РІРѕРґРёРјС‹С… С‡РµСЂРµР· FMOD.
 	SETVOL( 0, (CVAR_GET_FLOAT("fmod_volume") * 255) );
 
 	if( m_iIsPlaying )
@@ -148,7 +148,7 @@ int CMP3::PlayMP3( const char *pszSong )
 	}
 }
 
-// buz - обработка плавного затухания музыки
+// buz - РѕР±СЂР°Р±РѕС‚РєР° РїР»Р°РІРЅРѕРіРѕ Р·Р°С‚СѓС…Р°РЅРёСЏ РјСѓР·С‹РєРё
 void CMP3::Frame()
 {
 	if (m_flFadeoutDuration)
@@ -160,11 +160,11 @@ void CMP3::Frame()
 			StopMP3(0);
 			return;
 		}
-		// Wargon: Затухание начинается с текущей громкости.
+		// Wargon: Р—Р°С‚СѓС…Р°РЅРёРµ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ С‚РµРєСѓС‰РµР№ РіСЂРѕРјРєРѕСЃС‚Рё.
 		int vol = (CVAR_GET_FLOAT("fmod_volume") * 255) - (int)(delta * 255);
 		SETVOL( 0, vol );
 	}
-	// Wargon: Возможность регулировки громкости в реальном времени.
+	// Wargon: Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЂРµРіСѓР»РёСЂРѕРІРєРё РіСЂРѕРјРєРѕСЃС‚Рё РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё.
 	else
 	{
 		SETVOL( 0, (CVAR_GET_FLOAT("fmod_volume") * 255) );

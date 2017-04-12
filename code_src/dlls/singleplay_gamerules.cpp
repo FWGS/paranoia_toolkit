@@ -85,7 +85,7 @@ BOOL CHalfLifeRules::FShouldSwitchWeapon( CBasePlayer *pPlayer, CBasePlayerItem 
 
 //=========================================================
 //=========================================================
-// buz: скопировано из MultiplayerRules
+// buz: СЃРєРѕРїРёСЂРѕРІР°РЅРѕ РёР· MultiplayerRules
 BOOL CHalfLifeRules :: GetNextBestWeapon( CBasePlayer *pPlayer, CBasePlayerItem *pCurrentWeapon )
 {
 	CBasePlayerItem *pCheck;

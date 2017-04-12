@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright В© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -68,7 +68,7 @@ class CTips;
 class CScreenMessage;
 class CGammaView;
 
-// Wargon: Скроллящийся текст.
+// Wargon: РЎРєСЂРѕР»Р»СЏС‰РёР№СЃСЏ С‚РµРєСЃС‚.
 class CScrollingMessage;
 
 char* GetVGUITGAName(const char *pszName);
@@ -601,7 +601,7 @@ public:
 	CGammaView *m_pGamma;
 	CScreenMessage *m_pScreenMsg;
 
-	// Wargon: Скроллящийся текст.
+	// Wargon: РЎРєСЂРѕР»Р»СЏС‰РёР№СЃСЏ С‚РµРєСЃС‚.
 	CScrollingMessage *m_pScrollingMsg;
 };
 

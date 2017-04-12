@@ -406,7 +406,7 @@ void W_Precache(void)
 	UTIL_PrecacheOther( "ammo_9mmclip" );
 	UTIL_PrecacheOther( "ammo_9mmbox" ); //LRC
 
-	// Wargon: Ïðåêýø äëÿ RPG ïåðåìåùåí ñþäà.
+	// Wargon: ÐŸÑ€ÐµÐºÑÑˆ Ð´Ð»Ñ RPG Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½ ÑÑŽÐ´Ð°.
 	UTIL_PrecacheOtherWeapon( "weapon_rpg" );
 	UTIL_PrecacheOther( "ammo_rpgclip" );
 
@@ -497,7 +497,7 @@ TYPEDESCRIPTION	CBasePlayerItem::m_SaveData[] =
 	DEFINE_FIELD( CBasePlayerItem, m_iId, FIELD_INTEGER ),
 	// DEFINE_FIELD( CBasePlayerItem, m_iIdPrimary, FIELD_INTEGER ),
 	// DEFINE_FIELD( CBasePlayerItem, m_iIdSecondary, FIELD_INTEGER ),
-	DEFINE_FIELD( CBasePlayerItem, m_iCurrCaps, FIELD_INTEGER ), // Wargon: Ñîõðàíåíèå m_iCurrCaps.
+	DEFINE_FIELD( CBasePlayerItem, m_iCurrCaps, FIELD_INTEGER ), // Wargon: Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ m_iCurrCaps.
 };
 IMPLEMENT_SAVERESTORE( CBasePlayerItem, CBaseAnimating );
 
@@ -542,7 +542,7 @@ void CBasePlayerItem :: FallInit( void )
 	UTIL_SetOrigin( this, pev->origin );
 	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0) );//pointsize until it lands on the ground.
 	
-	// Wargon: Îðóæèå þçàáåëüíî.
+	// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 	SetUse( &CBasePlayerItem::DefaultUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 
@@ -598,7 +598,7 @@ void CBasePlayerItem::Materialize( void )
 
 	UTIL_SetOrigin( this, pev->origin );// link into world.
 
-	// Wargon: Îðóæèå þçàáåëüíî.
+	// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 	SetUse( &CBasePlayerItem::DefaultUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 
@@ -655,7 +655,7 @@ CBaseEntity* CBasePlayerItem::Respawn( void )
 	{
 		pNewWeapon->pev->effects |= EF_NODRAW;// invisible for now
 
-		// Wargon: Îðóæèå íåþçàáåëüíî.
+		// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 		pNewWeapon->SetUse( NULL );
 		m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -817,7 +817,7 @@ int CBasePlayerItem::AddToPlayer( CBasePlayer *pPlayer )
 
 void CBasePlayerItem::Drop( void )
 {
-	// Wargon: Îðóæèå íåþçàáåëüíî.
+	// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 	SetUse( NULL );
 	m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -828,7 +828,7 @@ void CBasePlayerItem::Drop( void )
 
 void CBasePlayerItem::Kill( void )
 {
-	// Wargon: Îðóæèå íåþçàáåëüíî.
+	// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 	SetUse( NULL );
 	m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -857,7 +857,7 @@ void CBasePlayerItem::AttachToPlayer ( CBasePlayer *pPlayer )
 //	SetThink(NULL); // buz test
 	SetTouch( NULL );
 
-	// Wargon: Îðóæèå íåþçàáåëüíî.
+	// Wargon: ÐžÑ€ÑƒÐ¶Ð¸Ðµ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾.
 	SetUse( NULL );
 	m_iCurrCaps = CBaseEntity::ObjectCaps();
 }
@@ -1183,7 +1183,7 @@ void CBasePlayerWeapon::Holster( int skiplocal /* = 0 */ )
 	m_pPlayer->pev->weaponmodel = 0;
 }
 
-// Wargon: SaveData äëÿ þçàáåëüíîñòè ïàòðîíîâ.
+// Wargon: SaveData Ð´Ð»Ñ ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ Ð¿Ð°Ñ‚Ñ€Ð¾Ð½Ð¾Ð².
 TYPEDESCRIPTION CBasePlayerAmmo::m_SaveData[] = 
 {
 	DEFINE_FIELD( CBasePlayerAmmo, m_iCurrCaps, FIELD_INTEGER ),
@@ -1198,7 +1198,7 @@ void CBasePlayerAmmo::Spawn( void )
 	UTIL_SetOrigin( this, pev->origin );
 	SetTouch(&CBasePlayerAmmo:: DefaultTouch );
 
-	// Wargon: Ïàòðîíû þçàáåëüíû.
+	// Wargon: ÐŸÐ°Ñ‚Ñ€Ð¾Ð½Ñ‹ ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ñ‹.
 	SetUse( &CBasePlayerAmmo::DefaultUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 }
@@ -1208,7 +1208,7 @@ CBaseEntity* CBasePlayerAmmo::Respawn( void )
 	pev->effects |= EF_NODRAW;
 	SetTouch( NULL );
 
-	// Wargon: Ïàòðîíû íåþçàáåëüíû.
+	// Wargon: ÐŸÐ°Ñ‚Ñ€Ð¾Ð½Ñ‹ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ñ‹.
 	SetUse( NULL );
 	m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -1232,7 +1232,7 @@ void CBasePlayerAmmo::Materialize( void )
 
 	SetTouch(&CBasePlayerAmmo:: DefaultTouch );
 
-	// Wargon: Ïàòðîíû þçàáåëüíû.
+	// Wargon: ÐŸÐ°Ñ‚Ñ€Ð¾Ð½Ñ‹ ÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ñ‹.
 	SetUse( &CBasePlayerAmmo::DefaultUse );
 	m_iCurrCaps = CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE;
 }
@@ -1254,7 +1254,7 @@ void CBasePlayerAmmo :: DefaultTouch( CBaseEntity *pOther )
 		{
 			SetTouch( NULL );
 
-			// Wargon: Ïàòðîíû íåþçàáåëüíû.
+			// Wargon: ÐŸÐ°Ñ‚Ñ€Ð¾Ð½Ñ‹ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ñ‹.
 			SetUse( NULL );
 			m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -1267,7 +1267,7 @@ void CBasePlayerAmmo :: DefaultTouch( CBaseEntity *pOther )
 		// evil impulse 101 hack, kill always
 		SetTouch( NULL );
 
-		// Wargon: Ïàòðîíû íåþçàáåëüíû.
+		// Wargon: ÐŸÐ°Ñ‚Ñ€Ð¾Ð½Ñ‹ Ð½ÐµÑŽÐ·Ð°Ð±ÐµÐ»ÑŒÐ½Ñ‹.
 		SetUse( NULL );
 		m_iCurrCaps = CBaseEntity::ObjectCaps();
 
@@ -1721,7 +1721,7 @@ void CBasePlayerWeapon::PrintState( void )
 	ALERT( at_debug, "m_iclip:  %i\n", m_iClip );
 }
 
-// Wargon: SaveData äëÿ CRpg è CRpgRocket ïåðåìåùåíû â rpg.cpp.
+// Wargon: SaveData Ð´Ð»Ñ CRpg Ð¸ CRpgRocket Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ñ‹ Ð² rpg.cpp.
 /*TYPEDESCRIPTION	CRpg::m_SaveData[] = 
 {
 	DEFINE_FIELD( CRpg, m_fSpotActive, FIELD_INTEGER ),
@@ -1798,7 +1798,7 @@ class CPainkiller : public CBasePlayerAmmo
 		{
 			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/painkiller_pickup.wav", 1, ATTN_NORM);
 			pOther->pev->weapons |= (1<<WEAPON_PAINKILLER);
-			// Wargon: Âîçìîæíîñòü òàðãåòèòü ýíòèòè ïîäáîðîì ïàèíêèëëåðà.
+			// Wargon: Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ÑŒ Ñ‚Ð°Ñ€Ð³ÐµÑ‚Ð¸Ñ‚ÑŒ ÑÐ½Ñ‚Ð¸Ñ‚Ð¸ Ð¿Ð¾Ð´Ð±Ð¾Ñ€Ð¾Ð¼ Ð¿Ð°Ð¸Ð½ÐºÐ¸Ð»Ð»ÐµÑ€Ð°.
 			SUB_UseTargets( pOther, USE_TOGGLE, 0 );
 		}
 		return bResult;

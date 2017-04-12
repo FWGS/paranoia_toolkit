@@ -29,7 +29,7 @@
 LINK_ENTITY_TO_CLASS( weapon_crowbar, CCrowbar );
 LINK_ENTITY_TO_CLASS( weapon_knife, CCrowbar );
 
-// Wargon: Èçìåíåíî ïîñëå ïðàâêè àíèìàöèé è ýâåíòîâ â ìîäåëè. (1.2)
+// Wargon: Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð¿Ñ€Ð°Ð²ÐºÐ¸ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¹ Ð¸ ÑÐ²ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð¼Ð¾Ð´ÐµÐ»Ð¸. (1.2)
 enum crowbar_e {
 	CROWBAR_IDLE = 0,
 	CROWBAR_ATTACK1HIT,
@@ -62,7 +62,7 @@ void CCrowbar::Precache( void )
 	PRECACHE_SOUND("weapons/cbar_hitbod3.wav");
 	PRECACHE_SOUND("weapons/cbar_miss1.wav");
 
-	// Wargon: Çâóê ïîïàäàíèÿ âòîðè÷íîé àòàêîé. (1.2)
+	// Wargon: Ð—Ð²ÑƒÐº Ð¿Ð¾Ð¿Ð°Ð´Ð°Ð½Ð¸Ñ Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‡Ð½Ð¾Ð¹ Ð°Ñ‚Ð°ÐºÐ¾Ð¹. (1.2)
 	PRECACHE_SOUND("weapons/knife_stab.wav");
 
 //	m_usCrowbar = PRECACHE_EVENT ( 1, "events/crowbar.sc" );
@@ -210,7 +210,7 @@ int CCrowbar::Swing( int iSecondary )
 			// player "shoot" animation
 			m_pPlayer->SetAnimation( PLAYER_ATTACK1 );
 			
-			// buz: íàâåðíîå, êîä ôîìêè ïèñàëñÿ âàëüâîâöàìè â ñîñòîÿíèè áðåäà.. ïðîñòî ñêîïèðóþ, è íå áóäó ïàðèòü ìîçã
+			// buz: Ð½Ð°Ð²ÐµÑ€Ð½Ð¾Ðµ, ÐºÐ¾Ð´ Ñ„Ð¾Ð¼ÐºÐ¸ Ð¿Ð¸ÑÐ°Ð»ÑÑ Ð²Ð°Ð»ÑŒÐ²Ð¾Ð²Ñ†Ð°Ð¼Ð¸ Ð² ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ð¸ Ð±Ñ€ÐµÐ´Ð°.. Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÑÐºÐ¾Ð¿Ð¸Ñ€ÑƒÑŽ, Ð¸ Ð½Ðµ Ð±ÑƒÐ´Ñƒ Ð¿Ð°Ñ€Ð¸Ñ‚ÑŒ Ð¼Ð¾Ð·Ð³
 			if (iSecondary)
 			{
 				SendWeaponAnim( CROWBAR_SECMISS );
@@ -288,7 +288,7 @@ int CCrowbar::Swing( int iSecondary )
 			pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgCrowbar / 2, gpGlobals->v_forward, &tr, DMG_CLUB ); 
 		}*/	
 
-		// Wargon: Èñïðàâëåíî ãèáàíèå íîæåì.
+		// Wargon: Ð˜ÑÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ Ð³Ð¸Ð±Ð°Ð½Ð¸Ðµ Ð½Ð¾Ð¶ÐµÐ¼.
 		if (iSecondary)
 			pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgCrowbarSec, gpGlobals->v_forward, &tr, DMG_CLUB | DMG_NEVERGIB ); // buz
 		else
@@ -304,7 +304,7 @@ int CCrowbar::Swing( int iSecondary )
 		{
 			if ( pEntity->Classify() != CLASS_NONE && pEntity->Classify() != CLASS_MACHINE )
 			{
-				// Wargon: Çâóê ïîïàäàíèÿ âòîðè÷íîé àòàêîé òåïåðü âîñïðîèçâîäèòñÿ èç êîäà, à íå èç ýâåíòà â ìîäåëè. (1.2)
+				// Wargon: Ð—Ð²ÑƒÐº Ð¿Ð¾Ð¿Ð°Ð´Ð°Ð½Ð¸Ñ Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‡Ð½Ð¾Ð¹ Ð°Ñ‚Ð°ÐºÐ¾Ð¹ Ñ‚ÐµÐ¿ÐµÑ€ÑŒ Ð²Ð¾ÑÐ¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ñ‚ÑÑ Ð¸Ð· ÐºÐ¾Ð´Ð°, Ð° Ð½Ðµ Ð¸Ð· ÑÐ²ÐµÐ½Ñ‚Ð° Ð² Ð¼Ð¾Ð´ÐµÐ»Ð¸. (1.2)
 				if (iSecondary)
 				{
 					EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/knife_stab.wav", 1, ATTN_NORM);
