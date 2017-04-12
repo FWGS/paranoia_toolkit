@@ -6,10 +6,23 @@
 #endif
 #include <GL/gl.h>
 #include <GL/glext.h>
+#include "glxash.h"
 #include "log.h"
+#ifndef APIENTRY
+#define APIENTRY
+#endif
 
-
-
+typedef int (*GP)(...);
+#if 0
+#define GL_FRAGMENT_PROGRAM_ARB 0
+#define GL_PROGRAM_FORMAT_ASCII_ARB 0
+#define GL_ARRAY_BUFFER_ARB 0
+#define GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB 0
+#define GL_PROGRAM_ERROR_POSITION_ARB 0
+#define GL_STATIC_DRAW_ARB 0
+#endif
+#define GL_MAX_TEXTURE_IMAGE_UNITS_NV 0
+#define GL_MAX_TEXTURE_COORDS_NV 0
 enum {
 	GMSTATE_NOINIT = 0, // should try to load at next changelevel
 	GMSTATE_INITFAILED, // failed to load, dont try until video mode changes
@@ -107,11 +120,11 @@ public:
 	// ARB_multitexture
 	int ARB_multitexture_supported;
 	int MAX_TU_supported;
-	PFNGLACTIVETEXTUREARBPROC		glActiveTextureARB;
-	PFNGLCLIENTACTIVETEXTUREARBPROC	glClientActiveTextureARB;
-	PFNGLMULTITEXCOORD1FARBPROC		glMultiTexCoord1fARB;
-	PFNGLMULTITEXCOORD2FARBPROC		glMultiTexCoord2fARB;
-	PFNGLMULTITEXCOORD3FVARBPROC	glMultiTexCoord3fvARB;
+	GP		glActiveTextureARB;
+	GP	glClientActiveTextureARB;
+	GP		glMultiTexCoord1fARB;
+	GP		glMultiTexCoord2fARB;
+	GP	glMultiTexCoord3fvARB;
 
 	// Diffuse bump-mapping extensions
 	int ARB_dot3_supported;
@@ -119,43 +132,43 @@ public:
 	// NV_register_combiners
 	int NV_combiners_supported;
 	int MAX_NV_combiners;
-	PFNGLCOMBINERPARAMETERINVPROC	glCombinerParameteriNV;
-	PFNGLCOMBINERPARAMETERFVNVPROC	glCombinerParameterfvNV;
-	PFNGLCOMBINERINPUTNVPROC		glCombinerInputNV;
-	PFNGLCOMBINEROUTPUTNVPROC		glCombinerOutputNV;
-	PFNGLFINALCOMBINERINPUTNVPROC	glFinalCombinerInputNV;
+	GP	glCombinerParameteriNV;
+	GP	glCombinerParameterfvNV;
+	GP		glCombinerInputNV;
+	GP		glCombinerOutputNV;
+	GP	glFinalCombinerInputNV;
 
 	// ARB_fragment_program
 	int ARB_fragment_program_supported;
 	int fp_max_image_units;
 	int fp_max_texcoords;
-	PFNGLGENPROGRAMSARBPROC			glGenProgramsARB;
-	PFNGLBINDPROGRAMARBPROC			glBindProgramARB;
-	PFNGLPROGRAMSTRINGARBPROC		glProgramStringARB;
-	PFNGLGETPROGRAMIVARBPROC		glGetProgramivARB;
+	GP			glGenProgramsARB;
+	GP			glBindProgramARB;
+	GP		glProgramStringARB;
+	GP		glGetProgramivARB;
 
 	// NV_fragment_program
 	int NV_fragment_program_supported;
 	int NV_fp_max_image_units;
 	int NV_fp_max_texcoords;
-	PFNGLGENPROGRAMSNVPROC			glGenProgramsNV;
-	PFNGLBINDPROGRAMNVPROC			glBindProgramNV;
-	PFNGLLOADPROGRAMNVPROC			glLoadProgramNV;
+	GP			glGenProgramsNV;
+	GP			glBindProgramNV;
+	GP			glLoadProgramNV;
 
 	// Cubemaps
 	int ARB_texture_cube_map_supported;
-	PFNGLTEXIMAGE3DEXTPROC			glTexImage3DEXT;
+	GP			glTexImage3DEXT;
 
 	// 3d textures
 	int EXT_3Dtexture_supported;
 
 	// VBO
 	int ARB_VBO_supported;
-	PFNGLBINDBUFFERARBPROC					glBindBufferARB;
-	PFNGLGENBUFFERSARBPROC					glGenBuffersARB;
-	PFNGLBUFFERDATAARBPROC					glBufferDataARB;
-	PFNGLDELETEBUFFERSARBPROC				glDeleteBuffersARB;
-	PFNGLGETBUFFERPARAMETERIVARBPROC		glGetBufferParameterivARB;
+	GP					glBindBufferARB;
+	GP					glGenBuffersARB;
+	GP					glBufferDataARB;
+	GP				glDeleteBuffersARB;
+	GP		glGetBufferParameterivARB;
 
 	// Non-power of two textures
 	int texture_rectangle_supported;

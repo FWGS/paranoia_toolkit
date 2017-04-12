@@ -27,7 +27,7 @@
 #include<VGUI_ScrollPanel.h>
 #include<VGUI_ScrollBar.h>
 #include<VGUI_Slider.h>
-
+#include "vgui_tabpanel2.h"
 #include "vgui_subtitles.h" // buz
 #include "vgui_radio.h" // buz
 #include "vgui_pickup.h" // buz

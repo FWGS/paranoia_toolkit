@@ -830,7 +830,7 @@ void TeamFortressViewport::Initialize( void )
 		strcpy(m_sTeamNames[i], "");
 	}
 
-	App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_none) );
+	App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::scu_none) );
 }
 
 class CException;
@@ -2083,7 +2083,7 @@ void TeamFortressViewport::UpdateCursorState()
 	if (m_pParanoiaText && m_pParanoiaText->isVisible())
 	{
 		g_iVisibleMouse = true;
-		App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_arrow) );
+		App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::scu_arrow) );
 		return;
 	}
 	else if ( m_pCurrentCommandMenu )
@@ -2092,7 +2092,7 @@ void TeamFortressViewport::UpdateCursorState()
 		if ( gHUD.m_pCvarStealMouse->value != 0.0f )
 		{
 			g_iVisibleMouse = true;
-			App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_arrow) );
+			App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::scu_arrow) );
 			return;
 		}
 	}
@@ -2104,7 +2104,7 @@ void TeamFortressViewport::UpdateCursorState()
 	}
 
 	g_iVisibleMouse = false;
-	App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_none) );
+	App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::scu_none) );
 }
 
 void TeamFortressViewport::UpdateHighlights()
