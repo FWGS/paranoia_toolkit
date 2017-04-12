@@ -103,13 +103,13 @@ typedef struct
 // Engine hands this to DLLs for functionality callbacks
 typedef struct enginefuncs_s
 {
-	int			(*pfnPrecacheModel)			(char* s);
-	int			(*pfnPrecacheSound)			(char* s);
+	int			(*pfnPrecacheModel)			(const char* s);
+	int			(*pfnPrecacheSound)			(const char* s);
 	void		(*pfnSetModel)				(edict_t *e, const char *m);
 	int			(*pfnModelIndex)			(const char *m);
 	int			(*pfnModelFrames)			(int modelIndex);
 	void		(*pfnSetSize)				(edict_t *e, const float *rgflMin, const float *rgflMax);
-	void		(*pfnChangeLevel)			(char* s1, char* s2);
+	void		(*pfnChangeLevel)			(const char* s1, const char* s2);
 	void		(*pfnGetSpawnParms)			(edict_t *ent); // not used
 	void		(*pfnSaveSpawnParms)		(edict_t *ent); // not used
 	float		(*pfnVecToYaw)				(const float *rgflVector);
@@ -142,9 +142,9 @@ typedef struct enginefuncs_s
 	const char *(*pfnTraceTexture)			(edict_t *pTextureEntity, const float *v1, const float *v2 );
 	void		(*pfnTraceSphere)			(const float *v1, const float *v2, int fNoMonsters, float radius, edict_t *pentToSkip, TraceResult *ptr);  // not used
 	void		(*pfnGetAimVector)			(edict_t* ent, float speed, float *rgflReturn); // not used
-	void		(*pfnServerCommand)			(char* str);
+	void		(*pfnServerCommand)			(const char* str);
 	void		(*pfnServerExecute)			(void);
-	void		(*pfnClientCommand)			(edict_t* pEdict, char* szFmt, ...);
+	void		(*pfnClientCommand)			(edict_t* pEdict, const char* szFmt, ...);
 	void		(*pfnParticleEffect)		(const float *org, const float *dir, float color, float count);
 	void		(*pfnLightStyle)			(int style, char* val);
 	int			(*pfnDecalIndex)			(const char *name);
@@ -164,8 +164,8 @@ typedef struct enginefuncs_s
 	const char*	(*pfnCVarGetString)			(const char *szVarName);
 	void		(*pfnCVarSetFloat)			(const char *szVarName, float flValue);
 	void		(*pfnCVarSetString)			(const char *szVarName, const char *szValue);
-	void		(*pfnAlertMessage)			(ALERT_TYPE atype, char *szFmt, ...);
-	void		(*pfnEngineFprintf)			(FILE *pfile, char *szFmt, ...); // not used
+	void		(*pfnAlertMessage)			(ALERT_TYPE atype, const char *szFmt, ...);
+	void		(*pfnEngineFprintf)			(FILE *pfile, const char *szFmt, ...); // not used
 	void*		(*pfnPvAllocEntPrivateData)	(edict_t *pEdict, long cb);
 	void*		(*pfnPvEntPrivateData)		(edict_t *pEdict);
 	void		(*pfnFreeEntPrivateData)	(edict_t *pEdict); // not used
@@ -377,7 +377,7 @@ typedef enum _fieldtypes
 typedef struct 
 {
 	FIELDTYPE		fieldType;
-	char			*fieldName;
+	const char		*fieldName;
 	int				fieldOffset;
 	short			fieldSize;
 	short			flags;
@@ -493,4 +493,4 @@ extern NEW_DLL_FUNCTIONS	gNewDLLFunctions;
 typedef int	(*APIFUNCTION)( DLL_FUNCTIONS *pFunctionTable, int interfaceVersion );
 typedef int	(*APIFUNCTION2)( DLL_FUNCTIONS *pFunctionTable, int *interfaceVersion );
 
-#endif EIFACE_H
+#endif // EIFACE_H

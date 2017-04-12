@@ -25,6 +25,10 @@
 #define DEBUG 1
 #endif
 
+// Misc C-runtime library headers
+#include "stdio.h"
+#include "stdlib.h"
+#include "math.h"
 
 // Prevent tons of unused windows definitions
 #ifdef _WIN32
@@ -50,19 +54,10 @@ typedef int BOOL;
 #define MAX_PATH PATH_MAX
 #include <limits.h>
 #include <stdarg.h>
-#ifndef min
 #define min(a,b)  (((a) < (b)) ? (a) : (b))
-#endif
-#ifndef max
 #define max(a,b)  (((a) > (b)) ? (a) : (b))
 #define _vsnprintf(a,b,c,d) vsnprintf(a,b,c,d)
-#endif
 #endif //_WIN32
-
-// Misc C-runtime library headers
-#include "stdio.h"
-#include "stdlib.h"
-#include "math.h"
 
 // Header file containing definition of globalvars_t and entvars_t
 typedef int	func_t;					//
