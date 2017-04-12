@@ -2733,13 +2733,14 @@ int CRestore::ReadField( void *pBaseData, TYPEDESCRIPTION *pFields, int fieldCou
 					switch( pTest->fieldType )
 					{
 					case FIELD_TIME:
-						timeData = *(float *)pInputData;
+						memcpy( &timeData, pInputData, sizeof( float ) );
 						// Re-base time variables
 						timeData += time;
-						*((float *)pOutputData) = timeData;
+						memcpy( pOutputData, &timeData, sizeof( float ) );
 					break;
 					case FIELD_FLOAT:
-						*((float *)pOutputData) = *(float *)pInputData;
+						memcpy( pOutputData, pInputData, sizeof( float ) );
+						
 					break;
 					case FIELD_MODELNAME:
 					case FIELD_SOUNDNAME:
@@ -2815,14 +2816,15 @@ int CRestore::ReadField( void *pBaseData, TYPEDESCRIPTION *pFields, int fieldCou
 							*((EOFFSET *)pOutputData) = 0;
 					break;
 					case FIELD_VECTOR:
-						((float *)pOutputData)[0] = ((float *)pInputData)[0];
-						((float *)pOutputData)[1] = ((float *)pInputData)[1];
-						((float *)pOutputData)[2] = ((float *)pInputData)[2];
+						memcpy( pOutputData, pInputData, sizeof( Vector ) );
 					break;
 					case FIELD_POSITION_VECTOR:
-						((float *)pOutputData)[0] = ((float *)pInputData)[0] + position.x;
-						((float *)pOutputData)[1] = ((float *)pInputData)[1] + position.y;
-						((float *)pOutputData)[2] = ((float *)pInputData)[2] + position.z;
+					{
+						Vector tmp;
+						memcpy( &tmp, pInputData, sizeof( Vector ) );
+						tmp = tmp + position;
+						memcpy( pOutputData, &tmp, sizeof( Vector ) );
+					}
 					break;
 
 					case FIELD_BOOLEAN:
