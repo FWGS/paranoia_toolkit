@@ -1,0 +1,120 @@
+#// Copyright (C) 2000  Sean Cavanaugh
+#// This file is licensed under the terms of the GNU Public License
+#// (see GPL.txt, or http://www.gnu.org/copyleft/gpl.txt)
+
+#
+# Intel C++ Compiler (4.0), mostly MSVC 'compatible' command line
+#
+
+ifeq ($(PLATFORM),win32)
+ifeq ($(COMPILER_BASE),msvc)
+DEFINES+=-D STDC_HEADERS -D __LITTLE_ENDIAN__
+EXEEXT:=.exe
+OBJEXT:=.obj
+LIBEXT:=.lib
+DLLEXT:=.dll
+CPPFLAGS:=-nologo -G6 -Gr -GX -GR- -c
+CCFLAGS:=-nologo -G6 -Gr -c
+LIB_FLAGS:=-nologo -lib
+DLL_FLAGS:=-nologo -dll
+WINEXE_FLAGS:=-nologo -machine:i386 -subsystem:windows -stack:0x400000,0x100000 -nodefaultlib:libmm -nodefaultlib:libmmd -nodefaultlib:libmmt -nodefaultlib:libc -nodefaultlib:libcd
+CONEXE_FLAGS:=-nologo -machine:i386 -subsystem:console -stack:0x400000,0x100000 -nodefaultlib:libmm -nodefaultlib:libmmd -nodefaultlib:libmmt -nodefaultlib:libc -nodefaultlib:libcd
+ifeq ($(UNICODE),1)
+WINEXE_FLAGS+=-entry:wWinMainCRTStartup
+CONEXE_FLAGS+=
+endif
+RSC_FLAGS:=-l 0x409 -D _AFXDLL 
+COM_LIBS:=gdi32.lib advapi32.lib ole32.lib user32.lib
+
+ifeq ($(COMPILER),msvc)
+DEFINES += -D MS_COMPILER
+endif
+
+ifeq ($(COMPILER),intel)
+DEFINES += -D INTEL_COMPILER
+# Standard warnings we just never want to care about (intel compiler is picky)
+#
+# remark #1: last line of file ends without a newline
+# remark #193: zero used for undefined preprocessing identifier
+# remark #279: controlling expression is constant
+# remark #304: access control not specified ("public" by default)
+# remark #383: value copied to temporary, reference to temporary used
+# remark #981: operands are evaluated in unspecified order
+# warnings to always ignore
+CPPFLAGS += -Qwd1 -Qwd193 -Qwd279 -Qwd304 -Qwd383 -Qwd981
+CCFLAGS +=  -Qwd1 -Qwd193 -Qwd279 -Qwd304 -Qwd383 -Qwd981
+
+# Enable/Disable some of the noisy lint warnings
+#
+# remark #177: variable "THIS_FILE" was declared but never referenced
+# remark #869: parameter "pDummy" was never referenced
+# remark #444: destructor for base class "dummy" is not virtual
+ifneq ($(LINT),1)
+CPPFLAGS += -Qwd177 -Qwd869 -Qwd444 -Qwd181
+CCFLAGS  += -Qwd177 -Qwd869 -Qwd444 -Qwd181
+# LINT==1
+endif
+# COMPILER==intel
+endif
+
+
+ifeq ($(LINT),1)
+CPPFLAGS += -W4
+CCFLAGS  += -W4
+else
+CPPFLAGS += -W3
+CCFLAGS  += -W3
+endif
+
+ifeq ($(COMPILER),intel)
+CC:=icl
+CPP:=icl
+LINK:=xilink
+endif
+ifeq ($(COMPILER),msvc)
+CC:=cl
+CPP:=cl
+LINK:=link
+endif
+
+IDL:=midl
+RSC:=rc
+
+ifeq ($(MODE),super_debug)
+# Debug
+CPPFLAGS += -MTd -Zi -ZI -Od -GZ -Qvc6
+CCFLAGS  += -MTd -Zi -ZI -Od -GZ -Qvc6
+WINEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+CONEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+endif
+ifeq ($(MODE),debug)
+# Debug
+CPPFLAGS += -MT -Zi -ZI -Od -GZ -Qvc6
+CCFLAGS  += -MT -Zi -ZI -Od -GZ -Qvc6
+WINEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+CONEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+endif
+ifeq ($(MODE),release)
+# Release 
+CPPFLAGS += -nologo -MT -O1 -Qip -Qipo
+CCFLAGS  += -nologo -MT -O1 -Qip -Qipo
+WINEXE_FLAGS += -incremental:no -Qipo
+CONEXE_FLAGS += -incremental:no -Qipo
+endif
+ifeq ($(MODE),release_w_symbols)
+# Release 
+CPPFLAGS += -nologo -MT -Zi -O1
+CCFLAGS  += -nologo -MT -Zi -O1
+WINEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+CONEXE_FLAGS += -debug -fixed:no -incremental:no -debugtype:both
+endif
+
+ifeq ($(MAPS),1)
+WINEXE_FLAGS += -map
+CONEXE_FLAGS += -map
+endif
+
+# COMPILER==intel
+endif
+# PLATFORM==win32
+endif

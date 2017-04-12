@@ -1,0 +1,65 @@
+#
+# Generic platform independent rules
+#
+
+all : DIRECTORIES $(HLCSG) $(HLVIS) $(HLBSP) $(HLRAD) $(RIPENT) $(NETVIS)
+	@echo Finished!
+
+everything:
+	make -j2 MODE=release_w_symbols
+	make -j2 MODE=release
+	make -j2 MODE=debug
+	make -j2 MODE=super_debug
+
+cleanDebug:
+	make $(MAKEFLAGS) clean MODE=debug
+
+cleanSuperDebug:
+	make $(MAKEFLAGS) clean MODE=super_debug
+
+cleanRelease:
+	make $(MAKEFLAGS) clean MODE=release
+
+cleanRelease_w_symbols:
+	make $(MAKEFLAGS) clean MODE=release_w_symbols
+
+superclean: cleanDebug cleanSuperDebug cleanRelease cleanRelease_w_symbols
+	-$(NUKE) config.cache config.status config.log common/config.h
+
+clean :
+	-$(NUKE) $(OUTDIR)
+	-$(NUKE) $(HLCSG_OUTDIR)
+	-$(NUKE) $(HLBSP_OUTDIR)
+	-$(NUKE) $(HLVIS_OUTDIR)
+	-$(NUKE) $(HLRAD_OUTDIR)
+	-$(NUKE) $(RIPENT_OUTDIR)
+	-$(NUKE) $(NETVIS_OUTDIR)
+
+fresh: clean all
+
+#
+# Directory creation
+#
+
+DIRECTORIES :  $(OUTDIR) $(HLCSG_OUTDIR) $(HLBSP_OUTDIR) $(HLVIS_OUTDIR) $(HLRAD_OUTDIR) $(RIPENT_OUTDIR) $(NETVIS_OUTDIR)
+
+$(OUTDIR) :
+	$(MKDIR) $@
+
+$(HLCSG_OUTDIR) :
+	$(MKDIR) $@
+	
+$(HLBSP_OUTDIR) :
+	$(MKDIR) $@
+	
+$(HLVIS_OUTDIR) :
+	$(MKDIR) $@
+	
+$(HLRAD_OUTDIR) :
+	$(MKDIR) $@
+	
+$(RIPENT_OUTDIR) :
+	$(MKDIR) $@
+
+$(NETVIS_OUTDIR) :
+	$(MKDIR) $@

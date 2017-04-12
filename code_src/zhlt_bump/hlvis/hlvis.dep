@@ -1,0 +1,161 @@
+# Microsoft Developer Studio Generated Dependency File, included by hlvis.mak
+
+..\common\blockmem.cpp : \
+	"..\common\blockmem.h"\
+	"..\common\cmdlib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	"d:\utilities\vc98\include\basetsd.h"\
+	
+
+..\common\bspfile.cpp : \
+	"..\common\blockmem.h"\
+	"..\common\bspfile.h"\
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\scriplib.h"\
+	"..\common\win32fix.h"\
+	
+
+..\common\cmdlib.cpp : \
+	"..\common\blockmem.h"\
+	"..\common\cmdlib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	"d:\utilities\vc98\include\basetsd.h"\
+	
+
+..\common\filelib.cpp : \
+	"..\common\blockmem.h"\
+	"..\common\cmdlib.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	
+
+..\common\log.cpp : \
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	
+
+..\common\mathlib.cpp : \
+	"..\common\cmdlib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	
+
+..\common\messages.cpp : \
+	"..\common\messages.h"\
+	
+
+..\common\scriplib.cpp : \
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\log.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\scriplib.h"\
+	"..\common\win32fix.h"\
+	
+
+..\common\threads.cpp : \
+	"..\common\blockmem.h"\
+	"..\common\cmdlib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\threads.h"\
+	"..\common\win32fix.h"\
+	"d:\utilities\vc98\include\basetsd.h"\
+	
+
+..\common\winding.cpp : \
+	"..\common\boundingbox.h"\
+	"..\common\bspfile.h"\
+	"..\common\cmdlib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\win32fix.h"\
+	"..\common\winding.h"\
+	"..\template\basictypes.h"\
+	
+
+.\flow.cpp : \
+	"..\common\boundingbox.h"\
+	"..\common\bspfile.h"\
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\threads.h"\
+	"..\common\win32fix.h"\
+	"..\common\winding.h"\
+	"..\template\basictypes.h"\
+	".\vis.h"\
+	".\zones.h"\
+	
+
+.\vis.cpp : \
+	"..\common\boundingbox.h"\
+	"..\common\bspfile.h"\
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\threads.h"\
+	"..\common\win32fix.h"\
+	"..\common\winding.h"\
+	"..\template\basictypes.h"\
+	".\vis.h"\
+	".\zones.h"\
+	
+
+.\zones.cpp : \
+	"..\common\boundingbox.h"\
+	"..\common\bspfile.h"\
+	"..\common\cmdlib.h"\
+	"..\common\filelib.h"\
+	"..\common\hlassert.h"\
+	"..\common\log.h"\
+	"..\common\mathlib.h"\
+	"..\common\mathtypes.h"\
+	"..\common\messages.h"\
+	"..\common\threads.h"\
+	"..\common\win32fix.h"\
+	"..\common\winding.h"\
+	"..\template\basictypes.h"\
+	".\vis.h"\
+	".\zones.h"\
+	

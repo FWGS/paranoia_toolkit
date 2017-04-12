@@ -1,0 +1,26 @@
+include make.ctl
+include make.os
+include make.w32
+include make.gnu
+
+INCLUDEDIRS+=-I common -I template
+DEFINES+=@DEFS@
+COMMON_SRCDIR:=common
+
+include hlcsg/make.inc
+include hlbsp/make.inc
+include hlvis/make.inc
+include hlrad/make.inc
+include ripent/make.inc
+include netvis/make.inc
+
+#
+# Project Globals
+#
+
+ALL_INPUTS := $(HLCSG_INPUT) $(HLBSP_INPUT) $(HLVIS_INPUT) $(HLRAD_INPUT) $(RIPENT_INPUT) $(NETVIS_INPUT)
+
+include make.rul
+include makerul.w32
+include makerul.gnu
+include make.dep
