@@ -1,4 +1,4 @@
-//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -117,7 +117,7 @@ enum VGUIAPI KeyCode
 	KEY_F10,
 	KEY_F11,
 	KEY_F12,
-	KEY_LAST,
+	KEY_LAST
 };
 }
 

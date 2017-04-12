@@ -1,4 +1,4 @@
-//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -44,6 +44,7 @@ public:
 	virtual bool hasFocus()=0;
 	virtual bool isWithin(int x,int y)=0;
 	virtual int  createNewTextureID(void)=0;
+	virtual void GetMousePos( int &x, int &y ) = 0;
 protected:
 	virtual void addModeInfo(int wide,int tall,int bpp);
 protected:

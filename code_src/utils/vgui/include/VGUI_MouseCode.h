@@ -1,4 +1,4 @@
-//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -17,7 +17,7 @@ enum VGUIAPI MouseCode
 	MOUSE_LEFT=0,
 	MOUSE_RIGHT,
 	MOUSE_MIDDLE,
-	MOUSE_LAST,
+	MOUSE_LAST
 };
 }
 

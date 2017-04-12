@@ -1,4 +1,4 @@
-//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -32,6 +32,9 @@ class VGUIAPI Font
   virtual void getCharABCwide(int ch,int& a,int& b,int& c);
   virtual void getTextSize(const char* text,int& wide,int& tall);
   virtual int  getTall();
+#ifndef _WIN32
+  virtual int getWide();
+#endif
   virtual int  getId();
  protected:
   char*			_name;

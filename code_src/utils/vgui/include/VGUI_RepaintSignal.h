@@ -1,4 +1,4 @@
-//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -12,7 +12,8 @@
 
 namespace vgui
 {
-
+class Panel;
+	
 class RepaintSignal
 {
 public:
