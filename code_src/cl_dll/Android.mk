@@ -13,7 +13,7 @@ ifeq ($(TARGET_ARCH_ABI),armeabi-v7a-hard)
 LOCAL_MODULE_FILENAME = libclient_hardfp
 endif
 
-LOCAL_CFLAGS += -fsigned-char -DNO_STL -DXASH_GLES -DINTERNAL_VGUI_SUPPORT -DLINUX -DCLIENT_DLL -DCLIENT_WEAPONS -DHL_DLL -I/usr/include/malloc -D_snwprintf=swprintf -DDISABLE_JUMP_ORIGIN -DDISABLE_VEC_ORIGIN -fpermissive -fno-strict-aliasing -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DHL1 -Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -DQUIVER -DQUAKE2 -DVALVE_DLL -D_alloca=alloca -fno-exceptions -fexpensive-optimizations -D_vsnprintf=vsnprintf -DNO_MALLOC_OVERRIDE -Werror=return-type
+LOCAL_CFLAGS += -fsigned-char -DVGUI_TOUCH_SCROLL -DNO_STL -DXASH_GLES -DINTERNAL_VGUI_SUPPORT -DLINUX -DCLIENT_DLL -DCLIENT_WEAPONS -DHL_DLL -I/usr/include/malloc -D_snwprintf=swprintf -DDISABLE_JUMP_ORIGIN -DDISABLE_VEC_ORIGIN -fpermissive -fno-strict-aliasing -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DHL1 -Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -DQUIVER -DQUAKE2 -DVALVE_DLL -D_alloca=alloca -fno-exceptions -fexpensive-optimizations -D_vsnprintf=vsnprintf -DNO_MALLOC_OVERRIDE -Werror=return-type
 
 LOCAL_CPPFLAGS := $(LOCAL_CFLAGS) -frtti -fexceptions -Wno-write-strings -Wno-invalid-offsetof -std=gnu++98
 
