@@ -10,7 +10,7 @@
 #include "entity_types.h"
 #include "cdll_int.h"
 #include "vgui_TeamFortressViewport.h"
-#include "vgui_tabpanel.h"
+#include "vgui_tabpanel2.h"
 #include "../game_shared/vgui_loadtga.h"
 #include<VGUI_TextImage.h>
 #include<VGUI_LineBorder.h>

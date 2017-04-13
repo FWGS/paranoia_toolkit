@@ -35,7 +35,7 @@
 #include "vgui_subtitles.h" // buz
 #include "vgui_radio.h" // buz
 #include "vgui_hud.h" // buz
-#include "vgui_tabpanel.h" // buz
+#include "vgui_tabpanel2.h" // buz
 
 #include "demo.h"
 #include "demo_api.h"

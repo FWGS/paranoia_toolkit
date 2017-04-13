@@ -14,17 +14,17 @@ LOCAL_MODULE_FILENAME = libserver_hardfp
 endif
 
 LOCAL_CFLAGS += -D_LINUX -DCLIENT_WEAPONS -Dstricmp=strcasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf \
-	-fno-exceptions
+	-fno-exceptions -fsigned-char
 
 LOCAL_CPPFLAGS := $(LOCAL_CFLAGS) -frtti
 
-LOCAL_C_INCLUDES := ../cl_dll/ \
-	 ../common/ \
-	  ../engine/ \
-        ../pm_shared/ \
-        ../dlls/ \
-        ../game_shared/ \
-        ../public/
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../cl_dll/ \
+	 $(LOCAL_PATH)/../common/ \
+	  $(LOCAL_PATH)/../engine/ \
+        $(LOCAL_PATH)/../pm_shared/ \
+        $(LOCAL_PATH)/../dlls/ \
+        $(LOCAL_PATH)/../game_shared/ \
+        $(LOCAL_PATH)../public/
 
 LOCAL_SRC_FILES := \
 aflock.cpp \
