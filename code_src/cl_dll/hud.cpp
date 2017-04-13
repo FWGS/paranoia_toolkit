@@ -342,7 +342,8 @@ void __CmdFunc_StopMP3( void )
 #ifdef _WIN32
 	gMP3.StopMP3( 0 );
 #else
-#warning "TODO"
+	// a1ba: Use PrimeMusicStream instead of fmod here
+	gEngfuncs.pfnPrimeMusicStream( NULL, 0 );
 #endif
 }
 
@@ -439,14 +440,11 @@ void CHud :: Init( void )
 
 #ifdef _WIN32
 	if(gMP3.Initialize())
+#endif
 	{
 		HOOK_MESSAGE( PlayMP3 );
 		HOOK_COMMAND( "stopmp3", StopMP3 );
 	}
-#else
-#warning "TODO"
-#endif
-
 
 	m_iLogo = 0;
 	m_iFOV = 90; // buz - make 90, not 0

@@ -205,7 +205,7 @@ vgui_ServerBrowser.h
 vgui_shadowtext.h
 vgui_SpectatorPanel.h
 vgui_subtitles.h
-vgui_tabpanel.h
+#vgui_tabpanel.h
 vgui_TeamFortressViewport.h
 vgui_tips.h
 view.h

@@ -14,6 +14,12 @@
 #include "glmanager.h"
 #ifndef _WIN32
 #include <dlfcn.h>
+#define GetProcAddress( x, y ) dlsym( x, y )
+#define LoadLibrary( x ) dlopen( x, RTLD_NOW )
+#define FreeLibrary( x ) dlclose( x )
+#define LIBGL "libGL.so.1"
+#else
+#define LIBGL "opengl32.dll"
 #endif
 
 
@@ -43,14 +49,10 @@ bool GLManager::IsExtensionSupported(const char *ext)
 
 int GLManager::IsGLAllowed()
 {
-#ifdef _WIN32
 	if (glstate == GMSTATE_GL)
 		return TRUE;
 	else
 		return FALSE;
-#else
-	return FALSE;
-#endif
 }
 
 
@@ -79,12 +81,6 @@ void GLManager::VidInit()
 	// try to load library
 //	if (!v_GLAllowed->value)
 
-#ifndef _WIN32
-	glstate = GMSTATE_INITFAILED;
-	Log( "GL manager: not supported" );
-	return; // TODO: port GL to Linux!
-#else
-
 	if (gEngfuncs.CheckParm ("-noglfx", NULL))
 	{
 		Log("GL manager: disabled by user\n");
@@ -100,26 +96,27 @@ void GLManager::VidInit()
 		return;
 	}
 
-	hOpengl32dll = LoadLibrary("opengl32.dll");
+#if defined(_WIN32) || (defined(__linux__) && !defined(__ANDROID__))
+	hOpengl32dll = LoadLibrary(LIBGL);
 	if (!hOpengl32dll)
 	{
-		Log("GL manager: Cannot load opengl32.dll\n");
-		gEngfuncs.Con_Printf("VidInit ERROR: Cannot load opengl32.dll!\n");
+		Log("GL manager: Cannot load "LIBGL"\n");
+		gEngfuncs.Con_Printf("VidInit ERROR: Cannot load "LIBGL"!\n");
 		glstate = GMSTATE_INITFAILED;
 		return;
 	}
 
 	if (!LoadFunctions())
 	{
-		Log("GL manager: Error loading opengl32.dll functions\n");
-		gEngfuncs.Con_Printf("VidInit: Error loading opengl32.dll functions!\n");
+		Log("GL manager: Error loading "LIBGL" functions\n");
+		gEngfuncs.Con_Printf("VidInit: Error loading "LIBGL" functions!\n");
 		FreeLibrary( hOpengl32dll );
 		hOpengl32dll = 0;
 		glstate = GMSTATE_INITFAILED;
 		return;
 	}		
 
-	gEngfuncs.Con_Printf("VidInit: opengl32.dll loaded successfully\n");
+	gEngfuncs.Con_Printf("VidInit: "LIBGL" loaded successfully\n");
 	Log("GL manager: loaded library\n");
 
 	const GLubyte *str = glGetString(GL_RENDERER);
@@ -143,14 +140,22 @@ void GLManager::VidInit()
 		Load_Rectangle_Textures();
 
 		gl.glGetIntegerv(GL_ALPHA_BITS, &alphabits);
-		gl.glGetIntegerv(GL_ALPHA_BITS, &stencilbits);
+#if 0 // a1ba: it's totally an error?
+		gl.glGetIntegerv(GL_ALPHA_BITS, &stencilbits );
+#else
+		gl.glGetIntegerv(GL_STENCIL_BITS, &stencilbits);
+#endif
 		gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_texture_size);
 
 		// check hacked opengl library
+		#ifdef _WIN32
 		if (IsExtensionSupported("PARANOIA_HACKS_V1"))
 			Paranoia_hacks = 1;
 		else
 			Paranoia_hacks = 0;
+		#else
+			Paranoia_hacks = 1;
+		#endif
 
 		ConLog ("Paranoia opengl hacks version: %d\n", Paranoia_hacks);
 		ConLog ("| Max texture size: %d\n", max_texture_size);
@@ -176,13 +181,17 @@ void GLManager::VidInit()
 		hOpengl32dll = 0;
 		glstate = GMSTATE_INITFAILED;
 	}
+#else
+	glstate = GMSTATE_INITFAILED;
+	Log( "GL manager: not supported" );
+	return; // TODO: port GL to Linux!
 #endif
 }
 
 
 GLManager::~GLManager()
 {
-#ifdef _WIN32
+#if defined(_WIN32) || (defined(__linux__) && !defined(__ANDROID__))
 	if (hOpengl32dll)
 		FreeLibrary( hOpengl32dll );
 #endif
@@ -225,11 +234,7 @@ void GLManager::LogDebugInfo()
 template <typename FuncType>
 inline void GLMLoadProc( FuncType &pfn, const char* name, HMODULE hlib )
 {
-#ifdef _WIN32
 	pfn = (FuncType)GetProcAddress( hlib, name );
-#else
-	pfn = (FuncType)dlsym( hlib, name );
-#endif
 }
 
 #define LOAD_PROC(x) GLMLoadProc( x, #x, hOpengl32dll ); \
@@ -240,16 +245,17 @@ inline void GLMLoadProc( FuncType &pfn, const char* name, HMODULE hlib )
 
 
 template <typename FuncType>
-inline void GLMLoadProc_EXT( FuncType &pfn, const char* name )
+inline void GLMLoadProc_EXT( FuncType &pfn, const char* name, HMODULE hlib )
 {
 #ifdef _WIN32
 	pfn = (FuncType)gl.wglGetProcAddress( name );
 #else
+	pfn = (FuncType)GetProcAddress( hlib, name );
 #warning "TODO"
 #endif
 }
 
-#define LOAD_PROC_EXT(x) GLMLoadProc_EXT( x, #x ); \
+#define LOAD_PROC_EXT(x) GLMLoadProc_EXT( x, #x, hOpengl32dll ); \
 	if (!x) {iret = FALSE; \
 		ConLog ("Error loading extension opengl function "); \
 		ConLog (#x); \

@@ -250,6 +250,44 @@ typedef struct cl_enginefuncs_s
 	void						( *pfnGetMousePos )( struct tagPOINT *ppt );
 	void						( *pfnSetMousePos )( int x, int y );
 	void						( *pfnSetMouseEnable )( qboolean fEnable );
+
+	    // undocumented interface starts here
+	struct cvar_s*	(*pfnGetFirstCvarPtr)( void );
+	void*		(*pfnGetFirstCmdFunctionHandle)( void );
+	void*		(*pfnGetNextCmdFunctionHandle)( void *cmdhandle );
+	const char*	(*pfnGetCmdFunctionName)( void *cmdhandle );
+	float		(*pfnGetClientOldTime)( void );
+	float		(*pfnGetGravity)( void );
+	struct model_s*	(*pfnGetModelByIndex)( int index );
+	void		(*pfnSetFilterMode)( int mode ); // same as gl_texsort in original Quake
+	void		(*pfnSetFilterColor)( float red, float green, float blue );
+	void		(*pfnSetFilterBrightness)( float brightness );
+	void		*(*pfnSequenceGet)( const char *fileName, const char *entryName );
+	void		(*pfnSPR_DrawGeneric)( int frame, int x, int y, const wrect_t *prc, int blendsrc, int blenddst, int width, int height );
+	void		*(*pfnSequencePickSentence)( const char *groupName, int pickMethod, int *entryPicked );
+	int		(*pfnDrawString)( int x, int y, const char *str, int r, int g, int b );
+	int		(*pfnDrawStringReverse)( int x, int y, const char *str, int r, int g, int b );
+	const char	*(*LocalPlayerInfo_ValueForKey)( const char* key );
+	int		(*pfnVGUI2DrawCharacter)( int x, int y, int ch, unsigned int font );
+	int		(*pfnVGUI2DrawCharacterAdditive)( int x, int y, int ch, int r, int g, int b, unsigned int font );
+	unsigned int	(*pfnGetApproxWavePlayLen)( const char *filename );
+	void*		(*GetCareerGameUI)( void );	// g-cont. !!!! potential crash-point!
+	void		(*Cvar_Set)( const char *name, const char *value );
+	int		(*pfnIsPlayingCareerMatch)( void );
+	void		(*pfnPlaySoundVoiceByName)( const char *szSound, float volume, int pitch );
+	void		(*pfnPrimeMusicStream)( const char *filename, int looping );
+	double		(*pfnSys_FloatTime)( void );
+
+	// decay funcs
+	void		(*pfnProcessTutorMessageDecayBuffer)( int *buffer, int buflen );
+	void		(*pfnConstructTutorMessageDecayBuffer)( int *buffer, int buflen );
+	void		(*pfnResetTutorMessageDecayData)( void );
+
+	void		(*pfnPlaySoundByNameAtPitch)( char *szSound, float volume, int pitch );
+	void		(*pfnFillRGBABlend)( int x, int y, int width, int height, int r, int g, int b, int a );
+	int		(*pfnGetAppID)( void );
+	void	*(*pfnGetAliases)( void );
+	void		(*pfnVguiWrap2_GetMouseDelta)( int *x, int *y );
 } cl_enginefunc_t;
 
 #ifndef IN_BUTTONS_H
