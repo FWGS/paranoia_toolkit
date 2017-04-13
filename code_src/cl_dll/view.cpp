@@ -282,6 +282,7 @@ static pitchdrift_t pd;
 
 void V_StartPitchDrift( void )
 {
+	return;
 	if ( pd.laststop == gEngfuncs.GetClientTime() )
 	{
 		return;		// something else is keeping it from drifting
@@ -315,7 +316,7 @@ mlook and mouse, or klook and keyboard, pitch drifting is constantly stopped.
 void V_DriftPitch ( struct ref_params_s *pparams )
 {
 	float		delta, move;
-
+	return;
 	if ( gEngfuncs.IsNoClipping() || !pparams->onground || pparams->demoplayback || pparams->spectator )
 	{
 		pd.driftmove = 0;
