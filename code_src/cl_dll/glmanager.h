@@ -13,16 +13,15 @@
 #endif
 
 typedef int (*GP)(...);
-#if 0
-#define GL_FRAGMENT_PROGRAM_ARB 0
-#define GL_PROGRAM_FORMAT_ASCII_ARB 0
-#define GL_ARRAY_BUFFER_ARB 0
-#define GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB 0
-#define GL_PROGRAM_ERROR_POSITION_ARB 0
-#define GL_STATIC_DRAW_ARB 0
-#endif
-#define GL_MAX_TEXTURE_IMAGE_UNITS_NV 0
-#define GL_MAX_TEXTURE_COORDS_NV 0
+
+#define GL_FRAGMENT_PROGRAM_ARB 0x8804
+#define GL_PROGRAM_FORMAT_ASCII_ARB 0x8875
+#define GL_ARRAY_BUFFER_ARB 0x8892
+#define GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB 0x88B6
+#define GL_PROGRAM_ERROR_POSITION_ARB 0x864B
+#define GL_STATIC_DRAW_ARB 0x88E4
+#define GL_MAX_TEXTURE_IMAGE_UNITS_NV 0x8872
+#define GL_MAX_TEXTURE_COORDS_NV 0x8871
 enum {
 	GMSTATE_NOINIT = 0, // should try to load at next changelevel
 	GMSTATE_INITFAILED, // failed to load, dont try until video mode changes
@@ -120,11 +119,11 @@ public:
 	// ARB_multitexture
 	int ARB_multitexture_supported;
 	int MAX_TU_supported;
-	GP		glActiveTextureARB;
-	GP	glClientActiveTextureARB;
-	GP		glMultiTexCoord1fARB;
-	GP		glMultiTexCoord2fARB;
-	GP	glMultiTexCoord3fvARB;
+	void (APIENTRY *glActiveTextureARB)(GLenum texture);
+	void (APIENTRY *glClientActiveTextureARB)(GLenum texture);
+	void (APIENTRY *glMultiTexCoord1fARB)(GLenum target, GLfloat s);
+	void (APIENTRY *glMultiTexCoord2fARB)(GLenum target, GLfloat s, GLfloat t);
+	void (APIENTRY *glMultiTexCoord3fvARB)(GLenum target, const GLfloat *v);
 
 	// Diffuse bump-mapping extensions
 	int ARB_dot3_supported;
@@ -132,43 +131,43 @@ public:
 	// NV_register_combiners
 	int NV_combiners_supported;
 	int MAX_NV_combiners;
-	GP	glCombinerParameteriNV;
-	GP	glCombinerParameterfvNV;
-	GP		glCombinerInputNV;
-	GP		glCombinerOutputNV;
-	GP	glFinalCombinerInputNV;
+	void    (APIENTRY *glCombinerParameteriNV)(GLenum pname, GLint param);
+	void   (APIENTRY *glCombinerParameterfvNV)(GLenum pname, GLfloat *param);
+	void   (APIENTRY *glCombinerInputNV)(GLenum stage, GLenum portion, GLenum variable, GLenum input, GLenum mapping, GLenum componentUsage);
+	void   (APIENTRY *glCombinerOutputNV)(GLenum stage, GLenum portion, GLenum abOutput, GLenum cdOutput, GLenum sumOutput, GLenum scale, GLenum bias, GLboolean abDotProduct, GLboolean cdDotProduct, GLboolean muxSum);
+	void   (APIENTRY *glFinalCombinerInputNV)(GLenum variable, GLenum input, GLenum mapping, GLenum componentUsage);
 
 	// ARB_fragment_program
 	int ARB_fragment_program_supported;
 	int fp_max_image_units;
 	int fp_max_texcoords;
-	GP			glGenProgramsARB;
-	GP			glBindProgramARB;
-	GP		glProgramStringARB;
-	GP		glGetProgramivARB;
+	void   (APIENTRY *glGenProgramsARB)(GLsizei n, GLuint *programs);
+	void   (APIENTRY *glBindProgramARB)(GLenum target, GLuint program);
+	void   (APIENTRY *glProgramStringARB)(GLenum target, GLenum format, GLsizei len, const void *string);
+	void   (APIENTRY *glGetProgramivARB)(GLuint program, GLenum pname, GLint *params);
 
 	// NV_fragment_program
 	int NV_fragment_program_supported;
 	int NV_fp_max_image_units;
 	int NV_fp_max_texcoords;
-	GP			glGenProgramsNV;
-	GP			glBindProgramNV;
-	GP			glLoadProgramNV;
+	void   (APIENTRY *glGenProgramsNV)(GLsizei n, GLuint *programs);
+	void   (APIENTRY *glBindProgramNV)(GLenum target, GLuint id);
+	void   (APIENTRY *glLoadProgramNV)(GLenum target, GLuint id, GLsizei len, const GLubyte *program);
 
 	// Cubemaps
 	int ARB_texture_cube_map_supported;
-	GP			glTexImage3DEXT;
+	void   (APIENTRY *glTexImage3DEXT)(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void *pixels);
 
 	// 3d textures
 	int EXT_3Dtexture_supported;
 
 	// VBO
 	int ARB_VBO_supported;
-	GP					glBindBufferARB;
-	GP					glGenBuffersARB;
-	GP					glBufferDataARB;
-	GP				glDeleteBuffersARB;
-	GP		glGetBufferParameterivARB;
+	void   (APIENTRY *glBindBufferARB)(GLenum target, GLuint buffer);
+	void   (APIENTRY *glGenBuffersARB)(GLsizei n, GLuint *buffers);
+	void   (APIENTRY *glBufferDataARB)(GLenum target, GLsizeiptrARB size, const void *data, GLenum usage);
+	void   (APIENTRY *glDeleteBuffersARB)(GLsizei n, const GLuint *buffers);
+	void   (APIENTRY *glGetBufferParameterivARB)(GLenum target, GLenum pname, GLint *params);
 
 	// Non-power of two textures
 	int texture_rectangle_supported;
