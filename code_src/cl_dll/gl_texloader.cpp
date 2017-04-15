@@ -401,8 +401,11 @@ int ParseDetailTextureDataFile()
 {
 	char levelname[256];
 	numentries = 0;
-	strcpy( levelname, gEngfuncs.pfnGetLevelName() );
+	const char *plevelname;
 	Log("\n>> loading detail textures\n");
+
+	strncpy( levelname, gEngfuncs.pfnGetLevelName(), 256 );
+	levelname[255] = 0;
 
 	if ( strlen(levelname) == 0 )
 	{
@@ -424,10 +427,10 @@ int ParseDetailTextureDataFile()
 	char *ptext = pfile;
 	while(1)
 	{
-		char texture[256];
-		char detailtexture[256];
-		char sz_xscale[64];
-		char sz_yscale[64];
+		char texture[512];
+		char detailtexture[512];
+		char sz_xscale[512];
+		char sz_yscale[512];
 
 		if (numentries >= MAX_DETAIL_FILE_ENTRIES)
 		{
@@ -456,8 +459,10 @@ int ParseDetailTextureDataFile()
 
 	//	gEngfuncs.Con_Printf("%d: %s - %s (%s x %s)\n", numentries, texture, detailtexture, sz_xscale, sz_yscale);
 
-		strcpy( parsedData[numentries].texname, texture );
-		strcpy( parsedData[numentries].detailtexname, detailtexture );
+		strncpy( parsedData[numentries].texname, texture, sizeof( parsedData[0].texname ) );
+		parsedData[numentries].texname[sizeof( parsedData[0].texname )-1] = 0;
+		strncpy( parsedData[numentries].detailtexname, detailtexture, sizeof( parsedData[0].detailtexname ) );
+		parsedData[numentries].detailtexname[sizeof(parsedData[0].detailtexname )-1] = 0;
 		parsedData[numentries].xscale = i_xscale;
 		parsedData[numentries].yscale = i_yscale;
 		numentries++;
