@@ -17,7 +17,7 @@ if [[ "$#" -ne "2" ]]; then
 fi
 
 if [[ "$1" = "release" ]]; then
-	VERBOSE="0"
+	VERBOSE="0 APP_CFLAGS=\"-w\""
 	RELEASE="0"
 else
 	RELEASE="1 APP_CFLAGS=\"-gdwarf-3\""
@@ -44,6 +44,7 @@ if [[ "$ENABLE_PAK" -ne "true" ]]; then
 	mkdir -p pak/
 	mkdir -p assets/
 	python2 makepak.py pak/ assets/extras.pak
+fi
 
 # Build
 ndk-build -j8 NDK_TOOLCHAIN_VERSION=4.8 _CS16CLIENT_ENABLE_OPENMP=$OMP NDK_DEBUG=$RELEASE V=$VERBOSE

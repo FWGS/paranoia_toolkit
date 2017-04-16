@@ -23,8 +23,9 @@ PUBLIC_DIR = ../public
 COMMON_DIR = ../common
 GAME_SHARED_DIR = ../game_shared
 PM_SHARED_DIR = ../pm_shared
-VGUI_DIR ?= ../../../vgui_dll/
-VGUI_SUPPORT_DIR ?= ../../../xash3d/vgui_support/
+VGUI_DIR ?= ../exteral/vgui_dll/
+VGUI_SUPPORT_DIR ?= ../external/xash3d/vgui_support/
+NANOGL_DIR ?= ../external/nanogl/
 
 LOCAL_C_INCLUDES := \
 		    $(LOCAL_PATH)/. \
@@ -40,10 +41,12 @@ LOCAL_C_INCLUDES := \
 		    $(VGUI_DIR)/lib-src/vgui \
 		    $(VGUI_SUPPORT_DIR)/../common \
 		    $(VGUI_SUPPORT_DIR)/../engine \
+                    $(NANOGL_DIR)/ \
 		    $(LOCAL_PATH)/$(VGUI_DIR)/lib-src/win32 \
 		    $(LOCAL_PATH)/$(VGUI_DIR)/lib-src/vgui \
 		    $(LOCAL_PATH)/$(VGUI_SUPPORT_DIR)/../common \
-		    $(LOCAL_PATH)/$(VGUI_SUPPORT_DIR)/../engine
+		    $(LOCAL_PATH)/$(VGUI_SUPPORT_DIR)/../engine \
+                    $(LOCAL_PATH)/$(NANOGL_DIR)/ 
 		    
 
 
