@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name" translatable="false">PARANOIA</string>
+	<string name="defCmdArgs" translatable="false">-console -dev, etc</string>
+	<string name="title_activity_launcher">PARANOIA Launcher</string>
+	<string name="launch_button">Launch PARANOIA!</string>
+	<string name="cmd_args_text">Command line arguments:</string>
+	<string name="cmd_args_text2">Don\'t touch this, if you don\'t know why you need this</string>
+	<string name="not_found_msg">Nothing was found. Check your installation</string>
+	<string name="not_found_title">Something got wrong...</string>
+	<string name="not_implemented_msg">This feature is not implemented yet</string>
+	<string name="not_implemented_title">Not implemented!</string>
+	<string name="not_implemented_fully">This is not ready! Bugreports are not accepted when this feature is on.</string>
+	<string name="xash_not_installed_title">No engine found</string>
+	<string name="xash_not_installed_msg">To continue, you must install Xash3D engine on your device</string>
+	<string name="install_xash">Install</string>
+	<string name="cancel">Cancel</string>
+	<string name="ok">OK!</string>
+</resources>
