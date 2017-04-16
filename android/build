@@ -4,7 +4,7 @@
 PROJECT=paranoia
 ZIPALIGN=$HOME/.android/android-sdk-linux/build-tools/23.0.3/zipalign
 KEYSTORE=../../myks.keystore
-ENABLE_PACK="false" # "true"
+ENABLE_PAK="false" # "true"
 
 if [[ "$1" = "--help" ]]; then
 	echo "Usage: ./build.sh <release|debug> <omp|noomp>"
