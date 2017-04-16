@@ -1197,3 +1197,8 @@ void RendererDrawHud()
 	PrintOtherDebugInfo();
 	PrintBumpDebugInfo();
 }
+
+int GL_RenderFrame( const struct ref_params_s *pparams, qboolean drawWorld )
+{
+	return 0;
+}

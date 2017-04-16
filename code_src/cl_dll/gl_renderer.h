@@ -142,3 +142,6 @@ void RendererVidInit();
 void RendererInit();
 void RendererCleanup();
 void RendererDrawHud();
+
+// ========== Xash3D render interface =========
+int GL_RenderFrame( const struct ref_params_s *pparams, qboolean drawWorld );

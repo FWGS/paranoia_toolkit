@@ -12,6 +12,8 @@
 #include "r_studioint.h"
 
 #include "glmanager.h"
+#include "render_api.h"
+#include "gl_renderer.h"
 #ifndef _WIN32
 #include <dlfcn.h>
 #define GetProcAddress( x, y ) dlsym( x, y )
@@ -559,4 +561,33 @@ void GLManager::gluLookAt( GLdouble eyex, GLdouble eyey, GLdouble eyez,
 
    /* Translate Eye to Origin */
    glTranslated( -eyex, -eyey, -eyez );
+}
+
+render_api_t gRenderfuncs;
+render_interface_t render_iface =
+{
+	CL_RENDER_INTERFACE_VERSION,
+	GL_RenderFrame,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};
+
+extern "C" int EXPORT HUD_GetRenderInterface( int version, render_api_t *renderfuncs, render_interface_t *callback )
+{
+	if( version != CL_RENDER_INTERFACE_VERSION )
+	{
+		ConLog( "Invalid render interface version. Got: %i, Want: %i", version, CL_RENDER_INTERFACE_VERSION );
+		return 0;
+	}
+
+	gRenderfuncs = *renderfuncs;
+	*callback = render_iface;
+
+	return 1;
 }
