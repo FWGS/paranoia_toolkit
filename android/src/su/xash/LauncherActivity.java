@@ -54,12 +54,13 @@ import java.io.FileOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.Vector;
 
 // import com.google.android.gms.ads.*;
 // import com.google.android.gms.common.GoogleApiAvailability;
 // import com.google.android.gms.common.ConnectionResult;
 
-import in.celest.xash3d.cs16client.R;
+import su.xash.paranoia.R;
 
 public class LauncherActivity extends Activity 
 {
@@ -111,23 +112,7 @@ public class LauncherActivity extends Activity
 		
 		if( !mDev )
 		{}
-			mEnableCZero.setVisibility(View.GONE);
-		
-		try
-		{
-			AdRequest adRequest = new AdRequest.Builder()
-				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-				.build();
-			mAdView.loadAd(adRequest);
-		}
-		catch(Throwable e)
-		{
-			// Very dirty hack!
-			// AdMob uses some methods that are not available on some devices
-			// Just don't let app crash.
-			Log.e( TAG, "Something happened during load ad. " + e.getMessage() );
-		}
-		
+				
 		if( mFirstTime )
 		{
 			// Not needed for PARANOIA, as PARANOIA will be distributed with game files
@@ -166,10 +151,11 @@ public class LauncherActivity extends Activity
 		intent.putExtra("gamelibdir", getFilesDir().getAbsolutePath().replace("/files","/lib"));
 		intent.putExtra("pakfile",    getFilesDir().getAbsolutePath() + "/extras.pak" );
 		
-		String[] obbFiles = getAPKExpansionFiles(mContext, MAJOR_VERSION, MINOR_VERSION);
+		String[] obbFiles = getAPKExpansionFiles("in.celest.xash3d.hl", mContext, MAJOR_VERSION, MINOR_VERSION);
 		
 		if( obbFiles.length > 0 )
-			intent.putExtra("obbfiles", obbFiles);
+			intent.putExtra("mainobb", obbFiles[0]);
+			
 		
 		PackageManager pm = getPackageManager();
 		if( intent.resolveActivity( pm ) != null )
@@ -184,13 +170,13 @@ public class LauncherActivity extends Activity
 	
 	public void showTutorial( )
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder( this );
+		/*AlertDialog.Builder builder = new AlertDialog.Builder( this );
 		
 		// TODO: must be less dumb someday...
 		builder.setTitle( R.string.first_run_reminder_title )
 			.setMessage( R.string.first_run_reminder_msg )
 			.setNeutralButton( R.string.ok, new DialogInterface.OnClickListener() { public void onClick( DialogInterface dialog, int which ) { } } )
-			.show();
+			.show();*/
 	}
 
 	
@@ -247,9 +233,8 @@ public class LauncherActivity extends Activity
 			.show();
 	}
 	
-	static String[] getAPKExpansionFiles(Context ctx, int mainVersion, int patchVersion) 
+	static String[] getAPKExpansionFiles(String packageName, Context ctx, int mainVersion, int patchVersion) 
 	{
-		String packageName = ctx.getPackageName();
 		Vector<String> ret = new Vector<String>();
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) 
 		{
@@ -299,23 +284,15 @@ public class LauncherActivity extends Activity
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(mAdView != null)
-			mAdView.resume();
 	}
 
 	@Override
 	public void onDestroy() {
-		if(mAdView != null)
-			mAdView.destroy();
-
 		super.onDestroy();
 	}
 
 	@Override
-	public void onPause() {
-		if(mAdView != null)
-			mAdView.pause();
-	
+	public void onPause() {	
 		super.onPause();
 	}
 	
@@ -377,7 +354,7 @@ public class LauncherActivity extends Activity
 
 	public static void extractPAK(Context context, Boolean force) 
 	{
-		InputStream is = null;
+		/*InputStream is = null;
 		FileOutputStream os = null;
 		try 
 		{
@@ -394,7 +371,7 @@ public class LauncherActivity extends Activity
 		catch( Exception e )
 		{
 			Log.e( TAG, "Failed to extract PAK:" + e.toString() );
-		}
+		}*/
 	}
 }
 

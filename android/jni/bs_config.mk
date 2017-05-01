@@ -6,7 +6,7 @@ LOCAL_LDFLAGS += -fopenmp
 LOCAL_CFLAGS += -ftree-parallelize-loops=4 -fopenmp
 endif
 
-LOCAL_CFLAGS += $(CFLAGS_OPT)
+LOCAL_CFLAGS += $(CFLAGS_OPT) -Wno-write-strings -Wno-invalid-offsetof -Wno-conversion-null
 ifeq ($(TARGET_ARCH_ABI),armeabi-v7a-hard)
 LOCAL_CFLAGS += $(CFLAGS_OPT_ARM) $(CFLAGS_HARDFP)
 endif

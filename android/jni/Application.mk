@@ -9,6 +9,6 @@ GPG_SDK_PATH := $(call my-dir)/jni/cs-client/3rdparty/gpg-cpp-sdk/android/
 XASH3D_CONFIG := $(APPLICATIONMK_PATH)/bs_config.mk
 
 APP_ABI := x86 armeabi-v7a-hard armeabi
-APP_MODULES := client server #menu gpgs-1
+APP_MODULES := server #menu gpgs-1
 APP_PLATFORM := android-9
 APP_STL := gnustl_static

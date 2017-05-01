@@ -78,7 +78,7 @@ public class InstallReceiver extends BroadcastReceiver
 
 	private static synchronized void extractPAK(Context context, Boolean force) 
 	{
-		InputStream is = null;
+		/*InputStream is = null;
 		FileOutputStream os = null;
 		try 
 		{
@@ -97,6 +97,6 @@ public class InstallReceiver extends BroadcastReceiver
 		catch( Exception e )
 		{
 			Log.e( TAG, "Failed to extract PAK:" + e.toString() );
-		}
+		}*/
 	}
 }
