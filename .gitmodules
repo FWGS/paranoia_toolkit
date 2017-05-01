@@ -1,0 +1,6 @@
+[submodule "android/jni/xash3d"]
+	path = android/jni/xash3d
+	url = https://github.com/FWGS/xash3d
+[submodule "android/jni/nanogl"]
+	path = android/jni/nanogl
+	url = https://github.com/FWGS/nanogl
