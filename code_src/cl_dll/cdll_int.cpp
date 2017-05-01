@@ -43,9 +43,7 @@ extern "C"
 
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
-#ifdef _WIN32
 CMP3 gMP3;
-#endif
 TeamFortressViewport *gViewPort = NULL;
 
 void InitInput (void);

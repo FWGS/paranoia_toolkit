@@ -339,12 +339,7 @@ int __MsgFunc_PlayMP3(const char *pszName, int iSize, void *pbuf )
 
 void __CmdFunc_StopMP3( void )
 {
-#ifdef _WIN32
 	gMP3.StopMP3( 0 );
-#else
-	// a1ba: Use PrimeMusicStream instead of fmod here
-	gEngfuncs.pfnPrimeMusicStream( NULL, 0 );
-#endif
 }
 
 // buz
@@ -456,9 +451,6 @@ void CHud :: Init( void )
 	m_pCvarStealMouse = CVAR_CREATE( "hud_capturemouse", "1", FCVAR_ARCHIVE );
 	m_pCvarDraw = CVAR_CREATE( "hud_draw", "1", FCVAR_ARCHIVE );
 	cl_lw = gEngfuncs.pfnGetCvarPointer( "cl_lw" );
-
-	// Wargon: fmod_volume регулирует громкость звуков, воспроизводимых через FMOD.
-	CVAR_CREATE( "fmod_volume", "1.0", FCVAR_ARCHIVE );
 
 	m_pSpriteList = NULL;
 	m_pShinySurface = NULL; //LRC

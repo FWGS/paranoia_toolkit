@@ -291,19 +291,10 @@ int CHud :: MsgFunc_PlayMP3( const char *pszName, int iSize, void *pbuf ) //AJH 
 	BEGIN_READ( pbuf, iSize );
 
 	// turn on or off?
-#ifdef _WIN32
 	if (READ_BYTE())
 		gMP3.PlayMP3( READ_STRING() );
 	else
 		gMP3.StopMP3( READ_COORD() );
-#else
-	// a1ba: no fade effect here, but it's better than FMod
-	if( READ_BYTE() )
-		gEngfuncs.pfnPrimeMusicStream( READ_STRING(), 0 );
-	else
-		gEngfuncs.pfnPrimeMusicStream( NULL, 0 );
-#warning "TODO"
-#endif
 
 	return 1;
 }
