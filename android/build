@@ -3,7 +3,7 @@
 # Config
 PROJECT=paranoia
 ZIPALIGN=$HOME/.android/android-sdk-linux/build-tools/23.0.3/zipalign
-KEYSTORE=../../myks.keystore
+KEYSTORE=../../../myks.keystore
 ENABLE_PAK="false" # "true"
 
 if [[ "$1" = "--help" ]]; then
@@ -51,7 +51,7 @@ ndk-build -j8 NDK_TOOLCHAIN_VERSION=4.8 _CS16CLIENT_ENABLE_OPENMP=$OMP NDK_DEBUG
 ant $1
 
 if [[ "$1" = "release" ]]; then
-	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ${KEYSTORE} bin/${PROJECT}-$1-unsigned.apk xashdroid -tsa https://timestamp.geotrust.com/tsa
+	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ${KEYSTORE} bin/${PROJECT}-$1-unsigned.apk xashdroid
 	${ZIPALIGN} 4 bin/${PROJECT}-$1-unsigned.apk bin/${PROJECT}.apk
 fi
 mv bin/${PROJECT}.apk ${PROJECT}-$1-$NAME_POSTFIX.apk

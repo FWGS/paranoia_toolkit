@@ -68,7 +68,7 @@ public class LauncherActivity extends Activity
 	public static final int MAJOR_VERSION = 1;
 	public static final int MINOR_VERSION = 0;
 	public final static int sdk = Integer.valueOf(Build.VERSION.SDK);
-	public final static String TAG = "LauncherActivity";
+	public final static String TAG = "PARANOIA:LauncherActivity";
 	// The shared path to all app expansion files
 	private final static String EXP_PATH = "/Android/obb/";
 
@@ -124,7 +124,7 @@ public class LauncherActivity extends Activity
 	{
 		SharedPreferences.Editor editor = mPref.edit();
 		String argv    = mCmdArgs.getText().toString();
-		String gamedir = "cstrike";
+		String gamedir = "paranoia";
 
 		editor.putString("argv", argv);
 		if( mFirstTime ) editor.putBoolean("firsttime", false);
@@ -149,13 +149,20 @@ public class LauncherActivity extends Activity
 		intent.putExtra("argv",       argv);
 		intent.putExtra("gamedir",    gamedir );
 		intent.putExtra("gamelibdir", getFilesDir().getAbsolutePath().replace("/files","/lib"));
-		intent.putExtra("pakfile",    getFilesDir().getAbsolutePath() + "/extras.pak" );
 		
-		String[] obbFiles = getAPKExpansionFiles("in.celest.xash3d.hl", mContext, MAJOR_VERSION, MINOR_VERSION);
+		String mainobb = getAPKExpansionFile("main", "in.celest.xash3d.hl", mContext, 1);
 		
-		if( obbFiles.length > 0 )
-			intent.putExtra("mainobb", obbFiles[0]);
+		if( mainobb != null )
+		{
+			intent.putExtra("mainobb", mainobb);
 			
+			String patchobb = getAPKExpansionFile("patch", "in.celest.xash3d.hl", mContext, 1);
+			if( patchobb != null )
+			{
+				String[] patchArray = { patchobb };
+				intent.putExtra("patchobb", patchArray);
+			}
+		}
 		
 		PackageManager pm = getPackageManager();
 		if( intent.resolveActivity( pm ) != null )
@@ -172,7 +179,7 @@ public class LauncherActivity extends Activity
 	{
 		/*AlertDialog.Builder builder = new AlertDialog.Builder( this );
 		
-		// TODO: must be less dumb someday...
+		// TODO: must be less dumbший someday...
 		builder.setTitle( R.string.first_run_reminder_title )
 			.setMessage( R.string.first_run_reminder_msg )
 			.setNeutralButton( R.string.ok, new DialogInterface.OnClickListener() { public void onClick( DialogInterface dialog, int which ) { } } )
@@ -233,37 +240,28 @@ public class LauncherActivity extends Activity
 			.show();
 	}
 	
-	static String[] getAPKExpansionFiles(String packageName, Context ctx, int mainVersion, int patchVersion) 
+	static String getAPKExpansionFile(String prefix, String packageName, Context ctx, int version) 
 	{
-		Vector<String> ret = new Vector<String>();
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) 
 		{
 			// Build the full path to the app's expansion files
-			File root = Environment.getExternalStorageDirectory();
-			File expPath = new File(root.toString() + EXP_PATH + packageName);
+			File expPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + EXP_PATH + "su.xash.paranoia");
 	
 			// Check that expansion file path exists
 			if (expPath.exists()) 
 			{
-				if ( mainVersion > 0 ) 
+				String strMainPath = expPath + File.separator + prefix + "." + version + "." + packageName + ".obb";
+				Log.d( TAG, "Checking OBB..." + strMainPath);
+				File main = new File(strMainPath);
+				if ( main.isFile() )
 				{
-					String strMainPath = expPath + File.separator + "main." + mainVersion + "." + packageName + ".obb";
-					File main = new File(strMainPath);
-					if ( main.isFile() ) 
-						ret.add(strMainPath);
-				}
-				if ( patchVersion > 0 ) 
-				{
-					String strPatchPath = expPath + File.separator + "patch." + mainVersion + "." + packageName + ".obb";
-					File main = new File(strPatchPath);
-					if ( main.isFile() )
-							ret.add(strPatchPath);
+					Log.d( TAG, "OBB exists!" );
+					return strMainPath; // Return file
 				}
 			}
 		}
-		String[] retArray = new String[ret.size()];
-		ret.toArray(retArray);
-		return retArray;
+		Log.d( TAG, "OBB does not exist" );
+		return null;
 	}
 	
 	public void onTitleClick(View view)
