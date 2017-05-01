@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="git_revisions"><b>Version information:</b>  default-release\n<b>android:</b> b3ae6ef PARANOIA successfully mounts main obb, but not patch. \n<b>engine:</b> 29a9e8e Merge branch 0.19.x-rodir into 0.19.x \n<b>hlsdk:</b> e099224 Use vgui2 functions for utf-8 print \n<b>extras:</b> b67d30d Add localized fonts \n<b>nanogl:</b> ae8ec8d Workaround Stupid GLES blending bug\na1ba@KubuntuPortable 20:09:32-01-05-17</string>
+</resources>
