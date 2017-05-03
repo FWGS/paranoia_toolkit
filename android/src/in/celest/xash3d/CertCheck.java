@@ -17,7 +17,7 @@ import java.lang.*;
 import java.util.List;
 import java.security.MessageDigest;
 
-import in.celest.xash3d.hl.BuildConfig;
+import su.xash.paranoia.BuildConfig;
 import in.celest.xash3d.XashConfig;
 
 public class CertCheck

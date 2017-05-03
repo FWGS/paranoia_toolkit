@@ -29,8 +29,8 @@ import java.lang.*;
 import java.util.List;
 import java.security.MessageDigest;
 
-import in.celest.xash3d.hl.R;
-import in.celest.xash3d.hl.BuildConfig;
+import su.xash.paranoia.R;
+import su.xash.paranoia.BuildConfig;
 import in.celest.xash3d.XashConfig;
 import in.celest.xash3d.JoystickHandler;
 import in.celest.xash3d.CertCheck;
@@ -65,7 +65,7 @@ public class XashService  extends Service {
 			status_exit_button = R.id.status_exit_button_21;
 			notify = R.layout.notify_21;
 		}
-		Log.d("XashService", "Service Started");
+		Log.d("PARANOIA:XashService", "Service Started");
 		Intent intent_ = new Intent(this, XashActivity.class);
 		intent_.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		final PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -81,9 +81,8 @@ public class XashService  extends Service {
 
 
 		notification.contentView.setTextViewText(status_text, "Xash3D Engine");
-	Intent exitIntent = new Intent(this, exitButtonListener.class);
-	PendingIntent pendingExitIntent = PendingIntent.getBroadcast(this, 0,
-			exitIntent, 0);
+		Intent exitIntent = new Intent(this, exitButtonListener.class);
+		PendingIntent pendingExitIntent = PendingIntent.getBroadcast(this, 0, exitIntent, 0);
 
 		notification.contentView.setOnClickPendingIntent(status_exit_button, pendingExitIntent);
 		startForeground(100, notification);

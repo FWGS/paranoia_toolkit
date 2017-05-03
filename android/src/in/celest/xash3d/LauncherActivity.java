@@ -53,16 +53,18 @@ import java.net.URL;
 
 import org.json.*;
 
-import in.celest.xash3d.hl.R;
+import su.xash.paranoia.R;
 import in.celest.xash3d.XashActivity;
 import in.celest.xash3d.CertCheck;
 
 public class LauncherActivity extends Activity {
    // public final static String ARGV = "in.celest.xash3d.MESSAGE";
    	public final static int sdk = Integer.valueOf(Build.VERSION.SDK);
-	public final static String UPDATE_LINK = "https://api.github.com/repos/FWGS/xash3d-android-project/releases"; // releases/latest doesn't return prerelease and drafts
+	public final static String UPDATE_LINK = "https://api.github.com/repos/FWGS/paranoia_toolkit/releases"; // releases/latest doesn't return prerelease and drafts
+	public final static String EXP_PATH = "/Android/obb/";
+	public final static String TAG = "PARANOIA:LauncherActivity";
+	static String mL10n = "Russian";
 	static EditText cmdArgs;
-	static EditText resPath;
 	static ToggleButton useVolume;
 	static ToggleButton resizeWorkaround;
 	static CheckBox	checkUpdates;
@@ -70,7 +72,6 @@ public class LauncherActivity extends Activity {
 	static CheckBox immersiveMode;
 	static SharedPreferences mPref;
 	static Spinner pixelSpinner;
-	static TextView tvResPath;
 	
 	String getDefaultPath()
 	{
@@ -115,12 +116,10 @@ public class LauncherActivity extends Activity {
 		mPref        = getSharedPreferences("engine", 0);
 		cmdArgs      = (EditText) findViewById(R.id.cmdArgs);
 		useVolume    = (ToggleButton) findViewById( R.id.useVolume );
-		resPath      = (EditText) findViewById( R.id.cmdPath );
 		checkUpdates = (CheckBox)findViewById( R.id.check_updates );
 		updateToBeta = (CheckBox)findViewById( R.id.check_betas );
 		pixelSpinner = (Spinner) findViewById( R.id.pixelSpinner );
 		resizeWorkaround = (ToggleButton) findViewById( R.id.enableResizeWorkaround );
-		tvResPath    = (TextView) findViewById( R.id.textView_path );
 		immersiveMode = (CheckBox) findViewById( R.id.immersive_mode );
 		
 		final String[] list = {
@@ -134,35 +133,21 @@ public class LauncherActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		pixelSpinner.setAdapter(adapter);
-		Button selectFolderButton = ( Button ) findViewById( R.id.button_select );
-	selectFolderButton.setOnClickListener(new View.OnClickListener(){
-	       @Override
-	    public void onClick(View v) {
-	    selectFolder(v);
-		}
-	});
-	((Button)findViewById( R.id.button_launch )).setOnClickListener(new View.OnClickListener(){
-	       @Override
-	    public void onClick(View v) {
-	    startXash(v);
-		}
-	});
-	((Button)findViewById( R.id.button_shortcut )).setOnClickListener(new View.OnClickListener(){
-	       @Override
-	    public void onClick(View v) {
-	    createShortcut(v);
-		}
-	});
-	((Button)findViewById( R.id.button_about )).setOnClickListener(new View.OnClickListener(){
-	       @Override
-	    public void onClick(View v) {
-	    aboutXash(v);
-		}
-	});
+		((Button)findViewById( R.id.button_launch )).setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+			startXash(v);
+			}
+		});
+		((Button)findViewById( R.id.button_about )).setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+			aboutXash(v);
+			}
+		});
 		useVolume.setChecked(mPref.getBoolean("usevolume",true));
 		checkUpdates.setChecked(mPref.getBoolean("check_updates",true));
 		updateToBeta.setChecked(mPref.getBoolean("check_betas", false));
-		updatePath(mPref.getString("basedir", getDefaultPath()));
 		cmdArgs.setText(mPref.getString("argv","-dev 3 -log"));
 		pixelSpinner.setSelection(mPref.getInt("pixelformat", 0));
 		resizeWorkaround.setChecked(mPref.getBoolean("enableResizeWorkaround", true));
@@ -175,15 +160,6 @@ public class LauncherActivity extends Activity {
 		{
 			immersiveMode.setVisibility(View.GONE); // not available
 		}
-				
-		resPath.setOnFocusChangeListener( new View.OnFocusChangeListener()
-		{
-			@Override
-			public void onFocusChange(View v, boolean hasFocus)
-			{
-				updatePath( resPath.getText().toString() );
-			}
-		} );
 
 		if( !XashConfig.GP_VERSION && // disable autoupdater for Google Play
 			mPref.getBoolean("check_updates", true))
@@ -193,12 +169,6 @@ public class LauncherActivity extends Activity {
 
 	}
 
-	void updatePath( String text )
-	{
-		tvResPath.setText(getResources().getString(R.string.text_res_path) + ":\n" + text );
-		resPath.setText(text);
-	
-	}
     public void startXash(View view)
     {
 		Intent intent = new Intent(this, XashActivity.class);
@@ -207,7 +177,7 @@ public class LauncherActivity extends Activity {
 		SharedPreferences.Editor editor = mPref.edit();
 		editor.putString("argv", cmdArgs.getText().toString());
 		editor.putBoolean("usevolume",useVolume.isChecked());
-		editor.putString("basedir", resPath.getText().toString());
+		editor.putString("basedir", getFilesDir().getAbsolutePath());
 		editor.putInt("pixelformat", pixelSpinner.getSelectedItemPosition());
 		editor.putBoolean("enableResizeWorkaround",resizeWorkaround.isChecked());
 		editor.putBoolean("check_updates", checkUpdates.isChecked());
@@ -216,9 +186,55 @@ public class LauncherActivity extends Activity {
 		else
 			editor.putBoolean("immersive_mode", false); // just in case...
 		editor.commit();
+		
+		String mainobb = getAPKExpansionFile("main", "su.xash.paranoia", 1);
+		
+		if( mainobb != null )
+		{
+			intent.putExtra("mainobb", mainobb);
+			if( mL10n != "Russian" )
+			{
+				String patchobb = getAPKExpansionFile("patch_"+mL10n, "su.xash.paranoia", 1);
+				
+				if( patchobb != null )
+				{
+					String[] patchArray = { patchobb };
+					intent.putExtra("patchobb", patchArray);
+				}
+			}
+		}
+		
 		startActivity(intent);
     }
 
+	static String getAPKExpansionFile(String prefix, String packageName, int version) 
+	{
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) 
+		{
+			// Build the full path to the app's expansion files
+			String folderPath = Environment.getExternalStorageDirectory().getAbsolutePath() + EXP_PATH + packageName;
+			File expPath = new File(folderPath);
+	
+			Log.d( TAG, "OBB dir..." + folderPath);
+
+			// Check that expansion file path exists
+			if (expPath.exists()) 
+			{
+				String strMainPath = expPath + File.separator + prefix + "." + version + "." + packageName + ".obb";
+				Log.d( TAG, "Checking OBB..." + strMainPath);
+				File main = new File(strMainPath);
+				if ( main.isFile() )
+				{
+					Log.d( TAG, "OBB exists!" );
+					return strMainPath; // Return file
+				}
+			}
+		}
+		Log.d( TAG, "OBB does not exist" );
+		return null;
+	}
+
+    
 	public void aboutXash(View view)
 	{
 		final Activity a = this;
@@ -236,44 +252,7 @@ public class LauncherActivity extends Activity {
 		});
 	}
 
-	public void selectFolder(View view)
-	{
-		Intent intent = new Intent(this, in.celest.xash3d.FPicker.class);
-		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		//Intent intent = new Intent("android.intent.action.OPEN_DOCUMENT_TREE");
-		startActivityForResult(intent, 42);
-		resPath.setEnabled(false);
-	}
-
-	public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
-	{
-		if (resultCode == RESULT_OK) 
-		{
-			try	
-			{
-				if( resPath == null )
-					return;
-				updatePath(resultData.getStringExtra("GetPath"));
-				resPath.setEnabled(true);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		resPath.setEnabled(true);
-	}
-
-	public void createShortcut(View view)
-	{
-		Intent intent = new Intent(this, ShortcutActivity.class);
-		intent.putExtra( "basedir", resPath.getText().toString() );
-		intent.putExtra( "name", "Xash3D" );
-		intent.putExtra( "argv", cmdArgs.getText().toString() );
-		startActivity(intent);
-	}
-
-    @Override
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_launcher, menu);

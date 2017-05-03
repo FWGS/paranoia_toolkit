@@ -33,9 +33,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.security.MessageDigest;
 
-import in.celest.xash3d.hl.R;
-import in.celest.xash3d.hl.BuildConfig;
+import su.xash.paranoia.R;
+import su.xash.paranoia.BuildConfig;
 import in.celest.xash3d.XashConfig;
+import in.celest.xash3d.XashStaticConfig;
 import in.celest.xash3d.JoystickHandler;
 import in.celest.xash3d.CertCheck;
 import android.provider.Settings.Secure;
@@ -54,7 +55,7 @@ public class XashActivity extends Activity {
 	public static EngineSurface mSurface;
 	public static String mArgv[];
 	public static final int sdk = Integer.valueOf(Build.VERSION.SDK);
-	public static final String TAG = "XASH3D:XashActivity";
+	public static final String TAG = "PARANOIA:XashActivity";
 	public static int mPixelFormat;
 	public static JoystickHandler handler;
 	public static ImmersiveMode mImmersiveMode;
@@ -130,94 +131,14 @@ public class XashActivity extends Activity {
 		
 		mSM = (StorageManager)getSystemService(Context.STORAGE_SERVICE);
 		
-		if( mPref.getBoolean("folderask", true ) )
-		{
-			Log.v(TAG, "folderask == true. Opening FPicker...");
-		
-			Intent intent = new Intent(this, in.celest.xash3d.FPicker.class);
-			startActivityForResult( intent, FPICKER_RESULT );
-		}
-		else
-		{
-			Log.v(TAG, "folderask == false. Checking write permission...");
+		Log.v(TAG, "folderask == false. Checking write permission...");
 
-			// check write permission and run engine, if possible
-			String basedir = getStringExtraFromIntent( getIntent(), "basedir", mPref.getString("basedir","/sdcard/xash/"));
-			checkWritePermission( basedir );
-		}
-		
+		// check write permission and run engine, if possible
+		String basedir = getStringExtraFromIntent( getIntent(), "basedir", mPref.getString("basedir","/sdcard/xash/"));
+		checkWritePermission( basedir );
 	}
 	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
-	{
-		if( resultCode != RESULT_OK )
-		{
-			Log.v(TAG, "onActivityResult: result is not OK. ReqCode: " + requestCode + ". ResCode: " + resultCode);
-		}
-		else
-		{
-			// it's not possible to create dialogs here
-			// so most work will be done after Activity resuming, in onPostResume()
-			mReturingWithResultCode = requestCode;
-			if( requestCode == FPICKER_RESULT )
-			{
-				String newBaseDir = resultData.getStringExtra("GetPath");
-				setNewBasedir( newBaseDir );
-				setFolderAsk( false ); // don't ask on next run
-				Log.v(TAG, "Got new basedir from FPicker: " + newBaseDir );
-			}
-		}
-	}
-	
-	@Override
-	public void onPostResume()
-	{
-		super.onPostResume();
-		
-		if( mReturingWithResultCode != 0 )
-		{
-			if( mReturingWithResultCode == FPICKER_RESULT )
-			{
-				String basedir = mPref.getString( "basedir", "/sdcard/xash/" );
-				checkWritePermission( basedir );
-			}
-			/*else if( mReturingWithResultCode == OPEN_DOCUMENT_TREE_RESULT )
-			{
-				String basedir = getStringExtraFromIntent( getIntent(), "basedir", mPref.getString("basedir","/sdcard/xash/"));
-				Log.v(TAG, "Got permissions. Checking writing again...");
-
-				if( nativeTestWritePermission( basedir ) == 0 )
-				{
-					Log.v(TAG, "Write test has failed twice!");
-					String msg = getString(R.string.lollipop_request_permission_fail_msg) + getString(R.string.ask_about_new_basedir_msg);
-			
-					new AlertDialog.Builder(this)
-						.setTitle( R.string.write_failed )
-						.setMessage( msg )
-						.setPositiveButton( R.string.ok, new DialogInterface.OnClickListener() 
-							{
-								public void onClick(DialogInterface dialog, int whichButton) 
-								{
-									XashActivity act = XashActivity.this;
-									act.setFolderAsk( true );
-									act.finish();
-								}
-							})
-						.setCancelable(false)
-						.show();
-				}
-				else
-				{
-					launchSurfaceAndEngine();
-				}
-			}*/
-			
-			mReturingWithResultCode = 0;
-		}
-	}
-	
-		// Events
+	// Events
 	@Override
 	protected void onPause() {
 		Log.v(TAG, "onPause()");
@@ -456,11 +377,11 @@ public class XashActivity extends Activity {
 	private void setupEnvironment()
 	{
 		Intent intent = getIntent();
-		final String enginedir  = getFilesDir().getParentFile().getPath() + "/lib";
-		final String argv       = getStringExtraFromIntent(intent, "argv",       mPref.getString("argv", "-dev 3 -log"));
+		final String enginedir = getFilesDir().getParentFile().getPath() + "/lib";
+		final String argv    = getStringExtraFromIntent(intent, "argv",       mPref.getString("argv", "-dev 3 -log"));
 		final String gamelibdir = getStringExtraFromIntent(intent, "gamelibdir", enginedir);
-		final String gamedir    = getStringExtraFromIntent(intent, "gamedir",    "valve");
-		final String basedir    = getStringExtraFromIntent(intent, "basedir",    mPref.getString("basedir","/sdcard/xash/"));
+		final String gamedir = getStringExtraFromIntent(intent, "gamedir",    XashStaticConfig.baseDir);
+		final String basedir = getStringExtraFromIntent(intent, "basedir",    mPref.getString("basedir","/sdcard/xash/"));
 		final String gdbsafe = intent.getStringExtra("gdbsafe");
 		final String mainobb = intent.getStringExtra("mainobb");
 		final String pakfile = intent.getStringExtra("pakfile");

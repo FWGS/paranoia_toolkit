@@ -7,7 +7,7 @@ KEYSTORE=../../../myks.keystore
 ENABLE_PAK="false" # "true"
 
 if [[ "$1" = "--help" ]]; then
-	echo "Usage: ./build.sh <release|debug> <omp|noomp>"
+	echo "Usage: ./build.sh <release|debug> <gp|nongp>"
 	exit 0
 fi
 
@@ -19,21 +19,24 @@ fi
 if [[ "$1" = "release" ]]; then
 	VERBOSE="0 APP_CFLAGS=\"-w\""
 	RELEASE="0"
+	GEN_CONFIG="release"
 else
 	RELEASE="1 APP_CFLAGS=\"-gdwarf-3\""
-	VERBOSE="1"
+	GEN_CONFIG=""
 fi
 
-if [[ "$2" = "omp" ]]; then
-	OMP="1"
-	NAME_POSTFIX="omp"
+if [[ "$2" = "gp" ]]; then
+	GP="1"
+	NAME_POSTFIX="gp"
+	GEN_CONFIG_GP="gp"
 else
-	OMP="0"
-	NAME_POSTFIX="noomp"
+	GP="0"
+	NAME_POSTFIX="nongp"
+	GEN_CONFIG_GP=""
 fi
 
 echo "*****************************************"
-echo "* OMP: $OMP "
+echo "* GP: $GP "
 echo "* RELEASETYPE: $RELEASE "
 echo "*****************************************"
 
@@ -46,8 +49,11 @@ if [[ "$ENABLE_PAK" -ne "true" ]]; then
 	python2 makepak.py pak/ assets/extras.pak
 fi
 
+./gen-config.sh $GEN_CONFIG $GEN_CONFIG_GP 
+./gen-version.sh
+
 # Build
-ndk-build -j8 NDK_TOOLCHAIN_VERSION=4.8 _CS16CLIENT_ENABLE_OPENMP=$OMP NDK_DEBUG=$RELEASE V=$VERBOSE
+ndk-build -j8 NDK_TOOLCHAIN_VERSION=4.8 NDK_DEBUG=$RELEASE V=$VERBOSE GOOGLE_PLAY_BUILD=$GP
 ant $1
 
 if [[ "$1" = "release" ]]; then

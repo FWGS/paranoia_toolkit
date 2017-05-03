@@ -1,12 +1,5 @@
-#LOCAL_LDFLAGS += -fopenmp
-#LOCAL_CFLAGS += -ftree-parallelize-loops=4 -fopenmp
-
-ifeq ($(_CS16CLIENT_ENABLE_OPENMP), 1)
-LOCAL_LDFLAGS += -fopenmp
-LOCAL_CFLAGS += -ftree-parallelize-loops=4 -fopenmp
-endif
-
-LOCAL_CFLAGS += $(CFLAGS_OPT) -Wno-write-strings -Wno-invalid-offsetof -Wno-conversion-null
+LOCAL_CFLAGS += $(CFLAGS_OPT) 
+LOCAL_CPPFLAGS += -Wno-write-strings -Wno-invalid-offsetof -Wno-conversion-null
 ifeq ($(TARGET_ARCH_ABI),armeabi-v7a-hard)
 LOCAL_CFLAGS += $(CFLAGS_OPT_ARM) $(CFLAGS_HARDFP)
 endif
