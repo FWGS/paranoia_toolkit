@@ -23,8 +23,10 @@ CFLAGS_HARDFP := -D_NDK_MATH_NO_SOFTFP=1 -mhard-float -mfloat-abi=hard -DLOAD_HA
 APPLICATIONMK_PATH = $(call my-dir)
 
 NANOGL_PATH := $(APPLICATIONMK_PATH)/nanogl
-
+VGUI_SUPPORT_PATH := $(APPLICATIONMK_PATH)/xash3d/vgui_support
+VGUI_DIR := $(APPLICATIONMK_PATH)/vgui_dll
 XASH3D_PATH := $(APPLICATIONMK_PATH)/xash3d
+HLSDK_PATH := $(APPLICATIONMK_PATH)/../../code_src/
 
 XASH3D_CONFIG := $(APPLICATIONMK_PATH)/bs_config.mk
 
@@ -35,7 +37,16 @@ APP_ABI := x86 armeabi armeabi-v7a-hard
 # ARMv6 and ARMv5 xash3d builds use softfp only and compatible only with softfp mods
 # Build both armeabi-v7a-hard and armeabi-v7a supported only for mods, not for engine
 
-APP_MODULES := xash menu server NanoGL gpgs_support client
+APP_MODULES := \
+	xash \
+	menu \
+	server \
+	NanoGL \
+	gpgs_support \
+	client \
+	vgui \
+	vgui_support
+
 ifeq ($(GOOGLE_PLAY_BUILD),1)
 	APP_STL := gnustl_static
 	APP_MODULES += libgpg-1
