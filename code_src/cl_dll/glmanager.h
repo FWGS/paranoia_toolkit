@@ -4,9 +4,12 @@
 #ifdef _WIN32
 #include "windows.h"
 #endif
+
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include "glxash.h"
+#include "render_api.h"
+
 #include "log.h"
 #ifndef APIENTRY
 #define APIENTRY
@@ -210,6 +213,7 @@ private:
 };
 
 extern GLManager gl;
+extern render_api_t gRenderfuncs;
 
 
 #endif // __GLMANAGER_H

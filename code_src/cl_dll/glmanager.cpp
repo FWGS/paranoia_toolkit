@@ -563,7 +563,7 @@ void GLManager::gluLookAt( GLdouble eyex, GLdouble eyey, GLdouble eyez,
    glTranslated( -eyex, -eyey, -eyez );
 }
 
-render_api_t gRenderfuncs;
+render_api_t gRenderfuncs = {};
 render_interface_t render_iface =
 {
 	CL_RENDER_INTERFACE_VERSION,
