@@ -62,6 +62,7 @@ cvar_t *cv_lambert;
 cvar_t *cv_drawbrushents;
 cvar_t *cv_clipplanes;
 cvar_t *cv_showplane;
+cvar_t *gl_finish;
 
 int		norm_cubemap_id = 0;
 int		default_normalmap_id = 0;
@@ -1174,6 +1175,8 @@ void RendererInit()
 	cv_clipplanes = gEngfuncs.pfnRegisterVariable( "gl_clipplanes","0", 0 );
 	cv_showplane = gEngfuncs.pfnRegisterVariable( "gl_showplane","0", 0 );
 
+	gl_finish = gEngfuncs.pfnGetCvarPointer( "gl_finish" );
+
 	gEngfuncs.pfnAddCommand ("dumptextures", DumpTextures);
 	gEngfuncs.pfnAddCommand ("dumplevel", DumpLevel);
 	gEngfuncs.pfnAddCommand ("makelight", MakeLight);
@@ -1200,5 +1203,11 @@ void RendererDrawHud()
 
 int GL_RenderFrame( const struct ref_params_s *pparams, qboolean drawWorld )
 {
+	if( !cv_renderer->value || !gl.IsGLAllowed() )
+		return 0;
+
+	//if( gl_finish->value && drawWorld )
+//		gl.glFinish();
+
 	return 0;
 }

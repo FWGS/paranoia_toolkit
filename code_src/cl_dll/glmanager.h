@@ -25,6 +25,19 @@ typedef int (*GP)(...);
 #define GL_STATIC_DRAW_ARB 0x88E4
 #define GL_MAX_TEXTURE_IMAGE_UNITS_NV 0x8872
 #define GL_MAX_TEXTURE_COORDS_NV 0x8871
+
+/* Accumulation buffer */
+#define GL_ACCUM_RED_BITS			0x0D58
+#define GL_ACCUM_GREEN_BITS			0x0D59
+#define GL_ACCUM_BLUE_BITS			0x0D5A
+#define GL_ACCUM_ALPHA_BITS			0x0D5B
+#define GL_ACCUM_CLEAR_VALUE			0x0B80
+#define GL_ACCUM				0x0100
+#define GL_ADD					0x0104
+#define GL_LOAD					0x0101
+#define GL_MULT					0x0103
+#define GL_RETURN				0x0102
+
 enum {
 	GMSTATE_NOINIT = 0, // should try to load at next changelevel
 	GMSTATE_INITFAILED, // failed to load, dont try until video mode changes

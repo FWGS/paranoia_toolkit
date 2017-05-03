@@ -127,26 +127,26 @@ GNU General Public License for more details.
 #define APIENTRY
 #endif
 
-typedef uint GLenum;
-typedef byte GLboolean;
-typedef uint GLbitfield;
-typedef void GLvoid;
-typedef signed char GLbyte;
-typedef short GLshort;
-typedef int GLint;
-typedef byte GLubyte;
-typedef word GLushort;
-typedef uint GLuint;
-typedef int GLsizei;
-typedef float GLfloat;
-typedef float GLclampf;
-typedef double GLdouble;
-typedef double GLclampd;
-typedef int GLintptrARB;
-typedef int GLsizeiptrARB;
-typedef char GLcharARB;
-typedef uint GLhandleARB;
-typedef float GLmatrix[16];
+//typedef uint GLenum;
+//typedef byte GLboolean;
+//typedef uint GLbitfield;
+//typedef void GLvoid;
+//typedef signed char GLbyte;
+//typedef short GLshort;
+//typedef int GLint;
+//typedef byte GLubyte;
+//typedef word GLushort;
+//typedef uint GLuint;
+//typedef int GLsizei;
+//typedef float GLfloat;
+//typedef float GLclampf;
+//typedef double GLdouble;
+//typedef double GLclampd;
+//typedef int GLintptrARB;
+//typedef int GLsizeiptrARB;
+//typedef char GLcharARB;
+//typedef uint GLhandleARB;
+//typedef float GLmatrix[16];
 
 #define GL_MODELVIEW			0x1700
 #define GL_PROJECTION			0x1701
